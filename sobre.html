@@ -113,9 +113,9 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
+    <header class="site-header">
     <div class="logo">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" alt="Logo SRE" />
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1iZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" alt="Logo SRE" />
       <button class="menu-toggle" aria-label="Abrir menu">☰</button>
       <div class="brand">
         <h1>Biblioteca Didática</h1>
@@ -123,8 +123,11 @@
       </div>
     </div>
     <nav class="main-nav">
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="sobre.html" class="nav-link active">Sobre Nós</a>
+      <button class="nav-link active" data-target="inicio">Início</button>
+      <button class="nav-link" data-target="linguagens">Linguagens</button>
+      <button class="nav-link" data-target="matematica">Matemática</button>
+      <button class="nav-link" data-target="ciencias-natureza">Ciências da Natureza</button>
+      <button class="nav-link" data-target="ciencias-humanas">Ciências Humanas</button>
     </nav>
   </header>
 
