@@ -1,1 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nós - Biblioteca Didática SRE Araguaína</title>
+  <meta name="description" content="Conheça a equipe responsável pela Biblioteca Didática da SRE Araguaína." />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
+  <style>
+    /* Estilos básicos */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, #2c3e50, #1a2530);
+      color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo img {
+      height: 50px;
+    }
+    
+    .brand h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .brand p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      top: 1.5rem;
+    }
+    
+    .main-nav {
+      display: flex;
+      margin-top: 1rem;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+    
+    .main-nav.expanded {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      background: #2c3e50;
+      width: calc(100% - 2rem);
+      left: 1rem;
+      top: 100%;
+      z-index: 1000;
+      padding: 1rem;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-link {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      margin-right: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-link.active {
+      background: #3498db;
+      font-weight: bold;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+    
+    .content-section {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+    
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #3498db;
+    }
+    
+    h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    strong {
+      color: #2c3e50;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .member-card {
+      background: #f8f9fa;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #3498db;
+    }
+    
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .member-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .member-info {
+      padding: 1.5rem;
+    }
+    
+    .member-info h3 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+    
+    .role {
+      color: #3498db;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    
+    .site-footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: auto;
+    }
+    
+    .site-footer a {
+      color: #3498db;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Placeholder para imagens não disponíveis */
+    .member-card img {
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      
+      .main-nav:not(.expanded) {
+        display: none;
+      }
+      
+      .brand h1 {
+        font-size: 1.5rem;
+      }
+      
+      .main-nav.expanded {
+        display: flex;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+      }
+      
+      .main-nav .nav-link {
+        margin: 0.3rem 1rem;
+        width: calc(100% - 2rem);
+      }
+      
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .member-card img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" alt="Logo SRE" />
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+      <div class="brand">
+        <h1>Biblioteca Didática</h1>
+        <p>Currículo, Formação e Avaliação</p>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="sobre.html" class="nav-link active">Sobre Nós</a>
+    </nav>
+  </header>
 
+  <main class="container">
+    <section class="content-section">
+      <h2>Quem Somos</h2>
+      <p>
+        Somos o trio responsável por <strong>Currículo, Formação e Avaliação</strong> na área de Linguagens,
+        Códigos e suas Tecnologias da <strong>SRE Araguaína</strong>. Atuamos com monitoramento e assessoramento
+        às escolas de nossa região e organizamos este repositório para facilitar o acesso a materiais didáticos.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Equipe de Linguagens</h2>
+      <div class="team-grid">
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Guilherme Silva Vanderley" loading="lazy" />
+          <div class="member-info">
+            <h3>Guilherme Silva Vanderley</h3>
+            <p class="role">Professor de Língua Portuguesa</p>
+            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1fYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Andreia Nascimento do Carmo Dias" loading="lazy" />
+          <div class="member-info">
+            <h3>Andreia Nascimento do Carmo Dias</h3>
+            <p class="role">Professora de Língua Portuguesa</p>
+            <p>Foco em formação continuada de professores e valorização da leitura e escrita no ambiente escolar.</p>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="João Victor Ferreira" loading="lazy" />
+          <div class="member-info">
+            <h3>João Victor Ferreira dos Santos Silva</h3>
+            <p class="role">Professor de Língua Portuguesa</p>
+            <p>Integração entre teoria e prática pedagógica para potencializar aprendizagens significativas.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Equipe de Matemática</h2>
+      <div class="team-grid">
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Ulisses" loading="lazy" />
+          <div class="member-info">
+            <h3>Ulisses</h3>
+            <p class="role">Professor de Matemática • Desenvolvedor</p>
+            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2iWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2UwZTBlMCIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM3ZjhjOGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkltYWdlbSBuYW8gZGlzcG9uaXZlbDwvdGV4dD48L3N2Zz4=" alt="Alcione" loading="lazy" />
+          <div class="member-info">
+            <h3>Alcione</h3>
+            <p class="role">Professora de Matemática</p>
+            <p>Foco em formação continuada de professores e valorização da aprendizagem significativa em matemática.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Equipe de Ciências Humanas</h2>
+      <div class="team-grid">
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Arlem" loading="lazy" />
+          <div class="member-info">
+            <h3>Arlem</h3>
+            <p class="role">Professor de História</p>
+            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Itamar" loading="lazy" />
+          <div class="member-info">
+            <h3>Itamar</h3>
+            <p class="role">Professor de Geografia</p>
+            <p>Foco em formação continuada de professores e valorização da leitura e escrita no ambiente escolar.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Equipe de Ciências da Natureza</h2>
+      <div class="team-grid">
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Professor de Ciências" loading="lazy" />
+          <div class="member-info">
+            <h3>Carlos</h3>
+            <p class="role">Professor de Biologia</p>
+            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
+          </div>
+        </article>
+
+        <article class="member-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Professora de Ciências" loading="lazy" />
+          <div class="member-info">
+            <h3>Mariana</h3>
+            <p class="role">Professora de Química</p>
+            <p>Foco em formação continuada de professores e valorização da experimentação no ensino de ciências.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="nav-link" href="index.html">Voltar para o Início</a>
+    <p>SRE Araguaína © 2025 - Currículo, Formação e Avaliação</p>
+    <p>Desenvolvido por Guilherme S. Vanderley</p>
+  </footer>
+
+  <script>
+    // Configuração do Menu Mobile
+    function setupMenuToggle() {
+      const toggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      if (!toggle) return;
+
+      // Função para fechar o menu
+      function closeMenu() {
+        mainNav.classList.remove('expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      // Toggle do menu
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mainNav.classList.toggle('expanded');
+        toggle.setAttribute('aria-expanded', mainNav.classList.contains('expanded'));
+      });
+
+      // Fechar menu ao clicar nos links (mobile)
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            closeMenu();
+          }
+        });
+      });
+
+      // Fechar menu ao clicar fora (mobile)
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            !e.target.closest('.main-nav') && 
+            !e.target.closest('.menu-toggle')) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Inicialização
+    document.addEventListener("DOMContentLoaded", () => {
+      setupMenuToggle();
+    });
+  </script>
+</body>
+</html>
