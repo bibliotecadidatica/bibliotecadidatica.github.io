@@ -2,19 +2,18 @@
 <html lang="pt-BR">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Y07NPE5TJ1');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y07NPE5TJ1');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enviar Material - Biblioteca Didática SRE Araguaína</title>
   <meta name="description" content="Envie seus materiais didáticos para compor a Biblioteca Didática da SRE Araguaína" />
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZBBsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
   <style>
     /* Estilos básicos - mantidos do código original */
     * {
@@ -286,6 +285,36 @@
       margin-bottom: 0.5rem;
     }
     
+    /* Mensagem de agradecimento */
+    .thank-you-message {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+    
+    .thank-you-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+    }
+    
+    .thank-you-message h2 {
+      color: #2c3e50;
+      border-bottom: none;
+      margin-bottom: 1rem;
+    }
+    
+    .thank-you-message p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+    
     /* Responsividade */
     @media (max-width: 768px) {
       .menu-toggle {
@@ -313,6 +342,14 @@
       .nav-link {
         margin-bottom: 5px;
       }
+      
+      .thank-you-message {
+        padding: 2rem 1rem;
+      }
+      
+      .thank-you-icon {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
@@ -328,7 +365,7 @@
   </header>
 
   <main class="container">
-    <section class="content-section">
+    <section class="content-section" id="form-section">
       <a href="index.html" class="back-btn">← Voltar para a Página Inicial</a>
       
       <h2>Enviar Material Didático</h2>
@@ -338,7 +375,7 @@
       </div>
 
       <div class="form-container">
-        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScKOziP--1IxlvIDW3q04BZcGGuVGbD2J_AQvMZyxPaDVCC_w/formResponse" method="POST" target="_self">
+        <form id="material-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScKOziP--1IxlvIDW3q04BZcGGuVGbD2J_AQvMZyxPaDVCC_w/formResponse" method="POST" target="hidden-iframe">
           <div class="form-group">
             <label for="nome" class="form-label">Seu nome <span class="form-required">*</span></label>
             <input type="text" id="nome" name="entry.2130400867" class="form-input" required placeholder="Digite seu nome completo">
@@ -430,9 +467,8 @@
                 Creative Commons (Permitimos compartilhamento e adaptação)
               </label>
             </div>
-            <div>
           </div>
-          </div>
+          
           <button type="submit" class="form-submit">Enviar Material</button>
         </form>
         
@@ -448,6 +484,16 @@
         </div>
       </div>
     </section>
+
+    <!-- Mensagem de agradecimento (inicialmente oculta) -->
+    <section id="thank-you-section" class="thank-you-message hidden">
+      <div class="thank-you-icon">✅</div>
+      <h2>Obrigado pelo envio!</h2>
+      <p>Sua contribuição é muito valiosa para nossa comunidade educacional. Seu material será avaliado pela nossa equipe e em breve estará disponível na biblioteca.</p>
+      <p>Você receberá um e-mail de confirmação quando seu material for aprovado.</p>
+      <a href="index.html" class="btn">Voltar à Biblioteca</a>
+      <a href="enviar-material.html" class="btn" style="background-color: #95a5a6;">Enviar outro material</a>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -455,6 +501,9 @@
     <a class="nav-link" href="sobre.html">Sobre Nós</a>
     <p>SRE Araguaína © 2025 - Currículo, Formação e Avaliação - por Guilherme S. Vanderley</p>
   </footer>
+
+  <!-- Iframe oculto para envio do formulário -->
+  <iframe name="hidden-iframe" id="hidden-iframe" class="hidden"></iframe>
 
   <script>
     // Configuração do Menu Mobile
@@ -487,10 +536,24 @@
       });
     }
 
-    // Validação do formulário
-    function setupFormValidation() {
-      const form = document.querySelector('form');
+    // Validação do formulário e exibição da mensagem de agradecimento
+    function setupFormSubmission() {
+      const form = document.getElementById('material-form');
+      const formSection = document.getElementById('form-section');
+      const thankYouSection = document.getElementById('thank-you-section');
+      const iframe = document.getElementById('hidden-iframe');
+      
       if (!form) return;
+      
+      // Quando o iframe é carregado (após envio do formulário)
+      iframe.addEventListener('load', function() {
+        // Mostra a mensagem de agradecimento e oculta o formulário
+        formSection.classList.add('hidden');
+        thankYouSection.classList.remove('hidden');
+        
+        // Rola a página para a mensagem de agradecimento
+        thankYouSection.scrollIntoView({ behavior: 'smooth' });
+      });
       
       form.addEventListener('submit', function(e) {
         // Validação básica
@@ -533,7 +596,7 @@
     // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
       setupMenuToggle();
-      setupFormValidation();
+      setupFormSubmission();
     });
   </script>
 </body>
