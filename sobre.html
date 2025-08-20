@@ -3,16 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre Nós - Biblioteca Didática SRE Araguaína</title>
-  <meta name="description" content="Conheça a equipe responsável pela Biblioteca Didática da SRE Araguaína." />
+  <title>Biblioteca Didática - SRE Araguaína</title>
+  <meta name="description" content="Biblioteca Didática da SRE Araguaína: Materiais pedagógicos gratuitos para professores. Atualização automática via Google Drive." />
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
   <style>
     /* Estilos básicos */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f7fa;
+    }
+    
+    .site-header {
+      background: linear-gradient(135deg, #2c3e50, #1a2530);
+      color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo img {
+      height: 50px;
+    }
+    
+    .brand h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.0rem;
+    }
+    
+    .brand p {
+      font-size: 1.0rem;
+      opacity: 0.8;
+    }
+    
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .main-nav {
+      display: flex;
+      margin-top: 1rem;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+    
+    .main-nav.expanded {
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      width: 100%;
+      left: 0;
+      top: 100%;
+      z-index: 1000;
+      padding: 1rem;
+    }
+    
+    .nav-link {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      margin-right: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-link.active {
+      background: #3498db;
+      font-weight: bold;
+    }
+    
     .container {
       max-width: 1200px;
       margin: 2rem auto;
       padding: 0 1rem;
-      flex: 1;
     }
     
     .content-section {
@@ -21,6 +108,10 @@
       padding: 2rem;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
       margin-bottom: 2rem;
+    }
+    
+    .hidden {
+      display: none;
     }
     
     h2 {
@@ -35,85 +126,227 @@
       margin-bottom: 1rem;
     }
     
-    p {
-      margin-bottom: 1rem;
+    .tips {
+      background: #e8f4fc;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1.5rem;
+      border-left: 4px solid #3498db;
     }
     
-    strong {
-      color: #2c3e50;
+    .tips div {
+      margin-bottom: 0.5rem;
     }
     
-    .team-grid {
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .search {
+      padding: 0.7rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      min-width: 250px;
+    }
+    
+    .file-list {
+      list-style: none;
+    }
+    
+    .file-list li {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .file-list li:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .file-list a {
+      color: #2980b9;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .file-list a:hover {
+      text-decoration: none;
+    }
+    
+    .file-list .meta {
+      font-size: 0.85rem;
+      color: #7f8c8d;
+    }
+    
+    .loading, .empty, .error {
+      text-align: center;
+      padding: 2rem;
+      color: #7f8c8d;
+    }
+    
+    .error {
+      color: #e74c3c;
+    }
+    
+    .skeleton-item {
+      height: 50px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    
+    .subjects-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
       margin-top: 1.5rem;
     }
     
-    .member-card {
+    .subject-card {
       background: #f8f9fa;
       border-radius: 8px;
-      overflow: hidden;
+      padding: 1.5rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-left: 4px solid #3498db;
     }
     
-    .member-card:hover {
+    .subject-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
-    .member-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-    }
-    
-    .member-info {
-      padding: 1.5rem;
-    }
-    
-    .member-info h3 {
+    .subject-card h3 {
       color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-    
-    .role {
-      color: #3498db;
-      font-weight: 500;
       margin-bottom: 1rem;
-      font-style: italic;
     }
     
-    /* Placeholder para imagens não disponíveis */
-    .member-card img {
-      background-color: #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .subject-card p {
       color: #7f8c8d;
-      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: #3498db;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: #2980b9;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #95a5a6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .back-btn:hover {
+      background: #7f8c8d;
+    }
+    
+    .site-footer {
+      background: #2c3e50;
+      color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    
+    .site-footer a {
+      color: #3498db;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    
+    .site-footer a:hover {
+      text-decoration: none;
     }
     
     /* Responsividade */
     @media (max-width: 768px) {
-     
-      
-      .team-grid {
-        grid-template-columns: 1fr;
+      .menu-toggle {
+        display: block;
       }
       
-      .member-card img {
-        height: 200px;
+      .main-nav:not(.expanded) {
+        display: none;
+      }
+      
+      .brand h1 {
+        font-size: 1.5rem;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .search {
+        width: 100%;
+      }
+      
+      .main-nav {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      
+      .nav-link {
+        margin-bottom: 5px;
+      }
+      
+      .file-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .file-list .meta {
+        align-self: flex-end;
+      }
+      
+      .subjects-container {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-    <header class="site-header">
+  <header class="site-header">
     <div class="logo">
       <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1iZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" alt="Logo SRE" />
       <button class="menu-toggle" aria-label="Abrir menu">☰</button>
@@ -132,124 +365,378 @@
   </header>
 
   <main class="container">
-    <section class="content-section">
-      <h2>Quem Somos</h2>
-      <p>
-        Somos o trio responsável por <strong>Currículo, Formação e Avaliação</strong> na área de Linguagens,
-        Códigos e suas Tecnologias da <strong>SRE Araguaína</strong>. Atuamos com monitoramento e assessoramento
-        às escolas de nossa região e organizamos este repositório para facilitar o acesso a materiais didáticos.
-      </p>
-    </section>
+    <section id="inicio" class="content-section">
+      <h2>Bem-vindo (a) à Biblioteca Didática da SRE/Araguaína</h2>
+      <p>Olá, professor(a). Tudo bem? Aqui você pode acessar todos os materiais organizados por disciplina para apoiar as práticas pedagógicas nas
+        escolas da SRE Araguaína/TO.</p>
 
-    <section class="content-section">
-      <h2>Equipe de Linguagens</h2>
-      <div class="team-grid">
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Guilherme Silva Vanderley" loading="lazy" />
-          <div class="member-info">
-            <h3>Guilherme Silva Vanderley</h3>
-            <p class="role">Professor de Língua Portuguesa</p>
-            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
-          </div>
-        </article>
+      <p>Esta plataforma foi pensada e desenvolvida pelos membros do Currículo da SRE/Araguaína.</p>
 
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1fYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Andreia Nascimento do Carmo Dias" loading="lazy" />
-          <div class="member-info">
-            <h3>Andreia Nascimento do Carmo Dias</h3>
-            <p class="role">Professora de Língua Portuguesa</p>
-            <p>Foco em formação continuada de professores e valorização da leitura e escrita no ambiente escolar.</p>
-          </div>
-        </article>
-
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="João Victor Ferreira" loading="lazy" />
-          <div class="member-info">
-            <h3>João Victor Ferreira dos Santos Silva</h3>
-            <p class="role">Professor de Língua Portuguesa</p>
-            <p>Integração entre teoria e prática pedagógica para potencializar aprendizagens significativas.</p>
-          </div>
-        </article>
+      <div class="tips">
+        <div><strong>Dica:</strong> use o campo de busca na barra da disciplina para localizar um material pelo nome.</div>
+        <div><strong>Dúvidas ou sugestões?</strong> curriculo-araguaina@seduc.to.gov.br</div>
       </div>
     </section>
 
-    <section class="content-section">
-      <h2>Equipe de Matemática</h2>
-      <div class="team-grid">
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Ulisses" loading="lazy" />
-          <div class="member-info">
-            <h3>Ulisses</h3>
-            <p class="role">Professor de Matemática • Desenvolvedor</p>
-            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
-          </div>
-        </article>
-
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2iWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2UwZTBlMCIvPjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM3ZjhjOGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkltYWdlbSBuYW8gZGlzcG9uaXZlbDwvdGV4dD48L3N2Zz4=" alt="Alcione" loading="lazy" />
-          <div class="member-info">
-            <h3>Alcione</h3>
-            <p class="role">Professora de Matemática</p>
-            <p>Foco em formação continuada de professores e valorização da aprendizagem significativa em matemática.</p>
-          </div>
-        </article>
+    <!-- Área de Linguagens -->
+    <section id="linguagens" class="content-section hidden">
+      <h2>Linguagens</h2>
+      <p>Selecione uma das disciplinas da área de Linguagens para acessar os materiais específicos:</p>
+      
+      <div class="subjects-container">
+        <div class="subject-card">
+          <h3>Língua Portuguesa</h3>
+          <p>Materiais didáticos para o ensino de Língua Portuguesa</p>
+          <a href="#portugues" class="btn" data-show="portugues">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Língua Inglesa</h3>
+          <p>Materiais didáticos para o ensino de Língua Inglesa</p>
+          <a href="#ingles" class="btn" data-show="ingles">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Espanhol</h3>
+          <p>Materiais didáticos para o ensino de Espanhol</p>
+          <a href="#espanhol" class="btn" data-show="espanhol">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Libras</h3>
+          <p>Materiais didáticos para o ensino de Libras</p>
+          <a href="#libras" class="btn" data-show="libras">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Artes</h3>
+          <p>Materiais didáticos para o ensino de Artes</p>
+          <a href="#artes" class="btn" data-show="artes">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Educação Física</h3>
+          <p>Materiais didáticos para o ensino de Educação Física</p>
+          <a href="#edfisica" class="btn" data-show="edfisica">Acessar Materiais</a>
+        </div>
       </div>
     </section>
 
-    <section class="content-section">
-      <h2>Equipe de Ciências Humanas</h2>
-      <div class="team-grid">
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Arlem" loading="lazy" />
-          <div class="member-info">
-            <h3>Arlem</h3>
-            <p class="role">Professor de História</p>
-            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
-          </div>
-        </article>
+    <!-- Disciplinas de Linguagens (ocultas inicialmente) -->
+    <section id="portugues" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Língua Portuguesa</h2>
+        <input id="search-portugues" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Língua Portuguesa" />
+      </header>
+      <ul class="file-list" id="list-portugues"></ul>
+      <div class="loading" id="loading-portugues" hidden>Carregando…</div>
+      <div class="empty" id="empty-portugues" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-portugues" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
 
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Itamar" loading="lazy" />
-          <div class="member-info">
-            <h3>Itamar</h3>
-            <p class="role">Professor de Geografia</p>
-            <p>Foco em formação continuada de professores e valorização da leitura e escrita no ambiente escolar.</p>
-          </div>
-        </article>
+    <section id="ingles" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Língua Inglesa</h2>
+        <input id="search-ingles" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Língua Inglesa" />
+      </header>
+      <ul class="file-list" id="list-ingles"></ul>
+      <div class="loading" id="loading-ingles" hidden>Carregando…</div>
+      <div class="empty" id="empty-ingles" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-ingles" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="espanhol" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Espanhol</h2>
+        <input id="search-espanhol" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Espanhol" />
+      </header>
+      <ul class="file-list" id="list-espanhol"></ul>
+      <div class="loading" id="loading-espanhol" hidden>Carregando…</div>
+      <div class="empty" id="empty-espanhol" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-espanhol" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="libras" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Libras</h2>
+        <input id="search-libras" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Libras" />
+      </header>
+      <ul class="file-list" id="list-libras"></ul>
+      <div class="loading" id="loading-libras" hidden>Carregando…</div>
+      <div class="empty" id="empty-libras" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-libras" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="artes" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Artes</h2>
+        <input id="search-artes" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Artes" />
+      </header>
+      <ul class="file-list" id="list-artes"></ul>
+      <div class="loading" id="loading-artes" hidden>Carregando…</div>
+      <div class="empty" id="empty-artes" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-artes" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="edfisica" class="content-section hidden">
+      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <header class="section-header">
+        <h2>Educação Física</h2>
+        <input id="search-edfisica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Educação Física" />
+      </header>
+      <ul class="file-list" id="list-edfisica"></ul>
+      <div class="loading" id="loading-edfisica" hidden>Carregando…</div>
+      <div class="empty" id="empty-edfisica" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-edfisica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+    
+    <!-- Área de Matemática -->
+    <section id="matematica" class="content-section hidden">
+      <h2>Matemática</h2>
+      <p>Selecione uma das disciplinas da área de Matemática para acessar os materiais específicos:</p>
+      
+      <div class="subjects-container">
+        <div class="subject-card">
+          <h3>Matemática</h3>
+          <p>Materiais didáticos para o ensino de Matemática</p>
+          <a href="#matematica-disciplina" class="btn" data-show="matematica-disciplina">Acessar Materiais</a>
+        </div>
       </div>
     </section>
 
-    <section class="content-section">
-      <h2>Equipe de Ciências da Natureza</h2>
-      <div class="team-grid">
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Professor de Ciências" loading="lazy" />
-          <div class="member-info">
-            <h3>Carlos</h3>
-            <p class="role">Professor de Biologia</p>
-            <p>Entusiasta de tecnologia educacional e da difusão de conteúdos de qualidade para professores.</p>
-          </div>
-        </article>
-
-        <article class="member-card">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlMGUwZTAiLz48dGV4dCB4PSIxMDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjN2Y4YzhkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj5JbWFnZW0gbmFvIGRpc3Bvbml2ZWw8L3RleHQ+PC9zdmc+" alt="Professora de Ciências" loading="lazy" />
-          <div class="member-info">
-            <h3>Mariana</h3>
-            <p class="role">Professora de Química</p>
-            <p>Foco em formação continuada de professores e valorização da experimentação no ensino de ciências.</p>
-          </div>
-        </article>
+    <section id="matematica-disciplina" class="content-section hidden">
+      <button class="back-btn" data-back="matematica">← Voltar para Matemática</button>
+      <header class="section-header">
+        <h2>Matemática</h2>
+        <input id="search-matematica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Matemática" />
+      </header>
+      <ul class="file-list" id="list-matematica"></ul>
+      <div class="loading" id="loading-matematica" hidden>Carregando…</div>
+      <div class="empty" id="empty-matematica" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-matematica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+    
+    <!-- Área de Ciências da Natureza -->
+    <section id="ciencias-natureza" class="content-section hidden">
+      <h2>Ciências da Natureza</h2>
+      <p>Selecione uma das disciplinas da área de Ciências da Natureza para acessar os materiais específicos:</p>
+      
+      <div class="subjects-container">
+        <div class="subject-card">
+          <h3>Biologia</h3>
+          <p>Materiais didáticos para o ensino de Biologia</p>
+          <a href="#biologia" class="btn" data-show="biologia">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Física</h3>
+          <p>Materiais didáticos para o ensino de Física</p>
+          <a href="#fisica" class="btn" data-show="fisica">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Química</h3>
+          <p>Materiais didáticos para o ensino de Química</p>
+          <a href="#quimica" class="btn" data-show="quimica">Acessar Materiais</a>
+        </div>
       </div>
+    </section>
+
+    <section id="biologia" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <header class="section-header">
+        <h2>Biologia</h2>
+        <input id="search-biologia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Biologia" />
+      </header>
+      <ul class="file-list" id="list-biologia"></ul>
+      <div class="loading" id="loading-biologia" hidden>Carregando…</div>
+      <div class="empty" id="empty-biologia" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-biologia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="fisica" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <header class="section-header">
+        <h2>Física</h2>
+        <input id="search-fisica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Física" />
+      </header>
+      <ul class="file-list" id="list-fisica"></ul>
+      <div class="loading" id="loading-fisica" hidden>Carregando…</div>
+      <div class="empty" id="empty-fisica" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-fisica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="quimica" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <header class="section-header">
+        <h2>Química</h2>
+        <input id="search-quimica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Química" />
+      </header>
+      <ul class="file-list" id="list-quimica"></ul>
+      <div class="loading" id="loading-quimica" hidden>Carregando…</div>
+      <div class="empty" id="empty-quimica" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-quimica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+    
+    <!-- Área de Ciências Humanas -->
+    <section id="ciencias-humanas" class="content-section hidden">
+      <h2>Ciências Humanas</h2>
+      <p>Selecione uma das disciplinas da área de Ciências Humanas para acessar os materiais específicos:</p>
+      
+      <div class="subjects-container">
+        <div class="subject-card">
+          <h3>História</h3>
+          <p>Materiais didáticos para o ensino de História</p>
+          <a href="#historia" class="btn" data-show="historia">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Geografia</h3>
+          <p>Materiais didáticos para o ensino de Geografia</p>
+          <a href="#geografia" class="btn" data-show="geografia">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Filosofia</h3>
+          <p>Materiais didáticos para o ensino de Filosofia</p>
+          <a href="#filosofia" class="btn" data-show="filosofia">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Sociologia</h3>
+          <p>Materiais didáticos para o ensino de Sociologia</p>
+          <a href="#sociologia" class="btn" data-show="sociologia">Acessar Materiais</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <header class="section-header">
+        <h2>História</h2>
+        <input id="search-historia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em História" />
+      </header>
+      <ul class="file-list" id="list-historia"></ul>
+      <div class="loading" id="loading-historia" hidden>Carregando…</div>
+      <div class="empty" id="empty-historia" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-historia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="geografia" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <header class="section-header">
+        <h2>Geografia</h2>
+        <input id="search-geografia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Geografia" />
+      </header>
+      <ul class="file-list" id="list-geografia"></ul>
+      <div class="loading" id="loading-geografia" hidden>Carregando…</div>
+      <div class="empty" id="empty-geografia" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-geografia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="filosofia" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <header class="section-header">
+        <h2>Filosofia</h2>
+        <input id="search-filosofia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Filosofia" />
+      </header>
+      <ul class="file-list" id="list-filosofia"></ul>
+      <div class="loading" id="loading-filosofia" hidden>Carregando…</div>
+      <div class="empty" id="empty-filosofia" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-filosofia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="sociologia" class="content-section hidden">
+      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <header class="section-header">
+        <h2>Sociologia</h2>
+        <input id="search-sociologia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Sociologia" />
+      </header>
+      <ul class="file-list" id="list-sociologia"></ul>
+      <div class="loading" id="loading-sociologia" hidden>Carregando…</div>
+      <div class="empty" id="empty-sociologia" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-sociologia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="nav-link" href="index.html">Voltar para o Início</a>
+    <a class="nav-link" href="sobre.html">Sobre Nós</a>
     <p>SRE Araguaína © 2025 - Currículo, Formação e Avaliação</p>
     <p>Desenvolvido por Guilherme S. Vanderley</p>
   </footer>
 
   <script>
+    // Configuração com sua chave API e IDs de pasta
+    window.CONFIG = {
+      API_KEY: "AIzaSyAnO6lMGiJ5UyT6zo7qW2NSGPiBGtMPl88",
+      FOLDER_IDS: {
+        portugues: "1oCNLcON1a7WAtNcxPgQCpYz1G5YwghZZ",
+        ingles: "1ksd-52gkZx94eXx9UAG_RudDrPZHORk0",
+        espanhol: "1pCHeDYyW3DpXQ4-3cAkhR5s3A_A7vTMW",
+        libras: "1W_fMGLSquBinpH3vsKwG5kHmO1mF4OOD",
+        artes: "1NZXxMTdRTn6YusM5Ky-LJqS0qglLMO-K",
+        edfisica: "11-umz15mtLA_lqERIBkJ81PzXgbJG04v",
+        matematica: "ID_PASTA_MATEMATICA",
+        biologia: "ID_PASTA_BIOLOGIA",
+        fisica: "ID_PASTA_FISICA",
+        quimica: "ID_PASTA_QUIMICA",
+        historia: "ID_PASTA_HISTORIA",
+        geografia: "ID_PASTA_GEOGRAFIA",
+        filosofia: "ID_PASTA_FILOSOFIA",
+        sociologia: "ID_PASTA_SOCIOLOGIA"
+      }
+    };
+
+    /* Integração com Google Drive API */
+    const MIME_ICONS = [
+      {match: "pdf", icon: "📕"},
+      {match: "spreadsheet", icon: "📊"},
+      {match: "presentation", icon: "📑"},
+      {match: "image", icon: "🖼️"},
+      {match: "video", icon: "🎬"},
+      {match: "audio", icon: "🎵"},
+    ];
+
+    function iconForMime(mime) {
+      for(const m of MIME_ICONS) {
+        if(mime.includes(m.match)) return m.icon;
+      }
+      return "📄";
+    }
+
+    function showSection(id) {
+      // Verifica se a seção existe (para evitar erros na página Sobre Nós)
+      const section = document.getElementById(id);
+      if(!section) return;
+      
+      document.querySelectorAll(".content-section").forEach(s => s.classList.add("hidden"));
+      section.classList.remove("hidden");
+      
+      // Atualiza botões ativos
+      document.querySelectorAll(".nav-link").forEach(b => {
+        b.classList.remove("active");
+        if(b.getAttribute('data-target') === id || 
+           (id === 'inicio' && b.getAttribute('href') === 'index.html')) {
+          b.classList.add("active");
+        }
+      });
+      
+      // Rola para o topo da página
+      window.scrollTo(0, 0);
+      
+      // Atualiza a URL com hash
+      if (id !== 'inicio') {
+        window.history.replaceState(null, null, `#${id}`);
+      } else {
+        window.history.replaceState(null, null, ' ');
+      }
+    }
+
     // Configuração do Menu Mobile
     function setupMenuToggle() {
       const toggle = document.querySelector('.menu-toggle');
@@ -290,9 +777,153 @@
       });
     }
 
+    // Função para configurar navegação
+    function setupNavigation() {
+      document.addEventListener("click", (e) => {
+        // Navegação por botões com data-target
+        const btn = e.target.closest(".nav-link[data-target]");
+        if(btn) {
+          e.preventDefault();
+          showSection(btn.getAttribute('data-target'));
+          return;
+        }
+        
+        // Navegação para seções específicas
+        const anchorBtn = e.target.closest(".nav-link[href^='index.html#']");
+        if(anchorBtn) {
+          e.preventDefault();
+          const targetId = anchorBtn.getAttribute('href').split('#')[1];
+          window.location.href = `index.html#${targetId}`;
+          showSection(targetId);
+        }
+        
+        // Botão de voltar
+        const backBtn = e.target.closest(".back-btn");
+        if(backBtn) {
+          e.preventDefault();
+          const targetId = backBtn.getAttribute('data-back');
+          showSection(targetId);
+        }
+        
+        // Links para disciplinas específicas
+        const subjectBtn = e.target.closest("a[data-show]");
+        if(subjectBtn) {
+          e.preventDefault();
+          const targetId = subjectBtn.getAttribute('data-show');
+          showSection(targetId);
+        }
+      });
+    }
+
+    async function loadFiles(folderId, {listId, loadingId, emptyId, errorId, searchId}) {
+      const listEl = document.getElementById(listId);
+      const loadingEl = document.getElementById(loadingId);
+      const emptyEl = document.getElementById(emptyId);
+      const errorEl = document.getElementById(errorId);
+      const searchEl = document.getElementById(searchId);
+
+      if(!folderId || folderId.startsWith("ID_PASTA_")) { 
+        listEl.innerHTML = "<li>Pasta não configurada.</li>"; 
+        loadingEl.hidden = true;
+        emptyEl.hidden = true;
+        return; 
+      }
+
+      // Mostra skeletons
+      listEl.innerHTML = `
+        <li class="skeleton-item"></li>
+        <li class="skeleton-item"></li>
+        <li class="skeleton-item"></li>
+      `;
+      loadingEl.hidden = false;
+      emptyEl.hidden = true;
+      errorEl.hidden = true;
+
+      const fields = "files(id,name,mimeType,modifiedTime,webViewLink,webContentLink,iconLink)";
+      const url = `https://www.googleapis.com/drive/v3/files?q='${encodeURIComponent(folderId)}'+in+parents+and+trashed=false&orderBy=modifiedTime%20desc&fields=${fields}&key=${encodeURIComponent(window.CONFIG.API_KEY)}`;
+
+      try {
+        const res = await fetch(url);
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        const files = data.files || [];
+
+        if(files.length === 0) {
+          emptyEl.hidden = false;
+          listEl.innerHTML = "";
+          return;
+        }
+
+        const render = (items) => {
+          listEl.innerHTML = "";
+          for(const file of items) {
+            const icon = iconForMime(file.mimeType);
+            const when = new Date(file.modifiedTime).toLocaleDateString("pt-BR");
+            const link = file.webViewLink || file.webContentLink || `https://drive.google.com/file/d/${file.id}/view`;
+            const li = document.createElement("li");
+            li.innerHTML = `<div class="title"><a href="${link}" target="_blank" rel="noopener">${icon} ${file.name}</a></div>
+                            <div class="meta">Atualizado em ${when}</div>`;
+            listEl.appendChild(li);
+          }
+        };
+
+        render(files);
+
+        if(searchEl) {
+          searchEl.addEventListener("input", () => {
+            const q = searchEl.value.trim().toLowerCase();
+            const filtered = files.filter(f => f.name.toLowerCase().includes(q));
+            if(filtered.length === 0) {
+              listEl.innerHTML = "<li>Nenhum resultado para a busca.</li>";
+            } else {
+              render(filtered);
+            }
+          });
+        }
+      } catch(err) {
+        console.error(err);
+        errorEl.hidden = false;
+      } finally {
+        loadingEl.hidden = true;
+      }
+    }
+
     // Inicialização
     document.addEventListener("DOMContentLoaded", () => {
       setupMenuToggle();
+      setupNavigation();
+      
+      // Verifica se está na página principal
+      if(document.getElementById('list-portugues')) {
+        const F = window.CONFIG.FOLDER_IDS;
+        
+        // Carrega arquivos das disciplinas de Linguagens
+        loadFiles(F.portugues, {listId:"list-portugues", loadingId:"loading-portugues", emptyId:"empty-portugues", errorId:"error-portugues", searchId:"search-portugues"});
+        loadFiles(F.ingles, {listId:"list-ingles", loadingId:"loading-ingles", emptyId:"empty-ingles", errorId:"error-ingles", searchId:"search-ingles"});
+        loadFiles(F.espanhol, {listId:"list-espanhol", loadingId:"loading-espanhol", emptyId:"empty-espanhol", errorId:"error-espanhol", searchId:"search-espanhol"});
+        loadFiles(F.libras, {listId:"list-libras", loadingId:"loading-libras", emptyId:"empty-libras", errorId:"error-libras", searchId:"search-libras"});
+        loadFiles(F.artes, {listId:"list-artes", loadingId:"loading-artes", emptyId:"empty-artes", errorId:"error-artes", searchId:"search-artes"});
+        loadFiles(F.edfisica, {listId:"list-edfisica", loadingId:"loading-edfisica", emptyId:"empty-edfisica", errorId:"error-edfisica", searchId:"search-edfisica"});
+        
+        // Carrega arquivos das demais áreas (quando configuradas)
+        loadFiles(F.matematica, {listId:"list-matematica", loadingId:"loading-matematica", emptyId:"empty-matematica", errorId:"error-matematica", searchId:"search-matematica"});
+        loadFiles(F.biologia, {listId:"list-biologia", loadingId:"loading-biologia", emptyId:"empty-biologia", errorId:"error-biologia", searchId:"search-biologia"});
+        loadFiles(F.fisica, {listId:"list-fisica", loadingId:"loading-fisica", emptyId:"empty-fisica", errorId:"error-fisica", searchId:"search-fisica"});
+        loadFiles(F.quimica, {listId:"list-quimica", loadingId:"loading-quimica", emptyId:"empty-quimica", errorId:"error-quimica", searchId:"search-quimica"});
+        loadFiles(F.historia, {listId:"list-historia", loadingId:"loading-historia", emptyId:"empty-historia", errorId:"error-historia", searchId:"search-historia"});
+        loadFiles(F.geografia, {listId:"list-geografia", loadingId:"loading-geografia", emptyId:"empty-geografia", errorId:"error-geografia", searchId:"search-geografia"});
+        loadFiles(F.filosofia, {listId:"list-filosofia", loadingId:"loading-filosofia", emptyId:"empty-filosofia", errorId:"error-filosofia", searchId:"search-filosofia"});
+        loadFiles(F.sociologia, {listId:"list-sociologia", loadingId:"loading-sociologia", emptyId:"empty-sociologia", errorId:"error-sociologia", searchId:"search-sociologia"});
+
+        // Mostra seção inicial ou a partir do hash da URL
+        const hash = window.location.hash.substring(1);
+        showSection(hash || 'inicio');
+      }
+      
+      // Ativa link ativo na página Sobre Nós
+      if(window.location.pathname.includes('sobre.html')) {
+        document.querySelector('.nav-link[href="sobre.html"]').classList.add('active');
+      }
     });
   </script>
 </body>
