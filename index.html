@@ -296,6 +296,36 @@
     .site-footer a:hover {
       text-decoration: none;
     }
+
+          /* Estilos para os botões */
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.0rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        /* Botão Primário (seu link transformado) */
+        .btn-primary {
+            background-color: #2575fc;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d5fd3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
     
     /* Responsividade */
     @media (max-width: 768px) {
@@ -342,6 +372,7 @@
       .subjects-container {
         grid-template-columns: 1fr;
       }
+
     }
   </style>
 </head>
