@@ -8,106 +8,6 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
   <style>
     /* Estilos básicos */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f5f7fa;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .site-header {
-      background: linear-gradient(135deg, #2c3e50, #1a2530);
-      color: white;
-      padding: 1rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .logo img {
-      height: 50px;
-    }
-    
-    .brand h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    .brand p {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      position: absolute;
-      right: 1rem;
-      top: 1.5rem;
-    }
-    
-    .main-nav {
-      display: flex;
-      margin-top: 1rem;
-      overflow-x: auto;
-      padding-bottom: 5px;
-    }
-    
-    .main-nav.expanded {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      background: #2c3e50;
-      width: calc(100% - 2rem);
-      left: 1rem;
-      top: 100%;
-      z-index: 1000;
-      padding: 1rem;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    .nav-link {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      padding: 0.7rem 1.2rem;
-      margin-right: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      text-decoration: none;
-      display: inline-block;
-    }
-    
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .nav-link.active {
-      background: #3498db;
-      font-weight: bold;
-    }
-    
     .container {
       max-width: 1200px;
       margin: 2rem auto;
@@ -186,25 +86,6 @@
       font-style: italic;
     }
     
-    .site-footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: auto;
-    }
-    
-    .site-footer a {
-      color: #3498db;
-      text-decoration: none;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    
-    .site-footer a:hover {
-      text-decoration: underline;
-    }
-    
     /* Placeholder para imagens não disponíveis */
     .member-card img {
       background-color: #e0e0e0;
@@ -219,30 +100,7 @@
     
     /* Responsividade */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      
-      .main-nav:not(.expanded) {
-        display: none;
-      }
-      
-      .brand h1 {
-        font-size: 1.5rem;
-      }
-      
-      .main-nav.expanded {
-        display: flex;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        border-radius: 0;
-      }
-      
-      .main-nav .nav-link {
-        margin: 0.3rem 1rem;
-        width: calc(100% - 2rem);
-      }
+     
       
       .team-grid {
         grid-template-columns: 1fr;
