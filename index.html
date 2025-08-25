@@ -214,6 +214,27 @@
       border-radius: 4px;
       margin-bottom: 10px;
     }
+
+    .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Espaço no corpo do site para não sobrepor o header */
+body {
+  padding-top: 150px; /* Desktop */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px; /* Mobile, menor espaço */
+  }
+}
+
     
     @keyframes loading {
       0% {
@@ -409,6 +430,13 @@
       <h2>Bem-vindo (a) à Biblioteca Didática da SRE/Araguaína</h2>
       <p>Olá, professor(a). Tudo bem? Aqui você pode acessar todos os materiais organizados por componente curricular para apoiar as práticas pedagógicas nas
         escolas da SRE Araguaína/TO. Esta plataforma foi pensada e desenvolvida pelos membros do Currículo da SRE/Araguaína.</p>
+
+      <div class="subject-card" style="margin-top: 1.5rem;">
+      <h3>Novidades</h3>
+      <p>Acompanhe aqui as últimas atualizações da nossa Biblioteca Didática:</p>
+      📌 Novos materiais adicionados em Matemática.<br>
+      📌 Atualização nos conteúdos de Português.<br>
+      </div>
 
       <div class="tips">
         <div><strong>Dica:</strong> use o campo de busca na barra da disciplina para localizar um material pelo nome.</div>
