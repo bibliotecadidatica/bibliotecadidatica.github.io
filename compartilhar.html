@@ -314,6 +314,27 @@
       margin-bottom: 1.5rem;
       color: #555;
     }
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Espaço no corpo do site para não sobrepor o header */
+body {
+  padding-top: 90px; /* Desktop */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px; /* Mobile, menor espaço */
+  }
+}
+
     
     /* Responsividade */
     @media (max-width: 768px) {
