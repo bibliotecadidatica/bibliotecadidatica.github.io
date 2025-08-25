@@ -289,6 +289,37 @@
       justify-content: center;
       font-weight: bold;
     }
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Espaço no corpo do site para não sobrepor o header */
+body {
+  padding-top: 90px; /* Desktop */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px; /* Mobile, menor espaço */
+  }
+}
+
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  border: 3px solid #3498db;
+}
+
     
     /* Responsividade */
     @media (max-width: 768px) {
@@ -349,7 +380,7 @@
         <h3 class="category-title"><span>1</span> Coordenação Pedagógica</h3>
         <div class="team-grid">
           <div class="team-member">
-            <div class="member-photo">👩‍💼</div>
+            <img src="img/marcinete.jpg" alt="Marcinete" class="member-photo">
             <h4 class="member-name">Marcinete</h4>
             <div class="member-role">Pedagoga</div>
             <div class="member-area">Coordenação Geral</div>
@@ -362,21 +393,21 @@
         <h3 class="category-title"><span>2</span> Área de Linguagens</h3>
         <div class="team-grid">
           <div class="team-member">
-            <div class="member-photo">👩‍🏫</div>
+            <img src="img/andreia.jpg" alt="Andreia" class="member-photo">
             <h4 class="member-name">Andreia Nascimento Carmo Dias</h4>
             <div class="member-role">Professora de Língua Portuguesa</div>
             <div class="member-area">Linguagens</div>
           </div>
           
           <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
+            <img src="img/guilherme.jpg" alt="Guilherme" class="member-photo">
             <h4 class="member-name">Guilherme Silva Vanderley</h4>
             <div class="member-role">Professor de Língua Portuguesa</div>
             <div class="member-area">Linguagens</div>
           </div>
           
           <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
+            <img src="img/joao.jpg" alt="João" class="member-photo">
             <h4 class="member-name">João Victor Ferreira dos Santos Silva</h4>
             <div class="member-role">Professor de Língua Portuguesa</div>
             <div class="member-area">Linguagens</div>
@@ -408,7 +439,7 @@
         <h3 class="category-title"><span>4</span> Área de Ciências Humanas</h3>
         <div class="team-grid">
           <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
+            <img src="img/arlem.jpg" alt="Arlem" class="member-photo">
             <h4 class="member-name">Arlem Milhomem Chaves</h4>
             <div class="member-role">Professor de História</div>
             <div class="member-area">Ciências Humanas</div>
