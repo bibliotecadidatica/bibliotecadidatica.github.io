@@ -611,65 +611,78 @@ body {
 
    // Envio de arquivos
 
-  const CLIENT_ID = "302519386482-gcui08mb718dr75ni38nogtv4bb29b7u.apps.googleusercontent.com";
-  const API_KEY = "AIzaSyAnO6lMGiJ5UyT6zo7qW2NSGPiBGtMPl88";
-  const SCOPES = "https://www.googleapis.com/auth/drive.file";
+  
+const CLIENT_ID = "302519386482-gcui08mb718dr75ni38nogtv4bb29b7u.apps.googleusercontent.com";
+const SCOPES = "https://www.googleapis.com/auth/drive.file";
 
-  function initClient() {
-    gapi.load("client:auth2", () => {
-      gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        scope: SCOPES
-      });
-    });
+let tokenClient;
+let accessToken = null;
+
+// Inicialização do GIS
+function initClient() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: (tokenResponse) => {
+      if (tokenResponse && tokenResponse.access_token) {
+        accessToken = tokenResponse.access_token;
+        console.log("Autenticado com sucesso!");
+      }
+    },
+  });
+}
+
+// Garante login antes do upload
+function ensureLogin() {
+  if (!accessToken) {
+    tokenClient.requestAccessToken();
+  }
+}
+
+async function handleFileUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (!accessToken) {
+    tokenClient.requestAccessToken();
+    return;
   }
 
-  async function handleFileUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+  const fileMetadata = { name: file.name };
+  const formData = new FormData();
+  formData.append("metadata", new Blob([JSON.stringify(fileMetadata)], { type: "application/json" }));
+  formData.append("file", file);
 
-    // Garante login antes do upload
-    const GoogleAuth = gapi.auth2.getAuthInstance();
-    if (!GoogleAuth.isSignedIn.get()) {
-      await GoogleAuth.signIn();
-    }
+  const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+    method: "POST",
+    headers: new Headers({ "Authorization": "Bearer " + accessToken }),
+    body: formData
+  });
 
-    const fileMetadata = { name: file.name };
-    const formData = new FormData();
-    formData.append("metadata", new Blob([JSON.stringify(fileMetadata)], { type: "application/json" }));
-    formData.append("file", file);
+  const fileData = await response.json();
 
-    const response = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-      method: "POST",
-      headers: new Headers({ "Authorization": "Bearer " + gapi.auth.getToken().access_token }),
-      body: formData
-    });
+  // Define permissão pública
+  await fetch(`https://www.googleapis.com/drive/v3/files/${fileData.id}/permissions`, {
+    method: "POST",
+    headers: new Headers({
+      "Authorization": "Bearer " + accessToken,
+      "Content-Type": "application/json"
+    }),
+    body: JSON.stringify({ role: "reader", type: "anyone" })
+  });
 
-    const fileData = await response.json();
+  const link = `https://drive.google.com/file/d/${fileData.id}/view?usp=sharing`;
+  document.getElementById("drive-link").value = link;
 
-    // Define permissão pública
-    await fetch(`https://www.googleapis.com/drive/v3/files/${fileData.id}/permissions`, {
-      method: "POST",
-      headers: new Headers({
-        "Authorization": "Bearer " + gapi.auth.getToken().access_token,
-        "Content-Type": "application/json"
-      }),
-      body: JSON.stringify({ role: "reader", type: "anyone" })
-    });
+  alert("Arquivo enviado com sucesso! O link foi adicionado ao formulário.");
+}
 
-    // Pega link compartilhável
-    const link = `https://drive.google.com/file/d/${fileData.id}/view?usp=sharing`;
-    document.getElementById("drive-link").value = link;
-
-    alert("Arquivo enviado com sucesso! O link foi adicionado ao formulário.");
-  }
-
+document.addEventListener("DOMContentLoaded", () => {
+  setupMenuToggle();
+  setupFormSubmission();
+  document.getElementById("file-upload").addEventListener("change", handleFileUpload);
   initClient();
-  gapi.load("auth2", () => {
-  gapi.auth2.init({ client_id: CLIENT_ID });
 });
-
 </script>
 </body>
 </html>
