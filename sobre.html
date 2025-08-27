@@ -476,7 +476,8 @@ body {
           
           <div class="form-group">
               <label for="file-upload" class="form-label">Envie o arquivo <span class="form-required">*</span></label>
-              <input type="file" id="file-upload" class="form-input" required>
+              <button type="button" id="login-btn" class="btn" style="background:#fbbc05; color:#000;">🔑 Conectar ao Google Drive</button>
+<input type="file" id="file-upload" class="form-input" required>
               <input type="hidden" id="drive-link" name="entry.15571209">
          <div class="form-help">O arquivo será enviado automaticamente para ser avaliado.</div>
          </div>
@@ -731,19 +732,37 @@ body {
 
     // === Boot ===
     document.addEventListener("DOMContentLoaded", async () => {
-      setupMenuToggle();
-      setupFormSubmission();
+  setupMenuToggle();
+  setupFormSubmission();
 
-      const fileInput = document.getElementById("file-upload");
-      if (fileInput) fileInput.addEventListener("change", handleFileUpload);
-
+  // Botão de login para obter token ANTES do upload
+  const loginBtn = document.getElementById("login-btn");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", async () => {
       try {
-        await waitForGIS();
-        initClient();
+        await ensureAccessToken();
+        alert("✅ Conectado ao Google Drive!");
+        document.getElementById("login-btn").style.display = "none"; // esconde botão depois
+        document.getElementById("file-upload").disabled = false;     // libera upload
       } catch (e) {
-        console.warn(e.message || e);
+        alert("Falha ao conectar: " + e.message);
       }
     });
-  </script>
+  }
+
+  // Inicia desabilitado até login
+  const fileInput = document.getElementById("file-upload");
+  if (fileInput) {
+    fileInput.disabled = true;
+    fileInput.addEventListener("change", handleFileUpload);
+  }
+
+  try {
+    await waitForGIS();
+    initClient();
+  } catch (e) {
+    console.warn(e.message || e);
+  }
+});</script>
 </body>
 </html>
