@@ -2,18 +2,17 @@
 <html lang="pt-BR">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Y07NPE5TJ1');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y07NPE5TJ1');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre Nós - Biblioteca Didática SRE Araguaína</title>
-  <meta name="description" content="Conheça a equipe de currículo, formação e avaliação da SRE Araguaína" />
+  <title>Enviar Material - Biblioteca Didática SRE Araguaína</title>
+  <meta name="description" content="Envie seus materiais didáticos para compor a Biblioteca Didática da SRE Araguaína" />
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
   <style>
     /* Estilos básicos - mantidos do código original */
@@ -196,98 +195,124 @@
       text-decoration: none;
     }
 
-    /* Estilos específicos para a página Sobre Nós */
-    .team-intro {
+    /* Estilos específicos para a página de envio */
+    .form-intro {
       margin-bottom: 2rem;
       line-height: 1.8;
     }
     
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
     }
     
-    .team-member {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-      border-top: 4px solid #3498db;
-    }
-    
-    .team-member:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .member-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1rem;
-      border: 3px solid #3498db;
-      background-color: #e8f4fc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: #3498db;
-    }
-    
-    .member-name {
-      font-size: 1.3rem;
-      color: #2c3e50;
-      margin-bottom: 0.5rem;
-    }
-    
-    .member-role {
-      color: #3498db;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    
-    .member-area {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      padding: 0.3rem 0.8rem;
-      background: #e8f4fc;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    
-    .member-bio {
-      color: #555;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-    
-    .team-category {
-      margin-top: 3rem;
-    }
-    
-    .category-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .form-group {
       margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
       color: #2c3e50;
     }
     
-    .category-title span {
-      background: #3498db;
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-required {
+      color: #e74c3c;
+    }
+    
+    .form-help {
+      font-size: 0.85rem;
+      color: #7f8c8d;
+      margin-top: 0.3rem;
+    }
+    
+    .form-submit {
+      background: #2ecc71;
       color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .form-submit:hover {
+      background: #27ae60;
+    }
+    
+    .form-notice {
+      background: #e8f4fc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      border-left: 4px solid #3498db;
+    }
+    
+    .form-notice h3 {
+      color: #3498db;
+      margin-top: 0;
+    }
+    
+    .form-notice ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .form-notice li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Mensagem de agradecimento */
+    .thank-you-message {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+    
+    .thank-you-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+    }
+    
+    .thank-you-message h2 {
+      color: #2c3e50;
+      border-bottom: none;
+      margin-bottom: 1rem;
+    }
+    
+    .thank-you-message p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: #555;
     }
 
 .site-header {
@@ -308,16 +333,6 @@ body {
   body {
     padding-top: 80px; /* Mobile, menor espaço */
   }
-}
-
-
-.member-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 1rem;
-  border: 3px solid #3498db;
 }
 
     
@@ -349,13 +364,18 @@ body {
         margin-bottom: 5px;
       }
       
-      .team-grid {
-        grid-template-columns: 1fr;
+      .thank-you-message {
+        padding: 2rem 1rem;
+      }
+      
+      .thank-you-icon {
+        font-size: 3rem;
       }
     }
   </style>
 </head>
-<header class="site-header">
+<body>
+  <header class="site-header">
     <div class="logo">
       <img src="img/LogoSRE.png" alt="Logo SRE" />
       <div class="brand">
@@ -366,148 +386,172 @@ body {
   </header>
 
   <main class="container">
-    <section class="content-section">
+    <section class="content-section" id="form-section">
       <a href="index.html" class="back-btn">← Voltar para a Página Inicial</a>
       
-      <h2>Sobre Nós</h2>
+      <h2>Enviar Material Didático</h2>
       
-      <div class="team-intro">
-        <p>Somos a equipe de Currículo, Formação e Avaliação da Superintendência Regional de Ensino de Araguaína (SRE). Nesta plataforma, desenvolvemos e disponibilizamos materiais pedagógicos de qualidade para apoiar os professores da rede estadual de ensino.</p>
+      <div class="form-intro">
+        <p>Compartilhe seus materiais didáticos conosco! Sua contribuição ajudará a enriquecer nossa biblioteca e beneficiar outros educadores.</p>
       </div>
 
-      <!-- Coordenação Pedagógica -->
-      <div class="team-category">
-        <h3 class="category-title"><span>1</span> Coordenação Pedagógica</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="img/marcinete.jpg" alt="Marcinete" class="member-photo">
-            <h4 class="member-name">Marcinete Duarte da Silva</h4>
-            <div class="member-role">Pedagoga</div>
-            <div class="member-area">Coordenação Geral</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Área de Linguagens -->
-      <div class="team-category">
-        <h3 class="category-title"><span>2</span> Área de Linguagens</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="img/andreia.jpg" alt="Andreia" class="member-photo">
-            <h4 class="member-name">Andreia Nascimento Carmo Dias</h4>
-            <div class="member-role">Professora de Língua Portuguesa</div>
-            <div class="member-area">Linguagens</div>
+      <div class="form-container">
+        <form id="material-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScKOziP--1IxlvIDW3q04BZcGGuVGbD2J_AQvMZyxPaDVCC_w/formResponse" method="POST" target="hidden-iframe">
+          <div class="form-group">
+            <label for="nome" class="form-label">Seu nome <span class="form-required">*</span></label>
+            <input type="text" id="nome" name="entry.2130400867" class="form-input" required placeholder="Digite seu nome completo">
           </div>
           
-          <div class="team-member">
-            <img src="img/guilherme.jpg" alt="Guilherme" class="member-photo">
-            <h4 class="member-name">Guilherme Silva Vanderley</h4>
-            <div class="member-role">Professor de Língua Portuguesa</div>
-            <div class="member-area">Linguagens</div>
+          <div class="form-group">
+            <label for="email" class="form-label">Seu e-mail <span class="form-required">*</span></label>
+            <input type="email" id="email" name="entry.1564972327" class="form-input" required placeholder="seu@email.com">
+            <div class="form-help">Utilizaremos este e-mail apenas para contato sobre seu material</div>
           </div>
           
-          <div class="team-member">
-            <img src="img/joao.jpg" alt="João" class="member-photo">
-            <h4 class="member-name">João Victor Ferreira dos Santos Silva</h4>
-            <div class="member-role">Professor de Língua Portuguesa</div>
-            <div class="member-area">Linguagens</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Área de Matemática -->
-      <div class="team-category">
-        <h3 class="category-title"><span>3</span> Área de Matemática</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
-            <h4 class="member-name">José Alcione Gonçalves Santos</h4>
-            <div class="member-role">Professor de Matemática</div>
-            <div class="member-area">Matemática</div>
+          <div class="form-group">
+            <label for="escola" class="form-label">Escola onde leciona</label>
+            <input type="text" id="escola" name="entry.478868593" class="form-input" placeholder="Nome da escola">
           </div>
           
-          <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
-            <h4 class="member-name">Ulisses Queiroz Parreira</h4>
-            <div class="member-role">Professor de Matemática</div>
-            <div class="member-area">Matemática</div>
-        </div>
-      </div>
-
-      <!-- Área de Ciências Humanas -->
-      <div class="team-category">
-        <h3 class="category-title"><span>4</span> Área de Ciências Humanas</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="img/arlem.jpg" alt="Arlem" class="member-photo">
-            <h4 class="member-name">Arlem Milhomem Chaves</h4>
-            <div class="member-role">Professor de História</div>
-            <div class="member-area">Ciências Humanas</div>
+          <div class="form-group">
+            <label for="titulo" class="form-label">Título do material <span class="form-required">*</span></label>
+            <input type="text" id="titulo" name="entry.1963452345" class="form-input" required placeholder="Ex: Atividade de interpretação textual - Poesia">
           </div>
           
-          <div class="team-member">
-            <div class="member-photo">👨‍🏫</div>
-            <h4 class="member-name">Itamar Araújo Morais</h4>
-            <div class="member-role">Professor</div>
-            <div class="member-area">Ciências Humanas</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Área de Ciências da Natureza -->
-      <div class="team-category">
-        <h3 class="category-title"><span>5</span> Área de Ciências da Natureza</h3>
-        <div class="team-grid">
-          <div class="team-member">
-            <div class="member-photo">👩‍🏫</div>
-            <h4 class="member-name">Mayra Layra dos Santos Almeida</h4>
-            <div class="member-role">Professora de Biologia</div>
-            <div class="member-area">Ciências da Natureza</div>
+          <div class="form-group">
+            <label for="area" class="form-label">Área do conhecimento <span class="form-required">*</span></label>
+            <select id="area" name="entry.1053581000" class="form-select" required>
+              <option value="">Selecione uma área</option>
+              <option value="Linguagens">Linguagens</option>
+              <option value="Matemática">Matemática</option>
+              <option value="Ciências da Natureza">Ciências da Natureza</option>
+              <option value="Ciências Humanas">Ciências Humanas</option>
+            </select>
           </div>
           
-          <div class="team-member">
-            <div class="member-photo">👩‍🏫</div>
-            <h4 class="member-name">Nilciane Pinto Ribeiro de Sousa</h4>
-            <div class="member-role">Professora</div>
-            <div class="member-area">Ciências da Natureza</div>
+          <div class="form-group">
+            <label for="componente" class="form-label">Componente curricular <span class="form-required">*</span></label>
+            <select id="componente" name="entry.1814252866" class="form-select" required>
+              <option value="">Selecione um componente</option>
+              <optgroup label="Linguagens">
+                <option value="Língua Portuguesa">Língua Portuguesa</option>
+                <option value="Língua Inglesa">Língua Inglesa</option>
+                <option value="Espanhol">Espanhol</option>
+                <option value="Artes">Artes</option>
+                <option value="Educação Física">Educação Física</option>
+              </optgroup>
+              <optgroup label="Matemática">
+                <option value="Matemática">Matemática</option>
+              </optgroup>
+              <optgroup label="Ciências da Natureza">
+                <option value="Biologia">Biologia</option>
+                <option value="Física">Física</option>
+                <option value="Química">Química</option>
+              </optgroup>
+              <optgroup label="Ciências Humanas">
+                <option value="História">História</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Filosofia">Filosofia</option>
+                <option value="Sociologia">Sociologia</option>
+              </optgroup>
+            </select>
           </div>
+          
+          <div class="form-group">
+            <label for="nivel" class="form-label">Nível de ensino</label>
+            <select id="nivel" name="entry.1978375963" class="form-select">
+              <option value="">Selecione um nível</option>
+              <option value="Ensino Fundamental - Anos Iniciais">Ensino Fundamental - Anos Iniciais</option>
+              <option value="Ensino Fundamental - Anos Finais">Ensino Fundamental - Anos Finais</option>
+              <option value="Ensino Médio">Ensino Médio</option>
+              <option value="EJA">Educação de Jovens e Adultos (EJA)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="descricao" class="form-label">Descrição do material <span class="form-required">*</span></label>
+            <textarea id="descricao" name="entry.439679751" class="form-textarea" required placeholder="Descreva o conteúdo, objetivos e como pode ser utilizado..."></textarea>
+            <div class="form-help">Inclua informações como: objetivos de aprendizagem, habilidades trabalhadas, tempo estimado de aplicação, etc.</div>
+          </div>
+          
+          <div class="form-group">
+              <label for="file-upload" class="form-label">Envie o arquivo <span class="form-required">*</span></label>
+              <input type="file" id="file-upload" class="form-input" required>
+              <input type="hidden" id="drive-link" name="entry.15571209">
+         <div class="form-help">O arquivo será enviado automaticamente para ser avaliado.</div>
+         </div>
+          
+          <div class="form-group">
+            <label class="form-label">Tipo de licença</label>
+            <div>
+              <label>
+                <input type="radio" name="entry.1870514395" value="Creative Commons" checked> 
+                Creative Commons (Permitimos compartilhamento e adaptação)
+              </label>
+            </div>
+          </div>
+          
+          <button type="submit" id="submit-btn" class="form-submit" disabled>Enviar Material</button>
+        </form>
+        
+        
+<div id="upload-progress" style="display:none; margin: 1rem 0; padding: 1rem; background:#e8f4fc; border:1px solid #3498db; border-radius:5px; text-align:center; color:#2c3e50;">
+  ⏳ Enviando arquivo... aguarde.
+</div>
+
+        <div class="form-notice">
+          <h3>Antes de enviar, verifique se:</h3>
+          <ul>
+            <li>O material é de sua autoria ou tem autorização para compartilhamento</li>
+            <li>O link de acesso está configurado corretamente para visualização</li>
+            <li>As informações fornecidas estão completas e claras</li>
+            <li>O conteúdo está adequado para uso educacional</li>
+          </ul>
+          <p><strong>Atenção:</strong> Todos os materiais serão avaliados pela nossa equipe antes de serem publicados.</p>
         </div>
       </div>
+    </section>
 
-      <div class="tips" style="margin-top: 2rem;">
-      <center><p><strong>Dúvidas ou sugestões?</strong><br>curriculo-araguaina@seduc.to.gov.br</p></center>
-      </div>
+    <!-- Mensagem de agradecimento (inicialmente oculta) -->
+    <section id="thank-you-section" class="thank-you-message hidden">
+      <div class="thank-you-icon">✅</div>
+      <h2>Obrigado pelo envio!</h2>
+      <p>Sua contribuição é muito valiosa para nossa comunidade educacional. Seu material será avaliado pela nossa equipe e em breve estará disponível na biblioteca.</p>
+      <a href="index.html" class="btn">Voltar à Biblioteca</a>
+      <a href="compartilhar.html" class="btn" style="background-color: #95a5a6;">Enviar outro material</a>
     </section>
   </main>
 
   <footer class="site-footer">
     <a class="nav-link" href="index.html">Voltar à Biblioteca</a>
-    <a class="nav-link" href="compartilhar.html">Enviar Material</a>
+    <a class="nav-link" href="sobre.html">Sobre Nós</a>
     <p>SRE Araguaína © 2025 - Currículo, Formação e Avaliação - por Guilherme S. Vanderley</p>
   </footer>
 
+  <!-- Iframe oculto para envio do formulário -->
+  <iframe name="hidden-iframe" id="hidden-iframe" class="hidden"></iframe>
+
+
+    <!-- Google APIs -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  
   <script>
-    // Configuração do Menu Mobile
+    // === Menu Mobile ===
     function setupMenuToggle() {
       const toggle = document.querySelector('.menu-toggle');
       const mainNav = document.querySelector('.main-nav');
-      
-      if (!toggle) return;
-
-      // Função para fechar o menu
+      if (!toggle || !mainNav) return;
       function closeMenu() {
         mainNav.classList.remove('expanded');
         toggle.setAttribute('aria-expanded', 'false');
       }
-
-      // Toggle do menu
       toggle.addEventListener('click', (e) => {
         e.stopPropagation();
         mainNav.classList.toggle('expanded');
         toggle.setAttribute('aria-expanded', mainNav.classList.contains('expanded'));
       });
-
-      // Fechar menu ao clicar fora (mobile)
       document.addEventListener('click', (e) => {
         if (window.innerWidth <= 768 && 
             !e.target.closest('.main-nav') && 
@@ -517,9 +561,188 @@ body {
       });
     }
 
-    // Inicialização
-    document.addEventListener("DOMContentLoaded", () => {
+    // === Form / Thank-you ===
+    function setupFormSubmission() {
+      const form = document.getElementById('material-form');
+      const formSection = document.getElementById('form-section');
+      const thankYouSection = document.getElementById('thank-you-section');
+      const iframe = document.getElementById('hidden-iframe');
+      if (!form) return;
+
+      iframe.addEventListener('load', function() {
+        // Mostra a mensagem de agradecimento e oculta o formulário
+        formSection.classList.add('hidden');
+        thankYouSection.classList.remove('hidden');
+        thankYouSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      form.addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+
+        // validação simples
+        const requiredFields = form.querySelectorAll('[required]');
+        let valid = true;
+        requiredFields.forEach(field => {
+          if (!field.value || !String(field.value).trim()) {
+            valid = false;
+            field.style.borderColor = '#e74c3c';
+          } else {
+            field.style.borderColor = '';
+          }
+        });
+
+        // impede envio se o link do drive não estiver pronto
+        const driveLink = document.getElementById('drive-link').value.trim();
+        if (!driveLink) {
+          valid = false;
+          alert('Envie o arquivo primeiro. O link do Drive ainda não foi gerado.');
+        }
+
+        if (!valid) {
+          e.preventDefault();
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // === Google Identity Services + Drive Upload ===
+    const CLIENT_ID = "302519386482-gcui08mb718dr75ni38nogtv4bb29b7u.apps.googleusercontent.com/"; // <-- SUBSTITUA por seu Client ID (OAuth 2.0 Web)
+    const SCOPES = "https://www.googleapis.com/auth/drive.file";
+
+    let tokenClient = null;
+    let accessToken = null;
+
+    function initClient() {
+      if (tokenClient) return tokenClient;
+      if (!(window.google && google.accounts && google.accounts.oauth2)) return null;
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (tokenResponse) => {
+          if (tokenResponse && tokenResponse.access_token) {
+            accessToken = tokenResponse.access_token;
+            console.log('Autenticado.');
+          }
+        },
+      });
+      return tokenClient;
+    }
+
+    function waitForGIS(maxMs = 10000, step = 100) {
+      return new Promise((resolve, reject) => {
+        const start = Date.now();
+        (function poll(){
+          if (window.google && google.accounts && google.accounts.oauth2) return resolve();
+          if (Date.now() - start > maxMs) return reject(new Error('Google Identity Services não carregou.'));
+          setTimeout(poll, step);
+        })();
+      });
+    }
+
+    async function ensureAccessToken() {
+      if (accessToken) return accessToken;
+      if (!tokenClient) {
+        await waitForGIS();
+        initClient();
+      }
+      return new Promise((resolve, reject) => {
+        tokenClient.callback = (tokenResponse) => {
+          if (tokenResponse && tokenResponse.access_token) {
+            accessToken = tokenResponse.access_token;
+            resolve(accessToken);
+          } else {
+            reject(new Error('Falha ao obter token de acesso.'));
+          }
+        };
+        try {
+          tokenClient.requestAccessToken({ prompt: "" });
+        } catch (e) {
+          // Tenta com prompt explícito
+          try {
+            tokenClient.requestAccessToken({ prompt: "consent" });
+          } catch (err) {
+            reject(err);
+          }
+        }
+      });
+    }
+
+    async function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const progressDiv = document.getElementById("upload-progress");
+      progressDiv.style.display = "block";
+      progressDiv.textContent = "⏳ Preparando autorização...";
+
+      try {
+        await ensureAccessToken();
+        progressDiv.textContent = "⏳ Enviando arquivo... aguarde.";
+
+        const fileMetadata = { name: file.name };
+        const formData = new FormData();
+        formData.append("metadata", new Blob([JSON.stringify(fileMetadata)], { type: "application/json" }));
+        formData.append("file", file);
+
+        // Upload para o Drive
+        const uploadResp = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+          method: "POST",
+          headers: new Headers({ "Authorization": "Bearer " + accessToken }),
+          body: formData
+        });
+
+        if (!uploadResp.ok) {
+          const errText = await uploadResp.text();
+          throw new Error("Falha no upload: " + errText);
+        }
+
+        const fileData = await uploadResp.json();
+
+        // Define permissão pública (leitura)
+        const permResp = await fetch(`https://www.googleapis.com/drive/v3/files/${fileData.id}/permissions`, {
+          method: "POST",
+          headers: new Headers({
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+          }),
+          body: JSON.stringify({ role: "reader", type: "anyone" })
+        });
+
+        if (!permResp.ok) {
+          const errText = await permResp.text();
+          throw new Error("Falha ao definir permissão: " + errText);
+        }
+
+        const link = `https://drive.google.com/file/d/${fileData.id}/view?usp=sharing`;
+        document.getElementById("drive-link").value = link;
+
+        progressDiv.textContent = "✅ Upload concluído!";
+        setTimeout(() => { progressDiv.style.display = "none"; }, 2000);
+
+        document.getElementById("submit-btn").disabled = false;
+        alert("Arquivo enviado com sucesso! Agora você pode enviar o formulário.");
+      } catch (err) {
+        console.error(err);
+        progressDiv.textContent = "⚠️ Erro: " + (err && err.message ? err.message : "Falha durante o upload.");
+        document.getElementById("submit-btn").disabled = true;
+      }
+    }
+
+    // === Boot ===
+    document.addEventListener("DOMContentLoaded", async () => {
       setupMenuToggle();
+      setupFormSubmission();
+
+      const fileInput = document.getElementById("file-upload");
+      if (fileInput) fileInput.addEventListener("change", handleFileUpload);
+
+      try {
+        await waitForGIS();
+        initClient();
+      } catch (e) {
+        console.warn(e.message || e);
+      }
     });
   </script>
 </body>
