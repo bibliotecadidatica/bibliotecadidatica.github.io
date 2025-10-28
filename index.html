@@ -422,6 +422,7 @@ body {
       <button class="nav-link" data-target="matematica">Matemática</button>
       <button class="nav-link" data-target="ciencias-natureza">Ciências da Natureza</button>
       <button class="nav-link" data-target="ciencias-humanas">Ciências Humanas</button>
+      <button class="nav-link" data-target="atividades-adaptadas">Atividades Adaptadas</button>
     </nav>
   </header>
 
@@ -749,6 +750,52 @@ body {
       <div class="empty" id="empty-sociologia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-sociologia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
+
+    <!-- Área de Atividades Adaptadas -->
+     <section id="atividades-adaptadas" class="content-section hidden">
+      <h2>Atividades Adaptadas</h2>
+      <p>Selecione entre Ensino Fundamental e Ensino Médio para acessar os materiais específicos:</p>
+      
+      <div class="subjects-container">
+        <div class="subject-card">
+          <h3>Ensino Fundamental</h3>
+          <p>Materiais didáticos adaptados para o EF</p>
+          <a href="#adaptadasEF" class="btn" data-show="adaptadasEF">Acessar Materiais</a>
+        </div>
+        
+        <div class="subject-card">
+          <h3>Ensino Médio</h3>
+          <p>Materiais didáticos adaptados para o EM</p>
+          <a href="#adaptadasEM" class="btn" data-show="adaptadasEM">Acessar Materiais</a>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="adaptadasEF" class="content-section hidden">
+      <button class="back-btn" data-back="atividades-adaptadas">← Voltar para Atividades Adaptadas</button>
+      <header class="section-header">
+        <h2>Ensino Fundamental</h2>
+        <input id="search-adaptadasEF" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Atividades Adaptadas" />
+      </header>
+      <ul class="file-list" id="list-adaptadasEF"></ul>
+      <div class="loading" id="loading-adaptadasEF" hidden>Carregando…</div>
+      <div class="empty" id="empty-adaptadasEF" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-adaptadasEF" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <section id="adaptadasEM" class="content-section hidden">
+      <button class="back-btn" data-back="atividades-adaptadas">← Voltar para Atividades Adaptadas</button>
+      <header class="section-header">
+        <h2>Ensino Médio</h2>
+        <input id="search-adaptadasEM" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Atividades Adaptadas" />
+      </header>
+      <ul class="file-list" id="list-adaptadasEM"></ul>
+      <div class="loading" id="loading-adaptadasEM" hidden>Carregando…</div>
+      <div class="empty" id="empty-adaptadasEM" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-adaptadasEM" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+    
   </main>
 
   <footer class="site-footer">
@@ -776,7 +823,9 @@ body {
         historia: "1V-bcys64AATEpH9slBgLqUY8JH4Y5ve4",
         geografia: "1VIPSMAfAaNE2iqtGXhv3RKT_MyAJ1dK5",
         filosofia: "17XYMa9O68VS8fIzvBlTT2RQ5i3zMambX",
-        sociologia: "1_oOvhr7Tx0naH3HSSGBSX0G9dd_nU2qL"
+        sociologia: "1_oOvhr7Tx0naH3HSSGBSX0G9dd_nU2qL",
+        adaptadasEF: "1S3CI-0JXi0ZqLQYeVBpvwGwe3_qt0TLl",
+        adaptadasEM: "1Rg3zlxKuUjvHPbbwH45llX3i6WZgd-XF"
       }
     };
 
@@ -1003,6 +1052,10 @@ body {
         loadFiles(F.geografia, {listId:"list-geografia", loadingId:"loading-geografia", emptyId:"empty-geografia", errorId:"error-geografia", searchId:"search-geografia"});
         loadFiles(F.filosofia, {listId:"list-filosofia", loadingId:"loading-filosofia", emptyId:"empty-filosofia", errorId:"error-filosofia", searchId:"search-filosofia"});
         loadFiles(F.sociologia, {listId:"list-sociologia", loadingId:"loading-sociologia", emptyId:"empty-sociologia", errorId:"error-sociologia", searchId:"search-sociologia"});
+
+        // Carrega arquivos das atividades adaptadas
+        loadFiles(F.adaptadasEF, {listId:"list-adaptadasEF", loadingId:"loading-adaptadasEF", emptyId:"empty-adaptadasEF", errorId:"error-adaptadasEF", searchId:"search-adaptadasEF"});
+        loadFiles(F.adaptadasEM, {listId:"list-adaptadasEM", loadingId:"loading-adaptadasEM", emptyId:"empty-sociologia", errorId:"error-adaptadasEM", searchId:"search-adaptadasEM"});
 
         // Mostra seção inicial ou a partir do hash da URL
         const hash = window.location.hash.substring(1);
