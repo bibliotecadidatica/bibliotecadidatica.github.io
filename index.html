@@ -94,6 +94,9 @@
       cursor: pointer;
       transition: all 0.3s ease;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .nav-link:hover {
@@ -103,6 +106,13 @@
     .nav-link.active {
       background: #3498db;
       font-weight: bold;
+    }
+    
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      flex-shrink: 0;
     }
     
     .container {
@@ -387,6 +397,13 @@ body {
       
       .nav-link {
         margin-bottom: 5px;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+      
+      .nav-icon {
+        width: 18px;
+        height: 18px;
       }
       
       .file-list li {
@@ -417,12 +434,42 @@ body {
       </div>
     </div>
     <nav class="main-nav">
-      <button class="nav-link active" data-target="inicio">Início</button>
-      <button class="nav-link" data-target="linguagens">Linguagens</button>
-      <button class="nav-link" data-target="matematica">Matemática</button>
-      <button class="nav-link" data-target="ciencias-natureza">Ciências da Natureza</button>
-      <button class="nav-link" data-target="ciencias-humanas">Ciências Humanas</button>
-      <button class="nav-link" data-target="atividades-adaptadas">Atividades Adaptadas</button>
+      <button class="nav-link active" data-target="inicio">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        Início
+      </button>
+      <button class="nav-link" data-target="linguagens">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        Linguagens
+      </button>
+      <button class="nav-link" data-target="matematica">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm9 13h4v-2h-4v2zm-6-6h10v-2H7v2z"/>
+        </svg>
+        Matemática
+      </button>
+      <button class="nav-link" data-target="ciencias-natureza">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/>
+        </svg>
+        Ciências da Natureza
+      </button>
+      <button class="nav-link" data-target="ciencias-humanas">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Ciências Humanas
+      </button>
+      <button class="nav-link" data-target="atividades-adaptadas">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        Atividades Adaptadas
+      </button>
     </nav>
   </header>
 
@@ -435,8 +482,12 @@ body {
       <div class="subject-card" style="margin-top: 1.5rem;">
       <h3>Novidades</h3>
       <p>Acompanhe aqui as últimas atualizações da nossa Biblioteca Didática:</p>
-      📌 Nova página para "Atividades Adaptadas".<br>
-      📌 Atualização nos conteúdos em Ciências da Natureza.<br>
+      <svg style="width:16px;height:16px;display:inline;margin-right:5px;" viewBox="0 0 24 24">
+        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z" fill="#3498db"/>
+      </svg> Nova página para "Atividades Adaptadas".<br>
+      <svg style="width:16px;height:16px;display:inline;margin-right:5px;" viewBox="0 0 24 24">
+        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z" fill="#3498db"/>
+      </svg> Atualização nos conteúdos em Ciências da Natureza.<br>
       </div>
 
       <div class="tips">
