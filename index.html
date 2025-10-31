@@ -421,6 +421,47 @@ body {
       }
 
     }
+
+    /* ESTILOS DAS IMAGENS DOS CARDS */
+
+    /* Estilos para imagens nos cards */
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+/* Tamanhos de imagem controláveis */
+.card-image.small {
+  height: 120px;
+}
+
+.card-image.medium {
+  height: 160px;
+}
+
+.card-image.large {
+  height: 200px;
+}
+
+/* Responsividade para imagens dos cards */
+@media (max-width: 768px) {
+  .card-image.small {
+    height: 100px;
+  }
+  
+  .card-image.medium {
+    height: 130px;
+  }
+  
+  .card-image.large {
+    height: 160px;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -506,7 +547,6 @@ body {
       
       <div class="subjects-container">
         <div class="subject-card">
-          <img src="img/logolingua_portuguesa.png" alt="LogoLP" class="card-image small">
           <h3>Língua Portuguesa</h3>
           <p>Materiais didáticos para o ensino de Língua Portuguesa</p>
           <a href="#portugues" class="btn" data-show="portugues">Acessar Materiais</a>
@@ -673,21 +713,21 @@ body {
         </div>
         
         <div class="subject-card">
-          <img src="img/logofisica.png" alt="LogoFisica" class="card-image small">
+          <img src="img/logofisica.png" alt="LogoPhetColorado" class="card-image small">
           <h3>Física</h3>
           <p>Materiais didáticos para o ensino de Física</p>
           <a href="#fisica" class="btn" data-show="fisica">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logoquimica.png" alt="LogoQuimica" class="card-image small">
+          <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
           <h3>Química</h3>
           <p>Materiais didáticos para o ensino de Química</p>
           <a href="#quimica" class="btn" data-show="quimica">Acessar Materiais</a>
         </div>
 
         <div class="subject-card">
-          <img src="img/logociencias.png" alt="LogoCiencias" class="card-image small">
+          <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
           <h3>Ciências</h3>
           <p>Materiais didáticos para o ensino de Ciências</p>
           <a href="#quimica" class="btn" data-show="ciencias">Acessar Materiais</a>
@@ -757,28 +797,24 @@ body {
       
       <div class="subjects-container">
         <div class="subject-card">
-          <img src="img/logohistoria.png" alt="LogoHistoria" class="card-image small">
           <h3>História</h3>
           <p>Materiais didáticos para o ensino de História</p>
           <a href="#historia" class="btn" data-show="historia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logogeografia.png" alt="LogoGeografia" class="card-image small">
           <h3>Geografia</h3>
           <p>Materiais didáticos para o ensino de Geografia</p>
           <a href="#geografia" class="btn" data-show="geografia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logofilosofia.png" alt="LogoFilosofia" class="card-image small">
           <h3>Filosofia</h3>
           <p>Materiais didáticos para o ensino de Filosofia</p>
           <a href="#filosofia" class="btn" data-show="filosofia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logosociologia.png" alt="LogoSociologia" class="card-image small">
           <h3>Sociologia</h3>
           <p>Materiais didáticos para o ensino de Sociologia</p>
           <a href="#sociologia" class="btn" data-show="sociologia">Acessar Materiais</a>
