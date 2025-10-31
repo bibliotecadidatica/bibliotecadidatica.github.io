@@ -422,40 +422,70 @@ body {
 
     }
 
-    /* Estilos para imagens nos cards */
+/* Estilos para imagens nos cards */
 .card-image {
   width: 100%;
-  height: auto;
+  height: auto; /* Alterado de altura fixa para automática */
   border-radius: 6px;
   margin-bottom: 1rem;
-  object-fit: cover;
+  object-fit: contain; /* Alterado de cover para contain */
+  max-height: 200px; /* Altura máxima para controle */
 }
 
-/* Tamanhos de imagem controláveis */
-.card-image.small {
-  height: 120px;
-}
-
-.card-image.medium {
-  height: 160px;
-}
-
+/* Removendo as classes de tamanho específico que forçavam altura fixa */
+.card-image.small,
+.card-image.medium,
 .card-image.large {
-  height: 200px;
+  height: auto; /* Todas as imagens terão altura automática */
+  max-height: 200px; /* Com uma altura máxima consistente */
+}
+
+/* Ajuste para manter o layout dos cards */
+.subject-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #3498db;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Garante que os cards tenham altura completa */
+}
+
+.subject-card h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  flex-grow: 0; /* Não cresce */
+}
+
+.subject-card p {
+  color: #7f8c8d;
+  margin-bottom: 1.2rem;
+  flex-grow: 1; /* Cresce para ocupar espaço disponível */
+}
+
+.subject-card .btn {
+  flex-grow: 0; /* Não cresce */
+  margin-top: auto; /* Empurra o botão para baixo */
+}
+
+/* Ajuste no container para melhor distribuição */
+.subjects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: stretch; /* Garante que os cards tenham a mesma altura */
 }
 
 /* Responsividade para imagens dos cards */
 @media (max-width: 768px) {
-  .card-image.small {
-    height: 120px;
+  .card-image {
+    max-height: 180px; /* Altura máxima um pouco menor em mobile */
   }
   
-  .card-image.medium {
-    height: 160px;
-  }
-  
-  .card-image.large {
-    height: 200px;
+  .subjects-container {
+    grid-template-columns: 1fr;
   }
 }
 
