@@ -260,6 +260,7 @@ body {
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
+      align-items: stretch;
     }
     
     .subject-card {
@@ -268,6 +269,9 @@ body {
       padding: 1.5rem;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-left: 4px solid #3498db;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     
     .subject-card:hover {
@@ -278,11 +282,13 @@ body {
     .subject-card h3 {
       color: #2c3e50;
       margin-bottom: 1rem;
+      flex-grow: 0;
     }
     
     .subject-card p {
       color: #7f8c8d;
       margin-bottom: 1.2rem;
+      flex-grow: 1;
     }
     
     .btn {
@@ -294,6 +300,8 @@ body {
       text-decoration: none;
       font-weight: 500;
       transition: background 0.3s ease;
+      flex-grow: 0;
+      margin-top: auto;
     }
     
     .btn:hover {
@@ -337,35 +345,60 @@ body {
       text-decoration: none;
     }
 
-          /* Estilos para os botões */
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.0rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            outline: none;
-        }
-        
-        /* Botão Primário (seu link transformado) */
-        .btn-primary {
-            background-color: #2575fc;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #0d5fd3;
-            transform: translateY(-2px);
-        }
-        
-        .btn-primary:active {
-            transform: translateY(0);
-        }
+    /* Estilos para os botões */
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.0rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+    }
+    
+    /* Botão Primário (seu link transformado) */
+    .btn-primary {
+        background-color: #2575fc;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0d5fd3;
+        transform: translateY(-2px);
+    }
+    
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    /* Estilos para imagens nos cards */
+    .card-image {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      object-fit: contain;
+      max-height: 200px;
+    }
+
+    /* Tamanhos de imagem controláveis */
+    .card-image.small,
+    .card-image.medium,
+    .card-image.large {
+      height: auto;
+      max-height: 200px;
+    }
+
+    /* Responsividade para imagens dos cards */
+    @media (max-width: 768px) {
+      .card-image {
+        max-height: 180px;
+      }
+    }
     
     /* Responsividade */
     @media (max-width: 768px) {
@@ -419,75 +452,7 @@ body {
       .subjects-container {
         grid-template-columns: 1fr;
       }
-
     }
-
-/* Estilos para imagens nos cards */
-.card-image {
-  width: 100%;
-  height: auto; /* Alterado de altura fixa para automática */
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  object-fit: contain; /* Alterado de cover para contain */
-  max-height: 200px; /* Altura máxima para controle */
-}
-
-/* Removendo as classes de tamanho específico que forçavam altura fixa */
-.card-image.small,
-.card-image.medium,
-.card-image.large {
-  height: auto; /* Todas as imagens terão altura automática */
-  max-height: 200px; /* Com uma altura máxima consistente */
-}
-
-/* Ajuste para manter o layout dos cards */
-.subject-card {
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-left: 4px solid #3498db;
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Garante que os cards tenham altura completa */
-}
-
-.subject-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  flex-grow: 0; /* Não cresce */
-}
-
-.subject-card p {
-  color: #7f8c8d;
-  margin-bottom: 1.2rem;
-  flex-grow: 1; /* Cresce para ocupar espaço disponível */
-}
-
-.subject-card .btn {
-  flex-grow: 0; /* Não cresce */
-  margin-top: auto; /* Empurra o botão para baixo */
-}
-
-/* Ajuste no container para melhor distribuição */
-.subjects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  align-items: stretch; /* Garante que os cards tenham a mesma altura */
-}
-
-/* Responsividade para imagens dos cards */
-@media (max-width: 768px) {
-  .card-image {
-    max-height: 180px; /* Altura máxima um pouco menor em mobile */
-  }
-  
-  .subjects-container {
-    grid-template-columns: 1fr;
-  }
-}
 
   </style>
 </head>
@@ -701,14 +666,14 @@ body {
           <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
           <h3>Phet Colorado</h3>
           <p>Simulações Interativas para Matemática</p>
-          <a href="https://phet.colorado.edu/pt_BR/simulations/filter?subjects=math-and-statistics&type=html" class="btn">Área de Simulação</a>
+          <a href="https://phet.colorado.edu/pt_BR/simulations/filter?subjects=math-and-statistics&type=html" class="btn" target="_blank">Área de Simulação</a>
         </div>
 
         <div class="subject-card">
           <img src="img/logogeogebra.svg" alt="LogoGeoGebra" class="card-image small">
           <h3>GeoGebra</h3>
           <p>Ensine e aprenda matemática de uma forma mais inteligente</p>
-          <a href="https://www.geogebra.org/calculator" class="btn">Acessar Calculadora</a>
+          <a href="https://www.geogebra.org/calculator" class="btn" target="_blank">Acessar Calculadora</a>
         </div>
       </div>
       
@@ -733,38 +698,38 @@ body {
       
       <div class="subjects-container">
         <div class="subject-card">
-          <img src="img/logobiologia.png" alt="LogoPhetColorado" class="card-image small">
+          <img src="img/logobiologia.png" alt="LogoBiologia" class="card-image small">
           <h3>Biologia</h3>
           <p>Materiais didáticos para o ensino de Biologia</p>
           <a href="#biologia" class="btn" data-show="biologia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logofisica.png" alt="LogoPhetColorado" class="card-image small">
+          <img src="img/logofisica.png" alt="LogoFísica" class="card-image small">
           <h3>Física</h3>
           <p>Materiais didáticos para o ensino de Física</p>
           <a href="#fisica" class="btn" data-show="fisica">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
-          <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
+          <img src="img/logophet.png" alt="LogoQuímica" class="card-image small">
           <h3>Química</h3>
           <p>Materiais didáticos para o ensino de Química</p>
           <a href="#quimica" class="btn" data-show="quimica">Acessar Materiais</a>
         </div>
 
         <div class="subject-card">
-          <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
+          <img src="img/logophet.png" alt="LogoCiencias" class="card-image small">
           <h3>Ciências</h3>
           <p>Materiais didáticos para o ensino de Ciências</p>
-          <a href="#quimica" class="btn" data-show="ciencias">Acessar Materiais</a>
+          <a href="#ciencias" class="btn" data-show="ciencias">Acessar Materiais</a>
         </div>
 
         <div class="subject-card">
           <img src="img/logophet.png" alt="LogoPhetColorado" class="card-image small">
           <h3>Phet Colorado</h3>
           <p>Simulações Interativas para Química, Física e Biologia</p>
-          <a href="https://phet.colorado.edu/pt_BR/" class="btn">Área de Simulação</a>
+          <a href="https://phet.colorado.edu/pt_BR/" class="btn" target="_blank">Área de Simulação</a>
         </div>
       </div>
     </section>
@@ -824,24 +789,28 @@ body {
       
       <div class="subjects-container">
         <div class="subject-card">
+          <img src="img/logo_historia.png" alt="LogoHistoria" class="card-image small">
           <h3>História</h3>
           <p>Materiais didáticos para o ensino de História</p>
           <a href="#historia" class="btn" data-show="historia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
+          <img src="img/logo_geografia.png" alt="LogoGeografia" class="card-image small">
           <h3>Geografia</h3>
           <p>Materiais didáticos para o ensino de Geografia</p>
           <a href="#geografia" class="btn" data-show="geografia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
+          <img src="img/logo_filosofia.png" alt="LogoFilosofia" class="card-image small">
           <h3>Filosofia</h3>
           <p>Materiais didáticos para o ensino de Filosofia</p>
           <a href="#filosofia" class="btn" data-show="filosofia">Acessar Materiais</a>
         </div>
         
         <div class="subject-card">
+          <img src="img/logo_sociologia.png" alt="LogoSociologia" class="card-image small">
           <h3>Sociologia</h3>
           <p>Materiais didáticos para o ensino de Sociologia</p>
           <a href="#sociologia" class="btn" data-show="sociologia">Acessar Materiais</a>
@@ -1201,7 +1170,7 @@ body {
 
         // Carrega arquivos das atividades adaptadas
         loadFiles(F.adaptadasEF, {listId:"list-adaptadasEF", loadingId:"loading-adaptadasEF", emptyId:"empty-adaptadasEF", errorId:"error-adaptadasEF", searchId:"search-adaptadasEF"});
-        loadFiles(F.adaptadasEM, {listId:"list-adaptadasEM", loadingId:"loading-adaptadasEM", emptyId:"empty-sociologia", errorId:"error-adaptadasEM", searchId:"search-adaptadasEM"});
+        loadFiles(F.adaptadasEM, {listId:"list-adaptadasEM", loadingId:"loading-adaptadasEM", emptyId:"empty-adaptadasEM", errorId:"error-adaptadasEM", searchId:"search-adaptadasEM"});
 
         // Mostra seção inicial ou a partir do hash da URL
         const hash = window.location.hash.substring(1);
