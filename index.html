@@ -71,6 +71,7 @@
       margin-top: 1rem;
       overflow-x: auto;
       padding-bottom: 5px;
+      justify-content: center; /* Centraliza os botões */
     }
     
     .main-nav.expanded {
@@ -84,25 +85,23 @@
       padding: 1rem;
     }
     
-.nav-link {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: white;
-  padding: 0.7rem 1.2rem;
-  margin-right: 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none; /* Adicione esta linha */
-  font-size: 1rem; /* Garante tamanho consistente */
-  font-family: inherit; /* Garante mesma fonte */
-}
-
-/* Remova a regra específica para mobile que estava no final */
+    .nav-link {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem; /* Reduzido de 0.7rem 1.2rem */
+      margin-right: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none; /* Adicione esta linha */
+      font-size: 0.9rem; /* Reduzido de 1rem */
+      font-family: inherit; /* Garante mesma fonte */
+    }
     
     .nav-link:hover {
       background: rgba(255, 255, 255, 0.2);
@@ -114,8 +113,8 @@
     }
     
     .nav-icon {
-      width: 20px;
-      height: 20px;
+      width: 18px; /* Reduzido de 20px */
+      height: 18px; /* Reduzido de 20px */
       fill: currentColor;
       flex-shrink: 0;
     }
@@ -431,17 +430,18 @@ body {
       .main-nav {
         flex-wrap: wrap;
         gap: 5px;
+        justify-content: flex-start; /* Alinha à esquerda em mobile */
       }
       
       .nav-link {
         margin-bottom: 5px;
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
+        font-size: 0.85rem; /* Ajuste adicional para mobile */
+        padding: 0.5rem 0.8rem; /* Ajuste adicional para mobile */
       }
       
       .nav-icon {
-        width: 18px;
-        height: 18px;
+        width: 16px; /* Ajuste adicional para mobile */
+        height: 16px; /* Ajuste adicional para mobile */
       }
       
       .file-list li {
