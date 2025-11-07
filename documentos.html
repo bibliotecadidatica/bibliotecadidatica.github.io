@@ -158,19 +158,19 @@
       background: #2980b9;
     }
     
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: #95a5a6;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-bottom: 1.5rem;
-      border: none;
-      cursor: pointer;
-    }
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #95a5a6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
     
     .back-btn:hover {
       background: #7f8c8d;
@@ -426,6 +426,18 @@
       .file-list .meta {
         align-self: flex-end;
       }
+
+      .tips {
+  background: #e8f4fc;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  border-left: 4px solid #3498db;
+}
+
+.tips div {
+  margin-bottom: 0.5rem;
+}
     }
   </style>
 </head>
@@ -443,7 +455,7 @@
   <main class="container">
     <!-- Página principal de documentos -->
     <section id="documentos-principal" class="content-section">
-      <a href="index.html" class="back-btn">← Voltar para a Página Inicial</a>
+      <a href="index.html" class="btn" style="background: #95a5a6; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 5px;">← Voltar para a Página Inicial</a>
       
       <h2>Documentos Oficiais</h2>
       
@@ -622,26 +634,26 @@
       }
     }
 
-    // Configuração da navegação
-    function setupNavigation() {
-      document.addEventListener("click", (e) => {
-        // Navegação para seções específicas
-        const docBtn = e.target.closest("a[data-show]");
-        if(docBtn) {
-          e.preventDefault();
-          const targetId = docBtn.getAttribute('data-show');
-          showSection(targetId);
-        }
-        
-        // Botão de voltar
-        const backBtn = e.target.closest(".back-btn");
-        if(backBtn) {
-          e.preventDefault();
-          const targetId = backBtn.getAttribute('data-back');
-          showSection(targetId);
-        }
-      });
+// Configuração da navegação
+function setupNavigation() {
+  document.addEventListener("click", (e) => {
+    // Navegação para seções específicas
+    const docBtn = e.target.closest("a[data-show]");
+    if(docBtn) {
+      e.preventDefault();
+      const targetId = docBtn.getAttribute('data-show');
+      showSection(targetId);
     }
+    
+    // Botão de voltar - apenas para navegação interna
+    const backBtn = e.target.closest(".back-btn[data-back]");
+    if(backBtn) {
+      e.preventDefault();
+      const targetId = backBtn.getAttribute('data-back');
+      showSection(targetId);
+    }
+  });
+}
 
     // Função para carregar arquivos do Google Drive
     const MIME_ICONS = [
