@@ -14,471 +14,16 @@
   <title>Biblioteca Didática - SRE Araguaína</title>
   <meta name="description" content="Biblioteca Didática da SRE Araguaína: Materiais pedagógicos gratuitos para professores. Atualização automática via Google Drive." />
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
-  <style>
-    /* Estilos básicos */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f5f7fa;
-    }
-    
-    .site-header {
-      background: linear-gradient(135deg, #2c3e50, #1a2530);
-      color: white;
-      padding: 1rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      margin-bottom: 1.5rem;
-      justify-content: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .logo img {
-      height: 45px;
-    }
-    
-    .brand h1 {
-      font-size: 1.8rem;
-      margin-bottom: -0.5rem;
-    }
-    
-    .brand p {
-      font-size: 1.0rem;
-      opacity: 0.8;
-    }
-    
-    .menu-toggle {
-      display: none;
-      background: none; 
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    
-    .main-nav {
-      display: flex;
-      overflow-x: auto;
-      padding-bottom: 5px;
-      justify-content: center;
-      width: 100%;
-    }
-    
-    .main-nav.expanded {
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-      width: 100%;
-      left: 0;
-      top: 100%;
-      z-index: 1000;
-      padding: 1rem;
-    }
-    
-    .nav-link {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      margin-right: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-family: inherit;
-    }
-    
-    .nav-link:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .nav-link.active {
-      background: #3498db;
-      font-weight: bold;
-    }
-    
-    .nav-icon {
-      width: 15px;
-      height: 15px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .content-section {
-      background: white;
-      border-radius: 8px;
-      padding: 2rem;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    h2 {
-      color: #2c3e50;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #3498db;
-    }
-    
-    h3 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-    }
-    
-    .tips {
-      background: #e8f4fc;
-      padding: 1rem;
-      border-radius: 5px;
-      margin-top: 1.5rem;
-      border-left: 4px solid #3498db;
-    }
-    
-    .tips div {
-      margin-bottom: 0.5rem;
-    }
-    
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .search {
-      padding: 0.7rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      min-width: 250px;
-    }
-    
-    .file-list {
-      list-style: none;
-    }
-    
-    .file-list li {
-      padding: 1rem;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .file-list li:hover {
-      background-color: #f9f9f9;
-    }
-    
-    .file-list a {
-      color: #2980b9;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .file-list a:hover {
-      text-decoration: none;
-    }
-    
-    .file-list .meta {
-      font-size: 0.85rem;
-      color: #7f8c8d;
-    }
-    
-    .loading, .empty, .error {
-      text-align: center;
-      padding: 2rem;
-      color: #7f8c8d;
-    }
-    
-    .error {
-      color: #e74c3c;
-    }
-    
-    .skeleton-item {
-      height: 50px;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    /* Espaço no corpo do site para não sobrepor o header */
-    body {
-      padding-top: 150px; /* Desktop */
-    }
-
-    /* Ajuste para telas menores */
-    @media (max-width: 768px) {
-      body {
-        padding-top: 80px; /* Mobile, menor espaço */
-      }
-    }
-
-    @keyframes loading {
-      0% {
-        background-position: 200% 0;
-      }
-      100% {
-        background-position: -200% 0;
-      }
-    }
-    
-    .subjects-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      align-items: stretch;
-    }
-    
-    .subject-card {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-left: 4px solid #3498db;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    
-    .subject-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .subject-card h3 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      flex-grow: 0;
-    }
-    
-    .subject-card p {
-      color: #7f8c8d;
-      margin-bottom: 1.2rem;
-      flex-grow: 1;
-    }
-    
-    .btn {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s ease;
-      flex-grow: 0;
-      margin-top: auto;
-    }
-    
-    .btn:hover {
-      background: #2980b9;
-    }
-    
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: #95a5a6;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-bottom: 1.5rem;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .back-btn:hover {
-      background: #7f8c8d;
-    }
-    
-    .site-footer {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-    }
-    
-    .site-footer a {
-      color: #3498db;
-      text-decoration: none;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    
-    .site-footer a:hover {
-      text-decoration: none;
-    }
-
-    /* Estilos para os botões */
-    .btn {
-        display: inline-block;
-        padding: 10px 15px;
-        text-align: center;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.0rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-        outline: none;
-    }
-    
-    /* Botão Primário (seu link transformado) */
-    .btn-primary {
-        background-color: #2575fc;
-        color: white;
-    }
-    
-    .btn-primary:hover {
-        background-color: #0d5fd3;
-        transform: translateY(-2px);
-    }
-    
-    .btn-primary:active {
-        transform: translateY(0);
-    }
-
-    /* Estilos para imagens nos cards */
-    .card-image {
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      object-fit: contain;
-      max-height: 200px;
-    }
-
-    /* Tamanhos de imagem controláveis */
-    .card-image.small,
-    .card-image.medium,
-    .card-image.large {
-      height: auto;
-      max-height: 200px;
-    }
-
-    /* Responsividade para imagens dos cards */
-    @media (max-width: 768px) {
-      .card-image {
-        max-height: 180px;
-      }
-    }
-    
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      
-      .header-top {
-        margin-bottom: 0;
-      }
-      
-      .main-nav:not(.expanded) {
-        display: none;
-      }
-      
-      .brand h1 {
-        font-size: 1.5rem;
-      }
-      
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .search {
-        width: 100%;
-      }
-      
-      .main-nav {
-        flex-wrap: wrap;
-        gap: 5px;
-        justify-content: flex-start;
-      }
-      
-      .nav-link {
-        margin-bottom: 5px;
-        font-size: 0.85rem;
-        padding: 0.5rem 0.8rem;
-      }
-      
-      .nav-icon {
-        width: 16px;
-        height: 16px;
-      }
-      
-      .file-list li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .file-list .meta {
-        align-self: flex-end;
-      }
-      
-      .subjects-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-  </style>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-top">
       <div class="logo">
-        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
         <img src="img/LogoSRE.png" alt="Logo SRE" />
         <div class="brand">
           <h1>Biblioteca Didática</h1>
@@ -486,49 +31,79 @@
         </div>
       </div>
     </div>
-    <nav class="main-nav">
-      <button class="nav-link active" data-target="inicio">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-        </svg>
-        Início
-      </button>
-      <button class="nav-link" data-target="linguagens">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        Linguagens
-      </button>
-      <button class="nav-link" data-target="matematica">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm9 13h4v-2h-4v2zm-6-6h10v-2H7v2z"/>
-        </svg>
-        Matemática
-      </button>
-      <button class="nav-link" data-target="ciencias-natureza">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.66-.02 1.6.8 1.6h14c.82 0 1.29-.94.8-1.6z"/>
-        </svg>
-        Ciências da Natureza
-      </button>
-      <button class="nav-link" data-target="ciencias-humanas">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-        </svg>
-        Ciências Humanas
-      </button>
-      <button class="nav-link" data-target="atividades-adaptadas">
-        <svg class="nav-icon" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
-        Atividades Adaptadas
-      </button>
+    
+    <!-- Menu Principal -->
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-main-items">
+        <!-- Botão Início -->
+        <button class="nav-link active" data-target="inicio">
+          <i class="fas fa-home nav-icon"></i>
+          Início
+        </button>
 
-      <a class="nav-link" href="documentos.html">
-      <svg class="nav-icon" viewBox="0 0 24 24">
-      <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-      </svg>Documentos Oficiais</a>
+        <!-- Áreas do Conhecimento (com submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="areas">
+            <i class="fas fa-book nav-icon"></i>
+            Áreas do Conhecimento
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-areas">
+            <button class="nav-link submenu-link" data-target="linguagens">
+              <i class="fas fa-language"></i>
+              Linguagens
+            </button>
+            <button class="nav-link submenu-link" data-target="matematica">
+              <i class="fas fa-calculator"></i>
+              Matemática
+            </button>
+            <button class="nav-link submenu-link" data-target="ciencias-natureza">
+              <i class="fas fa-flask"></i>
+              Ciências da Natureza
+            </button>
+            <button class="nav-link submenu-link" data-target="ciencias-humanas">
+              <i class="fas fa-globe-americas"></i>
+              Ciências Humanas
+            </button>
+            <button class="nav-link submenu-link" data-target="atividades-adaptadas">
+              <i class="fas fa-universal-access"></i>
+              Atividades Adaptadas
+            </button>
+          </div>
+        </div>
 
+        <!-- Outras Páginas (submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="pages">
+            <i class="fas fa-th nav-icon"></i>
+            Mais Opções
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-pages">
+            <a class="nav-link submenu-link" href="documentos.html">
+              <i class="fas fa-file-alt"></i>
+              Documentos Oficiais
+            </a>
+            <a class="nav-link submenu-link" href="favoritos.html">
+              <i class="fas fa-star"></i>
+              Meus Favoritos
+              <span class="favorites-count"></span>
+            </a>
+            <a class="nav-link submenu-link" href="planejador.html">
+              <i class="fas fa-calendar-alt"></i>
+              Planejador
+            </a>
+            <a class="nav-link submenu-link" href="compartilhar.html">
+              <i class="fas fa-share-alt"></i>
+              Enviar Material
+            </a>
+            <a class="nav-link submenu-link" href="sobre.html">
+              <i class="fas fa-info-circle"></i>
+              Sobre Nós
+            </a>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -541,17 +116,14 @@
       <div class="subject-card" style="margin-top: 1.5rem;">
       <h3>Novidades</h3>
       <p>Acompanhe aqui as últimas atualizações da nossa Biblioteca Didática:</p>
-      > Nova página para "Atividades Adaptadas".
+      Nova página para "Atividades Adaptadas".
         <br>
-      > Atualização nos conteúdos em Ciências da Natureza.
+      Atualização nos conteúdos em Ciências da Natureza.
       </div>
 
       <div class="tips">
-        <div><strong>Dica:</strong> use o campo de busca na barra da disciplina para localizar um material pelo nome.</div>
-        <div><strong>Dúvidas ou sugestões?</strong> curriculo-araguaina@seduc.to.gov.br</div>
-      </div>
-      <div class="tips">
         <div><strong>Compartilhe conhecimento:</strong> use a página de envio de material e contribua com a nossa biblioteca.</div>
+        <div><strong>Dúvidas ou sugestões?</strong> curriculo-araguaina@seduc.to.gov.br</div>
       </div>
     </section>
 
@@ -607,72 +179,138 @@
 
     <!-- Disciplinas de Linguagens (ocultas inicialmente) -->
     <section id="portugues" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Língua Portuguesa</h2>
         <input id="search-portugues" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Língua Portuguesa" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-portugues"></ul>
+      <div class="card-view hidden" id="card-portugues"></div>
       <div class="loading" id="loading-portugues" hidden>Carregando…</div>
       <div class="empty" id="empty-portugues" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-portugues" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="ingles" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Língua Inglesa</h2>
         <input id="search-ingles" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Língua Inglesa" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-ingles"></ul>
+      <div class="card-view hidden" id="card-ingles"></div>
       <div class="loading" id="loading-ingles" hidden>Carregando…</div>
       <div class="empty" id="empty-ingles" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-ingles" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="espanhol" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Espanhol</h2>
         <input id="search-espanhol" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Espanhol" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-espanhol"></ul>
+      <div class="card-view hidden" id="card-espanhol"></div>
       <div class="loading" id="loading-espanhol" hidden>Carregando…</div>
       <div class="empty" id="empty-espanhol" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-espanhol" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="libras" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Libras</h2>
         <input id="search-libras" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Libras" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-libras"></ul>
+      <div class="card-view hidden" id="card-libras"></div>
       <div class="loading" id="loading-libras" hidden>Carregando…</div>
       <div class="empty" id="empty-libras" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-libras" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="artes" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Artes</h2>
         <input id="search-artes" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Artes" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-artes"></ul>
+      <div class="card-view hidden" id="card-artes"></div>
       <div class="loading" id="loading-artes" hidden>Carregando…</div>
       <div class="empty" id="empty-artes" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-artes" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="edfisica" class="content-section hidden">
-      <button class="back-btn" data-back="linguagens">← Voltar para Linguagens</button>
+      <button class="back-btn" data-back="linguagens"><i class="fas fa-arrow-left"></i> Voltar para Linguagens</button>
       <header class="section-header">
         <h2>Educação Física</h2>
         <input id="search-edfisica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Educação Física" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-edfisica"></ul>
+      <div class="card-view hidden" id="card-edfisica"></div>
       <div class="loading" id="loading-edfisica" hidden>Carregando…</div>
       <div class="empty" id="empty-edfisica" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-edfisica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
@@ -705,16 +343,26 @@
           <a href="https://www.geogebra.org/calculator" class="btn" target="_blank">Acessar Calculadora</a>
         </div>
       </div>
-      
     </section>
 
     <section id="matematica-disciplina" class="content-section hidden">
-      <button class="back-btn" data-back="matematica">← Voltar para Matemática</button>
+      <button class="back-btn" data-back="matematica"><i class="fas fa-arrow-left"></i> Voltar para Matemática</button>
       <header class="section-header">
         <h2>Matemática</h2>
         <input id="search-matematica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Matemática" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-matematica"></ul>
+      <div class="card-view hidden" id="card-matematica"></div>
       <div class="loading" id="loading-matematica" hidden>Carregando…</div>
       <div class="empty" id="empty-matematica" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-matematica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
@@ -764,48 +412,92 @@
     </section>
 
     <section id="biologia" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <button class="back-btn" data-back="ciencias-natureza"><i class="fas fa-arrow-left"></i> Voltar para Ciências da Natureza</button>
       <header class="section-header">
         <h2>Biologia</h2>
         <input id="search-biologia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Biologia" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-biologia"></ul>
+      <div class="card-view hidden" id="card-biologia"></div>
       <div class="loading" id="loading-biologia" hidden>Carregando…</div>
       <div class="empty" id="empty-biologia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-biologia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="fisica" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <button class="back-btn" data-back="ciencias-natureza"><i class="fas fa-arrow-left"></i> Voltar para Ciências da Natureza</button>
       <header class="section-header">
         <h2>Física</h2>
         <input id="search-fisica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Física" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-fisica"></ul>
+      <div class="card-view hidden" id="card-fisica"></div>
       <div class="loading" id="loading-fisica" hidden>Carregando…</div>
       <div class="empty" id="empty-fisica" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-fisica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="quimica" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <button class="back-btn" data-back="ciencias-natureza"><i class="fas fa-arrow-left"></i> Voltar para Ciências da Natureza</button>
       <header class="section-header">
         <h2>Química</h2>
         <input id="search-quimica" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Química" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-quimica"></ul>
+      <div class="card-view hidden" id="card-quimica"></div>
       <div class="loading" id="loading-quimica" hidden>Carregando…</div>
       <div class="empty" id="empty-quimica" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-quimica" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="ciencias" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-natureza">← Voltar para Ciências da Natureza</button>
+      <button class="back-btn" data-back="ciencias-natureza"><i class="fas fa-arrow-left"></i> Voltar para Ciências da Natureza</button>
       <header class="section-header">
         <h2>Ciências</h2>
         <input id="search-ciencias" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Ciências" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-ciencias"></ul>
+      <div class="card-view hidden" id="card-ciencias"></div>
       <div class="loading" id="loading-ciencias" hidden>Carregando…</div>
       <div class="empty" id="empty-ciencias" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-ciencias" hidden>Ocorreu um erro ao carregar os arquivos.</div>
@@ -848,48 +540,92 @@
     </section>
 
     <section id="historia" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <button class="back-btn" data-back="ciencias-humanas"><i class="fas fa-arrow-left"></i> Voltar para Ciências Humanas</button>
       <header class="section-header">
         <h2>História</h2>
         <input id="search-historia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em História" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-historia"></ul>
+      <div class="card-view hidden" id="card-historia"></div>
       <div class="loading" id="loading-historia" hidden>Carregando…</div>
       <div class="empty" id="empty-historia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-historia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="geografia" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <button class="back-btn" data-back="ciencias-humanas"><i class="fas fa-arrow-left"></i> Voltar para Ciências Humanas</button>
       <header class="section-header">
         <h2>Geografia</h2>
         <input id="search-geografia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Geografia" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-geografia"></ul>
+      <div class="card-view hidden" id="card-geografia"></div>
       <div class="loading" id="loading-geografia" hidden>Carregando…</div>
       <div class="empty" id="empty-geografia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-geografia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="filosofia" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <button class="back-btn" data-back="ciencias-humanas"><i class="fas fa-arrow-left"></i> Voltar para Ciências Humanas</button>
       <header class="section-header">
         <h2>Filosofia</h2>
         <input id="search-filosofia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Filosofia" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-filosofia"></ul>
+      <div class="card-view hidden" id="card-filosofia"></div>
       <div class="loading" id="loading-filosofia" hidden>Carregando…</div>
       <div class="empty" id="empty-filosofia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-filosofia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="sociologia" class="content-section hidden">
-      <button class="back-btn" data-back="ciencias-humanas">← Voltar para Ciências Humanas</button>
+      <button class="back-btn" data-back="ciencias-humanas"><i class="fas fa-arrow-left"></i> Voltar para Ciências Humanas</button>
       <header class="section-header">
         <h2>Sociologia</h2>
         <input id="search-sociologia" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Sociologia" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-sociologia"></ul>
+      <div class="card-view hidden" id="card-sociologia"></div>
       <div class="loading" id="loading-sociologia" hidden>Carregando…</div>
       <div class="empty" id="empty-sociologia" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-sociologia" hidden>Ocorreu um erro ao carregar os arquivos.</div>
@@ -912,306 +648,66 @@
           <p>Materiais didáticos adaptados para o EM</p>
           <a href="#adaptadasEM" class="btn" data-show="adaptadasEM">Acessar Materiais</a>
         </div>
-        
       </div>
     </section>
 
     <section id="adaptadasEF" class="content-section hidden">
-      <button class="back-btn" data-back="atividades-adaptadas">← Voltar para Atividades Adaptadas</button>
+      <button class="back-btn" data-back="atividades-adaptadas"><i class="fas fa-arrow-left"></i> Voltar para Atividades Adaptadas</button>
       <header class="section-header">
         <h2>Ensino Fundamental</h2>
         <input id="search-adaptadasEF" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Atividades Adaptadas" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-adaptadasEF"></ul>
+      <div class="card-view hidden" id="card-adaptadasEF"></div>
       <div class="loading" id="loading-adaptadasEF" hidden>Carregando…</div>
       <div class="empty" id="empty-adaptadasEF" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-adaptadasEF" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <section id="adaptadasEM" class="content-section hidden">
-      <button class="back-btn" data-back="atividades-adaptadas">← Voltar para Atividades Adaptadas</button>
+      <button class="back-btn" data-back="atividades-adaptadas"><i class="fas fa-arrow-left"></i> Voltar para Atividades Adaptadas</button>
       <header class="section-header">
         <h2>Ensino Médio</h2>
         <input id="search-adaptadasEM" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Atividades Adaptadas" />
       </header>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="list-view">
+          <i class="fas fa-list view-toggle-icon"></i>
+          Lista
+        </button>
+        <button class="view-toggle-btn" data-view="card-view">
+          <i class="fas fa-th-large view-toggle-icon"></i>
+          Cards
+        </button>
+      </div>
       <ul class="file-list" id="list-adaptadasEM"></ul>
+      <div class="card-view hidden" id="card-adaptadasEM"></div>
       <div class="loading" id="loading-adaptadasEM" hidden>Carregando…</div>
       <div class="empty" id="empty-adaptadasEM" hidden>Nenhum arquivo disponível.</div>
       <div class="error" id="error-adaptadasEM" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
-    
   </main>
 
+  <!-- Botão de Voltar ao Topo -->
+  <button class="back-to-top" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+
   <footer class="site-footer">
-    <a class="nav-link" href="sobre.html">Sobre Nós</a>
-    <a class="nav-link" href="compartilhar.html">Enviar Material</a>
-    <a class="nav-link" href="documentos.html">Documentos Oficiais</a>
-    <p>SRE Araguaína © 2025 - Currículo, Formação e Avaliação - por Guilherme S. Vanderley - <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
+    <p>SRE Araguaína © 2025 - 
+    <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
+    <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
+    <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
   </footer>
 
-  <script>
-    // Configuração com sua chave API e IDs de pasta
-    window.CONFIG = {
-      API_KEY: "AIzaSyAnO6lMGiJ5UyT6zo7qW2NSGPiBGtMPl88",
-      FOLDER_IDS: {
-        portugues: "1oCNLcON1a7WAtNcxPgQCpYz1G5YwghZZ",
-        ingles: "1ksd-52gkZx94eXx9UAG_RudDrPZHORk0",
-        espanhol: "1pCHeDYyW3DpXQ4-3cAkhR5s3A_A7vTMW",
-        libras: "1W_fMGLSquBinpH3vsKwG5kHmO1mF4OOD",
-        artes: "1NZXxMTdRTn6YusM5Ky-LJqS0qglLMO-K",
-        edfisica: "11-umz15mtLA_lqERIBkJ81PzXgbJG04v",
-        matematica: "1fz2fraVVCpn8ZglbnGuPc02yW8irQ9d5",
-        biologia: "1qMoaTxz6-swFZFJRtCO78jkaAol_zFmm",
-        fisica: "1qwAReRChvqNMOLH7STI1K8G5n7Zm-084",
-        quimica: "1OccZdwjb5LcEalTgQun8gyjG-LXvd3Qz",
-        ciencias: "15cESDdkeC-iIuq_SoSArCSHoYlYHK8rE",
-        historia: "1V-bcys64AATEpH9slBgLqUY8JH4Y5ve4",
-        geografia: "1VIPSMAfAaNE2iqtGXhv3RKT_MyAJ1dK5",
-        filosofia: "17XYMa9O68VS8fIzvBlTT2RQ5i3zMambX",
-        sociologia: "1_oOvhr7Tx0naH3HSSGBSX0G9dd_nU2qL",
-        adaptadasEF: "1S3CI-0JXi0ZqLQYeVBpvwGwe3_qt0TLl",
-        adaptadasEM: "1Rg3zlxKuUjvHPbbwH45llX3i6WZgd-XF"
-      }
-    };
-
-    /* Integração com Google Drive API */
-    const MIME_ICONS = [
-      {match: "pdf", icon: "📕"},
-      {match: "spreadsheet", icon: "📊"},
-      {match: "presentation", icon: "📑"},
-      {match: "image", icon: "🖼️"},
-      {match: "video", icon: "🎬"},
-      {match: "audio", icon: "🎵"},
-    ];
-
-    function iconForMime(mime) {
-      for(const m of MIME_ICONS) {
-        if(mime.includes(m.match)) return m.icon;
-      }
-      return "📄";
-    }
-
-    function showSection(id) {
-      // Verifica se a seção existe (para evitar erros na página Sobre Nós)
-      const section = document.getElementById(id);
-      if(!section) return;
-      
-      document.querySelectorAll(".content-section").forEach(s => s.classList.add("hidden"));
-      section.classList.remove("hidden");
-      
-      // Atualiza botões ativos
-      document.querySelectorAll(".nav-link").forEach(b => {
-        b.classList.remove("active");
-        if(b.getAttribute('data-target') === id || 
-           (id === 'inicio' && b.getAttribute('href') === 'index.html')) {
-          b.classList.add("active");
-        }
-      });
-      
-      // Rola para o topo da página
-      window.scrollTo(0, 0);
-      
-      // Atualiza a URL com hash
-      if (id !== 'inicio') {
-        window.history.replaceState(null, null, `#${id}`);
-      } else {
-        window.history.replaceState(null, null, ' ');
-      }
-    }
-
-    // Configuração do Menu Mobile
-    function setupMenuToggle() {
-      const toggle = document.querySelector('.menu-toggle');
-      const mainNav = document.querySelector('.main-nav');
-      const navLinks = document.querySelectorAll('.nav-link');
-      
-      if (!toggle) return;
-
-      // Função para fechar o menu
-      function closeMenu() {
-        mainNav.classList.remove('expanded');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-
-      // Toggle do menu
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        mainNav.classList.toggle('expanded');
-        toggle.setAttribute('aria-expanded', mainNav.classList.contains('expanded'));
-      });
-
-      // Fechar menu ao clicar nos links (mobile)
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 768) {
-            closeMenu();
-          }
-        });
-      });
-
-      // Fechar menu ao clicar fora (mobile)
-      document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            !e.target.closest('.main-nav') && 
-            !e.target.closest('.menu-toggle')) {
-          closeMenu();
-        }
-      });
-    }
-
-    // Função para configurar navegação
-    function setupNavigation() {
-      document.addEventListener("click", (e) => {
-        // Navegação por botões com data-target
-        const btn = e.target.closest(".nav-link[data-target]");
-        if(btn) {
-          e.preventDefault();
-          showSection(btn.getAttribute('data-target'));
-          return;
-        }
-        
-        // Navegação para seções específicas
-        const anchorBtn = e.target.closest(".nav-link[href^='index.html#']");
-        if(anchorBtn) {
-          e.preventDefault();
-          const targetId = anchorBtn.getAttribute('href').split('#')[1];
-          window.location.href = `index.html#${targetId}`;
-          showSection(targetId);
-        }
-        
-        // Botão de voltar
-        const backBtn = e.target.closest(".back-btn");
-        if(backBtn) {
-          e.preventDefault();
-          const targetId = backBtn.getAttribute('data-back');
-          showSection(targetId);
-        }
-        
-        // Links para disciplinas específicas
-        const subjectBtn = e.target.closest("a[data-show]");
-        if(subjectBtn) {
-          e.preventDefault();
-          const targetId = subjectBtn.getAttribute('data-show');
-          showSection(targetId);
-        }
-      });
-    }
-
-    async function loadFiles(folderId, {listId, loadingId, emptyId, errorId, searchId}) {
-      const listEl = document.getElementById(listId);
-      const loadingEl = document.getElementById(loadingId);
-      const emptyEl = document.getElementById(emptyId);
-      const errorEl = document.getElementById(errorId);
-      const searchEl = document.getElementById(searchId);
-
-      if(!folderId || folderId.startsWith("ID_PASTA_")) { 
-        listEl.innerHTML = "<li>Pasta não configurada.</li>"; 
-        loadingEl.hidden = true;
-        emptyEl.hidden = true;
-        return; 
-      }
-
-      // Mostra skeletons
-      listEl.innerHTML = `
-        <li class="skeleton-item"></li>
-        <li class="skeleton-item"></li>
-        <li class="skeleton-item"></li>
-      `;
-      loadingEl.hidden = false;
-      emptyEl.hidden = true;
-      errorEl.hidden = true;
-
-      const fields = "files(id,name,mimeType,modifiedTime,webViewLink,webContentLink,iconLink)";
-      const url = `https://www.googleapis.com/drive/v3/files?q='${encodeURIComponent(folderId)}'+in+parents+and+trashed=false&orderBy=modifiedTime%20desc&fields=${fields}&key=${encodeURIComponent(window.CONFIG.API_KEY)}`;
-
-      try {
-        const res = await fetch(url);
-        if(!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-        const files = data.files || [];
-
-        if(files.length === 0) {
-          emptyEl.hidden = false;
-          listEl.innerHTML = "";
-          return;
-        }
-
-        const render = (items) => {
-          listEl.innerHTML = "";
-          for(const file of items) {
-            const icon = iconForMime(file.mimeType);
-            const when = new Date(file.modifiedTime).toLocaleDateString("pt-BR");
-            const link = file.webViewLink || file.webContentLink || `https://drive.google.com/file/d/${file.id}/view`;
-            const li = document.createElement("li");
-            li.innerHTML = `<div class="title"><a href="${link}" target="_blank" rel="noopener">${icon} ${file.name}</a></div>
-                            <div class="meta">Atualizado em ${when}</div>`;
-            listEl.appendChild(li);
-          }
-        };
-
-        render(files);
-
-        if(searchEl) {
-          searchEl.addEventListener("input", () => {
-            const q = searchEl.value.trim().toLowerCase();
-            const filtered = files.filter(f => f.name.toLowerCase().includes(q));
-            if(filtered.length === 0) {
-              listEl.innerHTML = "<li>Nenhum resultado para a busca.</li>";
-            } else {
-              render(filtered);
-            }
-          });
-        }
-      } catch(err) {
-        console.error(err);
-        errorEl.hidden = false;
-      } finally {
-        loadingEl.hidden = true;
-      }
-    }
-
-    // Inicialização
-    document.addEventListener("DOMContentLoaded", () => {
-      setupMenuToggle();
-      setupNavigation();
-      
-      // Verifica se está na página principal
-      if(document.getElementById('list-portugues')) {
-        const F = window.CONFIG.FOLDER_IDS;
-        
-        // Carrega arquivos das disciplinas de Linguagens
-        loadFiles(F.portugues, {listId:"list-portugues", loadingId:"loading-portugues", emptyId:"empty-portugues", errorId:"error-portugues", searchId:"search-portugues"});
-        loadFiles(F.ingles, {listId:"list-ingles", loadingId:"loading-ingles", emptyId:"empty-ingles", errorId:"error-ingles", searchId:"search-ingles"});
-        loadFiles(F.espanhol, {listId:"list-espanhol", loadingId:"loading-espanhol", emptyId:"empty-espanhol", errorId:"error-espanhol", searchId:"search-espanhol"});
-        loadFiles(F.libras, {listId:"list-libras", loadingId:"loading-libras", emptyId:"empty-libras", errorId:"error-libras", searchId:"search-libras"});
-        loadFiles(F.artes, {listId:"list-artes", loadingId:"loading-artes", emptyId:"empty-artes", errorId:"error-artes", searchId:"search-artes"});
-        loadFiles(F.edfisica, {listId:"list-edfisica", loadingId:"loading-edfisica", emptyId:"empty-edfisica", errorId:"error-edfisica", searchId:"search-edfisica"});
-        
-        // Carrega arquivos das demais áreas (quando configuradas)
-        loadFiles(F.matematica, {listId:"list-matematica", loadingId:"loading-matematica", emptyId:"empty-matematica", errorId:"error-matematica", searchId:"search-matematica"});
-        loadFiles(F.biologia, {listId:"list-biologia", loadingId:"loading-biologia", emptyId:"empty-biologia", errorId:"error-biologia", searchId:"search-biologia"});
-        loadFiles(F.fisica, {listId:"list-fisica", loadingId:"loading-fisica", emptyId:"empty-fisica", errorId:"error-fisica", searchId:"search-fisica"});
-        loadFiles(F.quimica, {listId:"list-quimica", loadingId:"loading-quimica", emptyId:"empty-quimica", errorId:"error-quimica", searchId:"search-quimica"});
-        loadFiles(F.ciencias, {listId:"list-ciencias", loadingId:"loading-ciencias", emptyId:"empty-ciencias", errorId:"error-ciencias", searchId:"search-ciencias"});
-        loadFiles(F.historia, {listId:"list-historia", loadingId:"loading-historia", emptyId:"empty-historia", errorId:"error-historia", searchId:"search-historia"});
-        loadFiles(F.geografia, {listId:"list-geografia", loadingId:"loading-geografia", emptyId:"empty-geografia", errorId:"error-geografia", searchId:"search-geografia"});
-        loadFiles(F.filosofia, {listId:"list-filosofia", loadingId:"loading-filosofia", emptyId:"empty-filosofia", errorId:"error-filosofia", searchId:"search-filosofia"});
-        loadFiles(F.sociologia, {listId:"list-sociologia", loadingId:"loading-sociologia", emptyId:"empty-sociologia", errorId:"error-sociologia", searchId:"search-sociologia"});
-
-        // Carrega arquivos das atividades adaptadas
-        loadFiles(F.adaptadasEF, {listId:"list-adaptadasEF", loadingId:"loading-adaptadasEF", emptyId:"empty-adaptadasEF", errorId:"error-adaptadasEF", searchId:"search-adaptadasEF"});
-        loadFiles(F.adaptadasEM, {listId:"list-adaptadasEM", loadingId:"loading-adaptadasEM", emptyId:"empty-adaptadasEM", errorId:"error-adaptadasEM", searchId:"search-adaptadasEM"});
-
-        // Mostra seção inicial ou a partir do hash da URL
-        const hash = window.location.hash.substring(1);
-        showSection(hash || 'inicio');
-      }
-      
-      // Ativa link ativo na página Sobre Nós
-      if(window.location.pathname.includes('sobre.html')) {
-        document.querySelector('.nav-link[href="sobre.html"]').classList.add('active');
-      }
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
