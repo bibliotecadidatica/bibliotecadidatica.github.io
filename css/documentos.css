@@ -1,0 +1,215 @@
+/* Estilos específicos para a página de documentos */
+
+/* Introdução */
+.doc-intro {
+  background: linear-gradient(135deg, #f8fafc, #ebf8ff);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-left: 4px solid var(--primary);
+}
+
+.doc-intro p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--dark-gray);
+  margin-bottom: 0;
+}
+
+/* Grid de documentos */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.doc-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--light-gray);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.doc-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  color: var(--primary);
+}
+
+.doc-name {
+  color: var(--primary-dark);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.doc-description {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+  flex: 1;
+}
+
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: auto;
+}
+
+.doc-btn:hover {
+  background: var(--primary-light);
+  text-decoration: none;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Cores específicas para tipos de documentos */
+.doc-card:nth-child(1) { /* Memorandos */
+  border-top: 4px solid var(--linguagens);
+}
+
+.doc-card:nth-child(1) .doc-icon {
+  color: var(--linguagens);
+}
+
+.doc-card:nth-child(2) { /* Matriz */
+  border-top: 4px solid var(--matematica);
+}
+
+.doc-card:nth-child(2) .doc-icon {
+  color: var(--matematica);
+}
+
+.doc-card:nth-child(3) { /* Portarias */
+  border-top: 4px solid var(--natureza);
+}
+
+.doc-card:nth-child(3) .doc-icon {
+  color: var(--natureza);
+}
+
+.doc-card:nth-child(4) { /* BNCC */
+  border-top: 4px solid var(--humanas);
+}
+
+.doc-card:nth-child(4) .doc-icon {
+  color: var(--humanas);
+}
+
+.doc-card:nth-child(5) { /* PPP */
+  border-top: 4px solid var(--adaptadas);
+}
+
+.doc-card:nth-child(5) .doc-icon {
+  color: var(--adaptadas);
+}
+
+.doc-card:nth-child(6) { /* Plataformas */
+  border-top: 4px solid var(--accent);
+}
+
+.doc-card:nth-child(6) .doc-icon {
+  color: var(--accent);
+}
+
+/* Skeletons para carregamento */
+.skeleton-item {
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xs);
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .doc-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .doc-card {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .doc-card {
+    padding: var(--space-md);
+  }
+  
+  .doc-icon {
+    font-size: 2.5rem;
+  }
+  
+  .doc-name {
+    font-size: 1.3rem;
+  }
+}
+
+/* Destaque para seção ativa */
+#documentos-principal .doc-card {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.doc-card:nth-child(1) { animation-delay: 0.1s; }
+.doc-card:nth-child(2) { animation-delay: 0.2s; }
+.doc-card:nth-child(3) { animation-delay: 0.3s; }
+.doc-card:nth-child(4) { animation-delay: 0.4s; }
+.doc-card:nth-child(5) { animation-delay: 0.5s; }
+.doc-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Link externo específico */
+.doc-card a[href^="https://lookerstudio.google.com/"] {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+.doc-card a[href^="https://lookerstudio.google.com/"]::after {
+  content: "↗";
+  position: absolute;
+  right: 1rem;
+  font-size: 0.9rem;
+}
