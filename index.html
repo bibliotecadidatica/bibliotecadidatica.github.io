@@ -1,1 +1,431 @@
-Em breve... atualizações!
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Em Breve - Biblioteca Didática SRE Araguaína</title>
+  <meta name="description" content="Estamos trabalhando em uma nova versão da Biblioteca Didática. Em breve, novas funcionalidades e melhorias para você!" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Estilos específicos para a página "Em Breve" */
+    :root {
+      --coming-soon-gradient: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+      --coming-soon-accent: #ed8936;
+      --coming-soon-light: #f7fafc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: var(--coming-soon-gradient);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .coming-soon-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .logo-container {
+      margin-bottom: 3rem;
+    }
+    
+    .logo-container img {
+      height: 120px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+    
+    .logo-container h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-top: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .logo-container p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .main-message {
+      max-width: 800px;
+      margin-bottom: 3rem;
+    }
+    
+    .main-message h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .main-message p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+    }
+    
+    .countdown-container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .countdown-title {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--coming-soon-accent);
+      font-weight: 600;
+    }
+    
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 100px;
+    }
+    
+    .countdown-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.15);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .features-container {
+      max-width: 800px;
+      margin-bottom: 3rem;
+      width: 100%;
+    }
+    
+    .features-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.1);
+      border-color: var(--coming-soon-accent);
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--coming-soon-accent);
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .feature-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+    }
+    
+    .contact-section {
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .contact-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-item:hover {
+      color: var(--coming-soon-accent);
+    }
+    
+    .contact-item i {
+      color: var(--coming-soon-accent);
+    }
+    
+    .old-version-link {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .old-version-link a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .old-version-link a:hover {
+      color: var(--coming-soon-accent);
+    }
+    
+    .progress-container {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    
+    .progress-title {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .progress-bar {
+      height: 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress {
+      height: 100%;
+      background: var(--coming-soon-accent);
+      width: 75%;
+      border-radius: 5px;
+      animation: progress-animation 2s ease-in-out infinite alternate;
+    }
+    
+    .progress-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .social-share {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .social-btn:hover {
+      background: var(--coming-soon-accent);
+      transform: translateY(-3px);
+    }
+    
+    /* Footer ajustado para o tema escuro */
+    .site-footer.coming-soon-footer {
+      background: rgba(0,0,0,0.2);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: auto;
+    }
+    
+    .site-footer.coming-soon-footer p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+    
+    .site-footer.coming-soon-footer a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .site-footer.coming-soon-footer a:hover {
+      color: var(--coming-soon-accent);
+    }
+    
+    /* Animações */
+    @keyframes progress-animation {
+      from {
+        width: 75%;
+      }
+      to {
+        width: 78%;
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .logo-container h1 {
+        font-size: 2rem;
+      }
+      
+      .main-message h2 {
+        font-size: 1.8rem;
+      }
+      
+      .countdown-item {
+        min-width: 70px;
+      }
+      
+      .countdown-number {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .countdown {
+        gap: 1rem;
+      }
+      
+      .countdown-item {
+        min-width: 60px;
+      }
+      
+      .countdown-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon-container">
+    <div class="logo-container">
+      <h1>Biblioteca Didática</h1>
+      <p>Currículo, Formação e Avaliação - SRE Araguaína</p>
+    </div>
+    
+    <div class="main-message">
+      <h2>Estamos preparando algo especial para você!</h2>
+      <p>Estamos trabalhando duro para trazer uma nova versão da Biblioteca Didática com funcionalidades incríveis e uma experiência muito melhor. Em breve, você terá acesso a todas as novidades!</p>
+
+</body>
+</html>
