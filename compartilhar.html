@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y07NPE5TJ1');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enviar Material - Biblioteca Didática SRE Araguaína</title>
+  <meta name="description" content="Envie seus materiais didáticos para compor a Biblioteca Didática da SRE Araguaína" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIiIHJ4PSI1IiByeT0iNSIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+U1JFPC90ZXh0Pjwvc3ZnPg==" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/compartilhar.css"/>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-top">
+      <div class="logo">
+        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        <img src="img/LogoSRE.png" alt="Logo SRE" />
+        <div class="brand">
+          <h1>Biblioteca Didática</h1>
+          <p>Currículo, Formação e Avaliação</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Menu Principal -->
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-main-items">
+        <!-- Botão Início -->
+        <a href="index.html" class="nav-link active" data-target="inicio">
+        <i class="fas fa-home nav-icon"></i>
+         Início
+        </a>
+
+        <!-- Áreas do Conhecimento (com submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="areas">
+            <i class="fas fa-book nav-icon"></i>
+            Áreas do Conhecimento
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-areas">
+            <a class="nav-link submenu-link" href="index.html#linguagens">
+              <i class="fas fa-language"></i>
+              Linguagens
+            </a>
+            <a class="nav-link submenu-link" href="index.html#linguagens">
+              <i class="fas fa-calculator"></i>
+              Matemática
+            </a>
+            <a class="nav-link submenu-link" href="index.html#ciencias-natureza">
+              <i class="fas fa-flask"></i>
+              Ciências da Natureza
+            </a>
+            <a class="nav-link submenu-link" href="index.html#ciencias-humanas">
+              <i class="fas fa-globe-americas"></i>
+              Ciências Humanas
+            </a>
+            <a class="nav-link submenu-link" href="index.html#atividades-adaptadas">
+              <i class="fas fa-universal-access"></i>
+              Atividades Adaptadas
+            </a>
+          </div>
+        </div>
+
+        <!-- Outras Páginas (submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="pages">
+            <i class="fas fa-th nav-icon"></i>
+            Mais Opções
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-pages">
+            <a class="nav-link submenu-link" href="documentos.html">
+              <i class="fas fa-file-alt"></i>
+              Documentos Oficiais
+            </a>
+            <a class="nav-link submenu-link" href="favoritos.html">
+              <i class="fas fa-star"></i>
+              Meus Favoritos
+              <span class="favorites-count"></span>
+            </a>
+            <a class="nav-link submenu-link" href="planejador.html">
+              <i class="fas fa-calendar-alt"></i>
+              Planejador
+            </a>
+            <a class="nav-link submenu-link" href="compartilhar.html">
+              <i class="fas fa-share-alt"></i>
+              Enviar Material
+            </a>
+            <a class="nav-link submenu-link" href="sobre.html">
+              <i class="fas fa-info-circle"></i>
+              Sobre Nós
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="content-section" id="form-section">
+      <a href="index.html" class="back-btn">← Voltar para a Página Inicial</a>
+      
+      <h2>Enviar Material Didático</h2>
+      
+      <div class="form-intro">
+        <p>Compartilhe seus materiais didáticos conosco!</p>
+          <p>Sua contribuição ajudará a enriquecer nossa biblioteca e beneficiar outros educadores.</p>
+      </div>
+
+      <div class="form-container">
+        <form id="material-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScKOziP--1IxlvIDW3q04BZcGGuVGbD2J_AQvMZyxPaDVCC_w/formResponse" method="POST" target="hidden-iframe">
+          <div class="form-group">
+            <label for="nome" class="form-label">Seu nome <span class="form-required">*</span></label>
+            <input type="text" id="nome" name="entry.2130400867" class="form-input" required placeholder="Digite seu nome completo">
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Seu e-mail <span class="form-required">*</span></label>
+            <input type="email" id="email" name="entry.1564972327" class="form-input" required placeholder="seu@email.com">
+            <div class="form-help">Utilizaremos este e-mail apenas para contato sobre seu material</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="escola" class="form-label">Escola onde leciona</label>
+            <input type="text" id="escola" name="entry.478868593" class="form-input" placeholder="Nome da escola">
+          </div>
+          
+          <div class="form-group">
+            <label for="titulo" class="form-label">Título do material <span class="form-required">*</span></label>
+            <input type="text" id="titulo" name="entry.1963452345" class="form-input" required placeholder="Ex: Atividade de interpretação textual - Poesia">
+          </div>
+          
+          <div class="form-group">
+            <label for="area" class="form-label">Área do conhecimento <span class="form-required">*</span></label>
+            <select id="area" name="entry.1053581000" class="form-select" required>
+              <option value="">Selecione uma área</option>
+              <option value="Linguagens">Linguagens</option>
+              <option value="Matemática">Matemática</option>
+              <option value="Ciências da Natureza">Ciências da Natureza</option>
+              <option value="Ciências Humanas">Ciências Humanas</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="componente" class="form-label">Componente curricular <span class="form-required">*</span></label>
+            <select id="componente" name="entry.1814252866" class="form-select" required>
+              <option value="">Selecione um componente</option>
+              <optgroup label="Linguagens">
+                <option value="Língua Portuguesa">Língua Portuguesa</option>
+                <option value="Língua Inglesa">Língua Inglesa</option>
+                <option value="Espanhol">Espanhol</option>
+                <option value="Artes">Artes</option>
+                <option value="Educação Física">Educação Física</option>
+              </optgroup>
+              <optgroup label="Matemática">
+                <option value="Matemática">Matemática</option>
+              </optgroup>
+              <optgroup label="Ciências da Natureza">
+                <option value="Biologia">Biologia</option>
+                <option value="Física">Física</option>
+                <option value="Química">Química</option>
+              </optgroup>
+              <optgroup label="Ciências Humanas">
+                <option value="História">História</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Filosofia">Filosofia</option>
+                <option value="Sociologia">Sociologia</option>
+              </optgroup>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="nivel" class="form-label">Nível de ensino</label>
+            <select id="nivel" name="entry.1978375963" class="form-select">
+              <option value="">Selecione um nível</option>
+              <option value="Ensino Fundamental - Anos Iniciais">Ensino Fundamental - Anos Iniciais</option>
+              <option value="Ensino Fundamental - Anos Finais">Ensino Fundamental - Anos Finais</option>
+              <option value="Ensino Médio">Ensino Médio</option>
+              <option value="EJA">Educação de Jovens e Adultos (EJA)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="descricao" class="form-label">Descrição do material <span class="form-required">*</span></label>
+            <textarea id="descricao" name="entry.439679751" class="form-textarea" required placeholder="      Descreva o conteúdo, objetivos e como pode ser utilizado..."></textarea>
+            <div class="form-help">Inclua informações como: objetivos de aprendizagem, habilidades trabalhadas, tempo estimado de aplicação, etc.</div>
+          </div>
+          
+          <div class="form-group">
+              <label for="file-upload" class="form-label">Envie o arquivo <span class="form-required">*</span></label>
+              <button type="button" id="login-btn" class="drive-btn">Entrar com o Google</button>
+<input type="file" id="file-upload" class="form-input" required>
+              <input type="hidden" id="drive-link" name="entry.15571209">
+         <div class="form-help">Faça login para enviar os seus arquivos.</div>
+         </div>
+          
+          <div class="form-group">
+            <label class="form-label">Tipo de licença</label>
+            <div>
+              <label>
+                <input type="radio" name="entry.1870514395" value="Creative Commons" checked> 
+                Creative Commons (Permitimos compartilhamento e adaptação)
+              </label>
+            </div>
+          </div>
+          
+          <button type="submit" id="submit-btn" class="form-submit" disabled>Enviar Material</button>
+        </form>
+        
+        
+<div id="upload-progress" style="display:none; margin: 1rem 0; padding: 1rem; background:#e8f4fc; border:1px solid #3498db; border-radius:5px; text-align:center; color:#2c3e50;">
+  ⏳ Enviando arquivo... aguarde.
+</div>
+
+        <div class="form-notice">
+          <h3>Antes de enviar, verifique se:</h3>
+          <ul>
+            <li>O material é de sua autoria ou tem autorização para compartilhamento</li>
+            <li>As informações fornecidas estão completas e claras</li>
+            <li>O conteúdo está adequado para uso educacional</li>
+          </ul>
+          <p><strong>Atenção:</strong> Todos os materiais serão avaliados pela nossa equipe antes de serem publicados.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mensagem de agradecimento (inicialmente oculta) -->
+    <section id="thank-you-section" class="thank-you-message hidden">
+      <div class="thank-you-icon">✅</div>
+      <h2>Obrigado pelo envio!</h2>
+      <p>Sua contribuição é muito valiosa para nossa comunidade educacional. Seu material será avaliado pela nossa equipe e em breve estará disponível na biblioteca.</p>
+      <a href="index.html" class="btn">Voltar à Biblioteca</a>
+      <a href="compartilhar.html" class="btn" style="background-color: #95a5a6;">Enviar outro material</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="nav-link" href="index.html"><i class="fas fa-book"></i> Voltar à Biblioteca</a>
+    <a class="nav-link" href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+    <p>SRE Araguaína © 2026 - 
+    <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
+    <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
+    <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
+  </footer>
+
+  <!-- Iframe oculto para envio do formulário -->
+  <iframe name="hidden-iframe" id="hidden-iframe" class="hidden"></iframe>
+
+
+    <!-- Google APIs -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  
+  <script>
+    // === Menu Mobile ===
+    function setupMenuToggle() {
+      const toggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      if (!toggle || !mainNav) return;
+      function closeMenu() {
+        mainNav.classList.remove('expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mainNav.classList.toggle('expanded');
+        toggle.setAttribute('aria-expanded', mainNav.classList.contains('expanded'));
+      });
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            !e.target.closest('.main-nav') && 
+            !e.target.closest('.menu-toggle')) {
+          closeMenu();
+        }
+      });
+    }
+
+    // === Form / Thank-you ===
+    function setupFormSubmission() {
+      const form = document.getElementById('material-form');
+      const formSection = document.getElementById('form-section');
+      const thankYouSection = document.getElementById('thank-you-section');
+      const iframe = document.getElementById('hidden-iframe');
+      if (!form) return;
+
+      iframe.addEventListener('load', function() {
+        // Mostra a mensagem de agradecimento e oculta o formulário
+        formSection.classList.add('hidden');
+        thankYouSection.classList.remove('hidden');
+        thankYouSection.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      form.addEventListener('submit', function(e) {
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+
+        // validação simples
+        const requiredFields = form.querySelectorAll('[required]');
+        let valid = true;
+        requiredFields.forEach(field => {
+          if (!field.value || !String(field.value).trim()) {
+            valid = false;
+            field.style.borderColor = '#e74c3c';
+          } else {
+            field.style.borderColor = '';
+          }
+        });
+
+        // impede envio se o link do drive não estiver pronto
+        const driveLink = document.getElementById('drive-link').value.trim();
+        if (!driveLink) {
+          valid = false;
+          alert('Envie o arquivo primeiro. O link do Drive ainda não foi gerado.');
+        }
+
+        if (!valid) {
+          e.preventDefault();
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // === Google Identity Services + Drive Upload ===
+    const CLIENT_ID = "302519386482-gcui08mb718dr75ni38nogtv4bb29b7u.apps.googleusercontent.com"; // <-- SUBSTITUA por seu Client ID (OAuth 2.0 Web)
+    const SCOPES = "https://www.googleapis.com/auth/drive.file";
+
+    let tokenClient = null;
+    let accessToken = null;
+
+    function initClient() {
+      if (tokenClient) return tokenClient;
+      if (!(window.google && google.accounts && google.accounts.oauth2)) return null;
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (tokenResponse) => {
+          if (tokenResponse && tokenResponse.access_token) {
+            accessToken = tokenResponse.access_token;
+            console.log('Autenticado.');
+          }
+        },
+      });
+      return tokenClient;
+    }
+
+    function waitForGIS(maxMs = 10000, step = 100) {
+      return new Promise((resolve, reject) => {
+        const start = Date.now();
+        (function poll(){
+          if (window.google && google.accounts && google.accounts.oauth2) return resolve();
+          if (Date.now() - start > maxMs) return reject(new Error('Google Identity Services não carregou.'));
+          setTimeout(poll, step);
+        })();
+      });
+    }
+
+    async function ensureAccessToken() {
+      if (accessToken) return accessToken;
+      if (!tokenClient) {
+        await waitForGIS();
+        initClient();
+      }
+      return new Promise((resolve, reject) => {
+        tokenClient.callback = (tokenResponse) => {
+          if (tokenResponse && tokenResponse.access_token) {
+            accessToken = tokenResponse.access_token;
+            resolve(accessToken);
+          } else {
+            reject(new Error('Falha ao obter token de acesso.'));
+          }
+        };
+        try {
+          tokenClient.requestAccessToken({ prompt: "" });
+        } catch (e) {
+          // Tenta com prompt explícito
+          try {
+            tokenClient.requestAccessToken({ prompt: "consent" });
+          } catch (err) {
+            reject(err);
+          }
+        }
+      });
+    }
+
+    async function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const progressDiv = document.getElementById("upload-progress");
+      progressDiv.style.display = "block";
+      progressDiv.textContent = "⏳ Preparando autorização...";
+
+      try {
+        await ensureAccessToken();
+        progressDiv.textContent = "⏳ Enviando arquivo... aguarde.";
+
+        const fileMetadata = { name: file.name };
+        const formData = new FormData();
+        formData.append("metadata", new Blob([JSON.stringify(fileMetadata)], { type: "application/json" }));
+        formData.append("file", file);
+
+        // Upload para o Drive
+        const uploadResp = await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
+          method: "POST",
+          headers: new Headers({ "Authorization": "Bearer " + accessToken }),
+          body: formData
+        });
+
+        if (!uploadResp.ok) {
+          const errText = await uploadResp.text();
+          throw new Error("Falha no upload: " + errText);
+        }
+
+        const fileData = await uploadResp.json();
+
+        // Define permissão pública (leitura)
+        const permResp = await fetch(`https://www.googleapis.com/drive/v3/files/${fileData.id}/permissions`, {
+          method: "POST",
+          headers: new Headers({
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+          }),
+          body: JSON.stringify({ role: "reader", type: "anyone" })
+        });
+
+        if (!permResp.ok) {
+          const errText = await permResp.text();
+          throw new Error("Falha ao definir permissão: " + errText);
+        }
+
+        const link = `https://drive.google.com/file/d/${fileData.id}/view?usp=sharing`;
+        document.getElementById("drive-link").value = link;
+
+        progressDiv.textContent = "✅ Upload concluído!";
+        setTimeout(() => { progressDiv.style.display = "none"; }, 2000);
+
+        document.getElementById("submit-btn").disabled = false;
+        alert("Arquivo enviado com sucesso! Agora você pode enviar o formulário.");
+      } catch (err) {
+        console.error(err);
+        progressDiv.textContent = "⚠️ Erro: " + (err && err.message ? err.message : "Falha durante o upload.");
+        document.getElementById("submit-btn").disabled = true;
+      }
+    }
+
+    // === Boot ===
+    document.addEventListener("DOMContentLoaded", async () => {
+  setupMenuToggle();
+  setupFormSubmission();
+
+  // Botão de login para obter token ANTES do upload
+  const loginBtn = document.getElementById("login-btn");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", async () => {
+      try {
+        await ensureAccessToken();
+        alert("✅ Conectado ao Google Drive!");
+        document.getElementById("login-btn").style.display = "none"; // esconde botão depois
+        document.getElementById("file-upload").disabled = false;     // libera upload
+      } catch (e) {
+        alert("Falha ao conectar: " + e.message);
+      }
+    });
+  }
+
+  // Inicia desabilitado até login
+  const fileInput = document.getElementById("file-upload");
+  if (fileInput) {
+    fileInput.disabled = true;
+    fileInput.addEventListener("change", handleFileUpload);
+  }
+
+  try {
+    await waitForGIS();
+    initClient();
+  } catch (e) {
+    console.warn(e.message || e);
+  }
+});</script>
+</body>
+</html>

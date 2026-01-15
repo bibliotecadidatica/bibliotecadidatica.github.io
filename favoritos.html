@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Favoritos - Biblioteca Didática SRE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/favoritos.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos adicionais para a página de favoritos */
+        .favorite-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .favorite-notification.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .subject-badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+        
+        /* ESTILOS ADICIONAIS PARA OTIMIZAR O ESPAÇO */
+        .favorites-container {
+            max-width: 80%;
+            padding: 20px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        
+        .filters {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            align-items: end;
+        }
+        
+        .filter-group {
+            margin-bottom: 0;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+        
+        .filter-select, .filter-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background: white;
+        }
+        
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        #btn-limpar-filtros {
+            grid-column: 1 / -1;
+            justify-self: start;
+            margin-top: 0 !important;
+            padding: 12px 25px;
+            font-size: 1rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 10px;
+        }
+        
+        .favorite-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #eaeaea;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .favorite-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .favorite-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .favorite-actions .btn-remove {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .favorite-actions .btn-remove:hover {
+            background: rgba(231, 76, 60, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .favorite-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .favorite-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .favorite-name i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .favorite-tags {
+            margin-bottom: 15px;
+        }
+        
+        .favorite-tags small {
+            background: #f1f8ff;
+            color: #2c3e50;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+        
+        .favorite-meta {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .favorite-meta i {
+            margin-right: 5px;
+            color: #3498db;
+        }
+        
+        .favorite-link {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+        
+        .favorite-link:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        .favorite-link i {
+            margin-right: 8px;
+        }
+        
+        .empty-favorites {
+            text-align: center;
+            padding: 60px 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .empty-favorites i {
+            font-size: 4rem;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .empty-favorites h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .empty-favorites p {
+            color: #7f8c8d;
+            max-width: 500px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .disciplina-header {
+            grid-column: 1 / -1;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .disciplina-header h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        
+        .disciplina-header h3 i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 1200px) {
+            .favorites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .favorites-container {
+                padding: 15px;
+            }
+            
+            .filters {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            #btn-limpar-filtros {
+                grid-column: 1;
+            }
+            
+            .favorites-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .favorites-container {
+            max-width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        }
+        
+        @media (max-width: 480px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                padding: 15px;
+            }
+            
+            .favorites-container {
+            max-width: 100%;
+            padding: 20px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+    <div class="header-top">
+      <div class="logo">
+        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        <img src="img/LogoSRE.png" alt="Logo SRE" />
+        <div class="brand">
+          <h1>Biblioteca Didática</h1>
+          <p>Currículo, Formação e Avaliação</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Menu Principal -->
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-main-items">
+        <!-- Botão Início -->
+        <a href="index.html" class="nav-link active" data-target="inicio">
+        <i class="fas fa-home nav-icon"></i>
+         Início
+        </a>
+
+        <!-- Áreas do Conhecimento (com submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="areas">
+            <i class="fas fa-book nav-icon"></i>
+            Áreas do Conhecimento
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-areas">
+            <a class="nav-link submenu-link" href="index.html#linguagens">
+              <i class="fas fa-language"></i>
+              Linguagens
+            </a>
+            <a class="nav-link submenu-link" href="index.html#matematica">
+              <i class="fas fa-calculator"></i>
+              Matemática
+            </a>
+            <a class="nav-link submenu-link" href="index.html#ciencias-natureza">
+              <i class="fas fa-flask"></i>
+              Ciências da Natureza
+            </a>
+            <a class="nav-link submenu-link" href="index.html#ciencias-humanas">
+              <i class="fas fa-globe-americas"></i>
+              Ciências Humanas
+            </a>
+            <a class="nav-link submenu-link" href="index.html#atividades-adaptadas">
+              <i class="fas fa-universal-access"></i>
+              Atividades Adaptadas
+            </a>
+          </div>
+        </div>
+
+        <!-- Outras Páginas (submenu) -->
+        <div class="nav-item-with-submenu">
+          <button class="nav-link nav-main-link" data-submenu="pages">
+            <i class="fas fa-th nav-icon"></i>
+            Mais Opções
+            <i class="fas fa-chevron-down submenu-arrow"></i>
+          </button>
+          <div class="submenu" id="submenu-pages">
+            <a class="nav-link submenu-link" href="documentos.html">
+              <i class="fas fa-file-alt"></i>
+              Documentos Oficiais
+            </a>
+            <a class="nav-link submenu-link" href="favoritos.html">
+              <i class="fas fa-star"></i>
+              Meus Favoritos
+              <span class="favorites-count"></span>
+            </a>
+            <a class="nav-link submenu-link" href="planejador.html">
+              <i class="fas fa-calendar-alt"></i>
+              Planejador
+            </a>
+            <a class="nav-link submenu-link" href="compartilhar.html">
+              <i class="fas fa-share-alt"></i>
+              Enviar Material
+            </a>
+            <a class="nav-link submenu-link" href="sobre.html">
+              <i class="fas fa-info-circle"></i>
+              Sobre Nós
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <main class="favorites-container">
+        <div class="filters">
+            <div class="filter-group">
+                <label for="filter-ordem">Ordenar por:</label>
+                <select id="filter-ordem" class="filter-select">
+                    <option value="dataAdicao">Data de adição (mais recente)</option>
+                    <option value="nome">Nome (A-Z)</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="filter-busca">Buscar:</label>
+                <input type="text" id="filter-busca" class="filter-input" placeholder="Buscar nos favoritos...">
+            </div>
+            
+            <button id="btn-limpar-filtros" class="btn btn-secondary">
+                <i class="fas fa-times-circle"></i> Limpar Filtros
+            </button>
+        </div>
+
+        <div class="stats" id="stats-container">
+            <!-- As estatísticas serão preenchidas via JavaScript -->
+        </div>
+
+        <div id="favorites-content">
+            <div class="empty-favorites" id="empty-favorites">
+                <i class="far fa-star"></i>
+                <h3>Nenhum material favorito ainda</h3>
+                <p>Você ainda não adicionou nenhum material aos favoritos. Volte à biblioteca e clique no ícone de estrela nos materiais que deseja salvar.</p>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Explorar Biblioteca
+                </a>
+            </div>
+            
+            <div class="favorites-grid" id="favorites-grid" style="display: none;">
+                <!-- Os favoritos serão carregados aqui via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <a class="nav-link" href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a>
+        <a class="nav-link" href="compartilhar.html"><i class="fas fa-share-alt"></i> Enviar Material</a>
+        <a class="nav-link" href="documentos.html"><i class="fas fa-file-alt"></i> Documentos Oficiais</a>
+        <p>SRE Araguaína © 2026 - 
+        <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
+        <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
+        <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
+    </footer>
+
+    <script>
+        // Gerenciamento de Favoritos para a página específica
+        const FavoritesPage = {
+            favorites: [],
+            filtrados: [],
+            
+            init: function() {
+                this.carregarFavoritos();
+                this.inicializarFiltros();
+                this.inicializarEventos();
+                this.atualizarEstatisticas();
+                this.renderizarFavoritos();
+                this.atualizarContadorMenu();
+                
+                // Tornar acessível globalmente
+                window.favoritesPage = this;
+            },
+            
+            carregarFavoritos: function() {
+                try {
+                    const favoritosSalvos = localStorage.getItem('bibliotecaFavoritos');
+                    this.favorites = favoritosSalvos ? JSON.parse(favoritosSalvos) : [];
+                    
+                    // Corrigir favoritos antigos que não têm a propriedade 'subject'
+                    let needsUpdate = false;
+                    this.favorites.forEach(favorito => {
+                        if (!favorito.subject || favorito.subject === 'undefined' || favorito.subject === 'Geral') {
+                            // Tentar inferir a disciplina do nome da seção
+                            if (favorito.section) {
+                                const sectionToSubject = {
+                                    'portugues': 'Língua Portuguesa',
+                                    'matematica-disciplina': 'Matemática',
+                                    'matematica': 'Matemática',
+                                    'ingles': 'Língua Inglesa',
+                                    'espanhol': 'Espanhol',
+                                    'libras': 'Libras',
+                                    'artes': 'Artes',
+                                    'edfisica': 'Educação Física',
+                                    'biologia': 'Biologia',
+                                    'fisica': 'Física',
+                                    'quimica': 'Química',
+                                    'ciencias': 'Ciências',
+                                    'historia': 'História',
+                                    'geografia': 'Geografia',
+                                    'filosofia': 'Filosofia',
+                                    'sociologia': 'Sociologia',
+                                    'adaptadasEF': 'Ensino Fundamental',
+                                    'adaptadasEM': 'Ensino Médio'
+                                };
+                                
+                                favorito.subject = sectionToSubject[favorito.section] || 'Geral';
+                                needsUpdate = true;
+                            }
+                        }
+                    });
+                    
+                    if (needsUpdate) {
+                        localStorage.setItem('bibliotecaFavoritos', JSON.stringify(this.favorites));
+                    }
+                    
+                    this.filtrados = [...this.favorites];
+                } catch (e) {
+                    console.error('Erro ao carregar favoritos:', e);
+                    this.favorites = [];
+                    this.filtrados = [];
+                }
+                return this.favorites;
+            },
+            
+            inicializarFiltros: function() {
+                const filterOrdem = document.getElementById('filter-ordem');
+                const filterBusca = document.getElementById('filter-busca');
+                const btnLimparFiltros = document.getElementById('btn-limpar-filtros');
+
+                filterOrdem.addEventListener('change', () => this.filtrarFavoritos());
+                filterBusca.addEventListener('input', () => this.filtrarFavoritos());
+                btnLimparFiltros.addEventListener('click', () => this.limparFiltros());
+            },
+            
+            inicializarEventos: function() {
+                // Eventos para remoção de favoritos já são tratados em adicionarEventosRemover()
+            },
+            
+            filtrarFavoritos: function() {
+                const ordem = document.getElementById('filter-ordem').value;
+                const busca = document.getElementById('filter-busca').value.toLowerCase();
+
+                this.filtrados = this.favorites.filter(favorito => {
+                    // Filtrar por busca
+                    if (busca) {
+                        const nome = favorito.name ? favorito.name.toLowerCase() : '';
+                        const subject = favorito.subject ? favorito.subject.toLowerCase() : '';
+                        const tags = favorito.tags ? favorito.tags.toLowerCase() : '';
+                        return nome.includes(busca) || subject.includes(busca) || tags.includes(busca);
+                    }
+                    
+                    return true;
+                });
+
+                // Ordenar
+                switch (ordem) {
+                    case 'nome':
+                        this.filtrados.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+                        break;
+                    case 'disciplina':
+                        this.filtrados.sort((a, b) => (a.subject || '').localeCompare(b.subject || ''));
+                        break;
+                    case 'dataAdicao':
+                    default:
+                        this.filtrados.sort((a, b) => new Date(b.addedAt || 0) - new Date(a.addedAt || 0));
+                        break;
+                }
+
+                this.renderizarFavoritos();
+                this.atualizarEstatisticas();
+            },
+            
+            limparFiltros: function() {
+                document.getElementById('filter-ordem').value = 'dataAdicao';
+                document.getElementById('filter-busca').value = '';
+                this.filtrarFavoritos();
+            },
+            
+            atualizarEstatisticas: function() {
+                const statsContainer = document.getElementById('stats-container');
+                const total = this.favorites.length;
+                const exibidos = this.filtrados.length;
+                const disciplinas = [...new Set(this.favorites.map(f => f.subject).filter(Boolean))];
+                
+                statsContainer.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-number">${total}</div>
+                        <div class="stat-label">Total de Favoritos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${exibidos}</div>
+                        <div class="stat-label">Exibindo</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${disciplinas.length}</div>
+                        <div class="stat-label">Disciplinas</div>
+                    </div>
+                `;
+                
+                // Atualizar contador no menu
+                this.atualizarContadorMenu();
+            },
+            
+            atualizarContadorMenu: function() {
+                const count = this.favorites.length;
+                const counterElements = document.querySelectorAll('.favorites-count');
+                
+                counterElements.forEach(el => {
+                    el.textContent = ` (${count})`;
+                    el.style.display = count > 0 ? 'inline' : 'none';
+                });
+            },
+            
+            renderizarFavoritos: function() {
+                const emptyFavorites = document.getElementById('empty-favorites');
+                const favoritesGrid = document.getElementById('favorites-grid');
+
+                if (this.filtrados.length === 0) {
+                    emptyFavorites.style.display = 'block';
+                    favoritesGrid.style.display = 'none';
+                    
+                    // Atualizar mensagem de vazio
+                    const busca = document.getElementById('filter-busca').value;
+                    
+                    if (busca && this.favorites.length > 0) {
+                        emptyFavorites.innerHTML = `
+                            <i class="fas fa-search"></i>
+                            <h3>Nenhum resultado encontrado</h3>
+                            <p>Nenhum material favorito corresponde aos filtros aplicados.</p>
+                            <button id="btn-limpar-filtros-vazio" class="btn btn-primary">
+                                <i class="fas fa-times-circle"></i> Limpar Filtros
+                            </button>
+                        `;
+                        
+                        document.getElementById('btn-limpar-filtros-vazio').addEventListener('click', () => this.limparFiltros());
+                    } else if (this.favorites.length === 0) {
+                        emptyFavorites.innerHTML = `
+                            <i class="far fa-star"></i>
+                            <h3>Nenhum material favorito ainda</h3>
+                            <p>Você ainda não adicionou nenhum material aos favoritos. Volte à biblioteca e clique no ícone de estrela nos materiais que deseja salvar.</p>
+                            <a href="index.html" class="btn btn-primary">
+                                <i class="fas fa-book-open"></i> Explorar Biblioteca
+                            </a>
+                        `;
+                    }
+                } else {
+                    emptyFavorites.style.display = 'none';
+                    favoritesGrid.style.display = 'grid';
+
+                    // Agrupar por disciplina
+                    const agrupados = {};
+                    this.filtrados.forEach(favorito => {
+                        const disciplina = favorito.subject || 'Geral';
+                        if (!agrupados[disciplina]) {
+                            agrupados[disciplina] = [];
+                        }
+                        agrupados[disciplina].push(favorito);
+                    });
+
+                    // Ordenar disciplinas alfabeticamente
+                    const disciplinasOrdenadas = Object.keys(agrupados).sort();
+
+                    let html = '';
+                    
+                    disciplinasOrdenadas.forEach(disciplina => {
+                        // Adicionar cabeçalho da disciplina
+                        html += `
+                            <div class="disciplina-header">
+                                <h3><i class="fas fa-book"></i>Materiais</h3>
+                            </div>
+                        `;
+                        
+                        // Adicionar itens da disciplina
+                        agrupados[disciplina].forEach(favorito => {
+                            html += this.criarCardFavorito(favorito);
+                        });
+                    });
+
+                    favoritesGrid.innerHTML = html;
+                    
+                    // Adicionar eventos aos botões de remover
+                    this.adicionarEventosRemover();
+                }
+            },
+            
+            criarCardFavorito: function(favorito) {
+                const dataFormatada = favorito.addedAt 
+                    ? new Date(favorito.addedAt).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                    : 'Data não disponível';
+                
+                const icon = this.getIconForFile(favorito);
+                const link = favorito.webViewLink || favorito.webContentLink || `https://drive.google.com/file/d/${favorito.id}/view`;
+                
+                return `
+                    <div class="favorite-item">
+                        <div class="favorite-header">
+                            <div class="favorite-actions">
+                                <button class="favorite-btn btn-remove btn-remove-favorite" 
+                                        data-file-id="${favorito.id}"
+                                        title="Remover dos favoritos">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="favorite-content">
+                            <div class="favorite-name">${icon} ${favorito.name || 'Material sem nome'}</div>
+                            ${favorito.tags ? `<div class="favorite-tags"><small>Tags: ${favorito.tags}</small></div>` : ''}
+                            <div class="favorite-meta">
+                                <i class="far fa-calendar"></i> Adicionado em: ${dataFormatada}<br>
+                                <small>${favorito.mimeType ? this.getFileType(favorito.mimeType) : ''}</small>
+                            </div>
+                            <a href="${link}" class="favorite-link" target="_blank" rel="noopener">
+                                <i class="fas fa-external-link-alt"></i> Abrir Material
+                            </a>
+                        </div>
+                    </div>
+                `;
+            },
+            
+            getIconForFile: function(file) {
+                const mimeIcons = [
+                    {match: "pdf", icon: '<i class="fas fa-file-pdf" style="color: #e74c3c;"></i>'},
+                    {match: "spreadsheet", icon: '<i class="fas fa-file-excel" style="color: #27ae60;"></i>'},
+                    {match: "presentation", icon: '<i class="fas fa-file-powerpoint" style="color: #e67e22;"></i>'},
+                    {match: "document", icon: '<i class="fas fa-file-word" style="color: #3498db;"></i>'},
+                    {match: "image", icon: '<i class="fas fa-file-image" style="color: #9b59b6;"></i>'},
+                    {match: "video", icon: '<i class="fas fa-file-video" style="color: #e74c3c;"></i>'},
+                    {match: "audio", icon: '<i class="fas fa-file-audio" style="color: #f39c12;"></i>'},
+                ];
+                
+                if (!file.mimeType) return '<i class="fas fa-file"></i>';
+                
+                for(const m of mimeIcons) {
+                    if(file.mimeType.includes(m.match)) return m.icon;
+                }
+                
+                if(file.mimeType.includes('word')) return '<i class="fas fa-file-word" style="color: #3498db;"></i>';
+                if(file.mimeType.includes('text')) return '<i class="fas fa-file-alt"></i>';
+                
+                return '<i class="fas fa-file"></i>';
+            },
+            
+            getFileType: function(mimeType) {
+                if (mimeType.includes('pdf')) return 'PDF Document';
+                if (mimeType.includes('spreadsheet')) return 'Planilha';
+                if (mimeType.includes('presentation')) return 'Apresentação';
+                if (mimeType.includes('document') || mimeType.includes('word')) return 'Documento de Texto';
+                if (mimeType.includes('image')) return 'Imagem';
+                if (mimeType.includes('video')) return 'Vídeo';
+                if (mimeType.includes('audio')) return 'Áudio';
+                return 'Documento';
+            },
+            
+            adicionarEventosRemover: function() {
+                document.querySelectorAll('.btn-remove-favorite').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const fileId = btn.getAttribute('data-file-id');
+                        this.removerFavorito(fileId);
+                    });
+                });
+            },
+            
+            removerFavorito: function(fileId) {
+                if (!confirm('Tem certeza que deseja remover este material dos favoritos?')) {
+                    return;
+                }
+
+                // Remover dos favoritos locais
+                this.favorites = this.favorites.filter(f => f.id !== fileId);
+                this.filtrados = this.filtrados.filter(f => f.id !== fileId);
+                
+                // Salvar no localStorage
+                localStorage.setItem('bibliotecaFavoritos', JSON.stringify(this.favorites));
+                
+                // Atualizar a exibição
+                this.renderizarFavoritos();
+                this.atualizarEstatisticas();
+                
+                // Mostrar notificação
+                this.mostrarNotificacao('Material removido dos favoritos', 'info');
+            },
+            
+            limparTodosFavoritos: function() {
+                if (this.favorites.length === 0) {
+                    this.mostrarNotificacao('Não há favoritos para limpar', 'warning');
+                    return;
+                }
+                
+                if (!confirm(`Tem certeza que deseja remover TODOS os ${this.favorites.length} favoritos?\n\nEsta ação não pode ser desfeita.`)) {
+                    return;
+                }
+                
+                this.favorites = [];
+                this.filtrados = [];
+                localStorage.setItem('bibliotecaFavoritos', JSON.stringify(this.favorites));
+                
+                this.renderizarFavoritos();
+                this.atualizarEstatisticas();
+                this.mostrarNotificacao('Todos os favoritos foram removidos', 'info');
+            },
+            
+            mostrarNotificacao: function(mensagem, tipo = 'success') {
+                // Criar elemento de notificação se não existir
+                let notification = document.getElementById('favorite-notification');
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.id = 'favorite-notification';
+                    notification.className = 'favorite-notification';
+                    document.body.appendChild(notification);
+                }
+                
+                // Definir cor baseada no tipo
+                let bgColor = '#27ae60'; // verde para sucesso
+                let icon = 'fa-check-circle';
+                
+                if (tipo === 'warning') {
+                    bgColor = '#f39c12'; // laranja
+                    icon = 'fa-exclamation-triangle';
+                } else if (tipo === 'info') {
+                    bgColor = '#3498db'; // azul
+                    icon = 'fa-info-circle';
+                } else if (tipo === 'error') {
+                    bgColor = '#e74c3c'; // vermelho
+                    icon = 'fa-times-circle';
+                }
+                
+                notification.innerHTML = `<i class="fas ${icon}"></i> ${mensagem}`;
+                notification.style.background = bgColor;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            },
+            
+            updateStats: function() {
+                this.carregarFavoritos();
+                this.atualizarEstatisticas();
+                this.renderizarFavoritos();
+            }
+        };
+
+        // Função para configurar menu mobile (reutilizável)
+        function setupMenuToggle() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.getElementById('mainNav');
+            const submenuArrows = document.querySelectorAll('.submenu-arrow');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                    
+                    // Atualizar ícone do menu
+                    const icon = menuToggle.querySelector('i');
+                    if (mainNav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', (e) => {
+                    if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+                        mainNav.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            }
+            
+            // Configurar submenus
+            document.querySelectorAll('.nav-item-with-submenu').forEach(item => {
+                const button = item.querySelector('.nav-main-link');
+                const submenu = item.querySelector('.submenu');
+                
+                if (button && submenu) {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        submenu.classList.toggle('active');
+                        
+                        // Rotacionar seta
+                        const arrow = button.querySelector('.submenu-arrow');
+                        if (arrow) {
+                            arrow.classList.toggle('rotated');
+                        }
+                    });
+                }
+            });
+            
+            // Fechar submenus ao clicar fora
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.classList.remove('active');
+                });
+                document.querySelectorAll('.submenu-arrow').forEach(arrow => {
+                    arrow.classList.remove('rotated');
+                });
+            });
+            
+            // Prevenir fechamento ao clicar dentro do submenu
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            });
+        }
+
+        // Inicializar quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            FavoritesPage.init();
+            setupMenuToggle();
+            
+            // Atualizar periodicamente (a cada 10 segundos) para capturar mudanças
+            setInterval(() => {
+                FavoritesPage.updateStats();
+            }, 10000);
+        });
+    </script>
+</body>
+</html>
