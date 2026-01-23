@@ -110,19 +110,125 @@
   <main class="container">
     <section id="inicio" class="content-section">
       <h2>Bem-vindo (a) à Biblioteca Didática da SRE/Araguaína</h2>
-      <p>Olá, professor(a). Tudo bem? Aqui você pode acessar todos os materiais organizados por componente curricular para apoiar as práticas pedagógicas em sua
-        escola. Este sistema foi pensado e desenvolvido pelos membros do Currículo da SRE/Araguaína.</p>
+      <p>Olá, professor(a). Tudo bem? Aqui você pode acessar todos os materiais organizados por componente curricular para apoiar as práticas pedagógicas em sua escola. Este sistema foi pensado e desenvolvido pelos membros do Currículo da SRE/Araguaína.</p>
 
-      <div class="subject-card" style="margin-top: 1.5rem;">
-      <h3>Novidades</h3>
-      <p>Acompanhe aqui as últimas atualizações da nossa Biblioteca Didática:</p>
-      Nova página para elaborar Sequências Didáticas.
-        <br>
-      Adicione materiais aos seus favoritos para acesso rápido.
-      <br>
-      Ferramenta "Laboratório Virtual" em Ciências da Natureza.
-      <br>
-      Compartilhe materiais com a comunidade educacional.
+      <!-- NOVA SEÇÃO DE NOVIDADES COM CARDS -->
+      <div class="news-section">
+        <h3 class="news-title">
+          <i class="fas fa-bullhorn news-icon"></i>
+          Novidades
+        </h3>
+        <p class="news-subtitle">Acompanhe as últimas atualizações e melhorias da nossa plataforma:</p>
+        
+        <div class="news-grid">
+          <!-- Card 1 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-tasks card-icon"></i>
+              <span class="news-card-badge">NOVO</span>
+            </div>
+            <h4 class="news-card-title">Sequências Didáticas</h4>
+            <p class="news-card-description">Nova página para elaborar e compartilhar sequências didáticas completas com planejamento detalhado.</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+              <a href="planejador.html" class="news-card-link">Acessar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-star card-icon"></i>
+              <span class="news-card-badge badge-success">POPULAR</span>
+            </div>
+            <h4 class="news-card-title">Sistema de Favoritos</h4>
+            <p class="news-card-description">Adicione materiais aos seus favoritos para acesso rápido e organização pessoal.</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+              <a href="favoritos.html" class="news-card-link">Acessar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-flask card-icon"></i>
+              <span class="news-card-badge badge-info">RECURSO</span>
+            </div>
+            <h4 class="news-card-title">Laboratório Virtual</h4>
+            <p class="news-card-description">Ferramenta interativa para simulações em Ciências da Natureza. Experimente agora!</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+              <a href="laboratorio.html" class="news-card-link">Acessar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-share-alt card-icon"></i>
+              <span class="news-card-badge badge-warning">COMUNIDADE</span>
+            </div>
+            <h4 class="news-card-title">Compartilhamento</h4>
+            <p class="news-card-description">Compartilhe seus materiais com a comunidade educacional e contribua com a biblioteca.</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+              <a href="compartilhar.html" class="news-card-link">Enviar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Card 5 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-search card-icon"></i>
+              <span class="news-card-badge">BUSCA</span>
+            </div>
+            <h4 class="news-card-title">Busca Avançada</h4>
+            <p class="news-card-description">Filtre materiais por tipo, disciplina e nível de ensino com nosso novo sistema de busca.</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+            </div>
+          </div>
+          
+          <!-- Card 6 -->
+          <div class="news-card">
+            <div class="news-card-header">
+              <i class="fas fa-chart-line card-icon"></i>
+              <span class="news-card-badge badge-success">INFORMAÇÃO</span>
+            </div>
+            <h4 class="news-card-title">Memorandos</h4>
+            <p class="news-card-description">Novos meorandos e informativos para professores, coordenadores e gestores.</p>
+            <div class="news-card-footer">
+              <span class="news-card-date"><i class="far fa-calendar"></i> Jan 2025</span>
+              <a href="documentos.html#memorandos" class="news-card-link">Acessar <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Indicadores de atualização -->
+        <div class="news-stats">
+          <div class="stat-item">
+            <i class="fas fa-sync-alt stat-icon"></i>
+            <div class="stat-content">
+              <span class="stat-value">Atualização frequente</span>
+              <span class="stat-label">Materiais automáticos do Google Drive</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-content">
+              <span class="stat-value">Comunidade ativa</span>
+              <span class="stat-label">Acesso de professores de todas as SRE's</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-file-alt stat-icon"></i>
+            <div class="stat-content">
+              <span class="stat-value">Dezenas de materiais</span>
+              <span class="stat-label">Vários materiais disponíveis gratuitamente</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="tips">
