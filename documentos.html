@@ -134,9 +134,9 @@
         
         <div class="doc-card">
           <div class="doc-icon">📑</div>
-          <h3 class="doc-name">Portarias</h3>
-          <div class="doc-description">Normativas e determinações oficiais</div>
-          <a href="#portarias" class="doc-btn" data-show="portarias">Acessar Documentos</a>
+          <h3 class="doc-name">Projetos</h3>
+          <div class="doc-description">Documentos e orientações sobre projetos</div>
+          <a href="#projetos" class="doc-btn" data-show="projetos">Acessar Documentos</a>
         </div>
 
         <div class="doc-card">
@@ -194,17 +194,17 @@
       <div class="error" id="error-matriz-recomposicao" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
-    <!-- Portarias -->
-    <section id="portarias" class="content-section hidden">
+    <!-- Projetos -->
+    <section id="projetos" class="content-section hidden">
       <button class="back-btn" data-back="documentos-principal">← Voltar para Documentos Oficiais</button>
       <header class="section-header">
-        <h2>Portarias</h2>
-        <input id="search-portarias" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Portarias" />
+        <h2>rojetos</h2>
+        <input id="search-projetoss" class="search" type="search" placeholder="Buscar por nome..." aria-label="Buscar em Projetos" />
       </header>
-      <ul class="file-list" id="list-portarias"></ul>
-      <div class="loading" id="loading-portarias" hidden>Carregando…</div>
-      <div class="empty" id="empty-portarias" hidden>Nenhum arquivo disponível.</div>
-      <div class="error" id="error-portarias" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+      <ul class="file-list" id="list-projetos"></ul>
+      <div class="loading" id="loading-projetos" hidden>Carregando…</div>
+      <div class="empty" id="empty-projetos" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-projetos" hidden>Ocorreu um erro ao carregar os arquivos.</div>
     </section>
 
     <!-- BNCC / DCT -->
@@ -262,7 +262,7 @@
       FOLDER_IDS: {
         memorandos: "18nHsVU5xBLf4vcc2Me6qtLXvvMj16-lZ",
         "matriz-recomposicao": "1eLMF3arb9sYqKdJ7YoiRJcLPH12AgzSj",
-        portarias: "10mdbnrQOsSS64KJweXRzXoBbB4kbmTBF",
+        projetos: "10mdbnrQOsSS64KJweXRzXoBbB4kbmTBF",
         "bncc-dct": "1lscTs8f1EuHqgUUlsGm0gTPLa4l-3wWt",
         ppp: "1ce7bn3WnPygHvKd2jSYjulc4dtHUZ46B",
         plataformas: "11HMfVf9X_3yw20ZGbIQFC-VbX4SkpdQy"
@@ -410,7 +410,7 @@
       
       loadFiles(F.memorandos, {listId:"list-memorandos", loadingId:"loading-memorandos", emptyId:"empty-memorandos", errorId:"error-memorandos", searchId:"search-memorandos"});
       loadFiles(F["matriz-recomposicao"], {listId:"list-matriz-recomposicao", loadingId:"loading-matriz-recomposicao", emptyId:"empty-matriz-recomposicao", errorId:"error-matriz-recomposicao", searchId:"search-matriz-recomposicao"});
-      loadFiles(F.portarias, {listId:"list-portarias", loadingId:"loading-portarias", emptyId:"empty-portarias", errorId:"error-portarias", searchId:"search-portarias"});
+      loadFiles(F.projetos, {listId:"list-projetos", loadingId:"loading-projetos", emptyId:"empty-projetos", errorId:"error-projetos", searchId:"search-projetos"});
       loadFiles(F["bncc-dct"], {listId:"list-bncc-dct", loadingId:"loading-bncc-dct", emptyId:"empty-bncc-dct", errorId:"error-bncc-dct", searchId:"search-bncc-dct"});
       loadFiles(F.ppp, {listId:"list-ppp", loadingId:"loading-ppp", emptyId:"empty-ppp", errorId:"error-ppp", searchId:"search-ppp"});
       loadFiles(F.plataformas, {listId:"list-plataformas", loadingId:"loading-plataformas", emptyId:"empty-plataformas", errorId:"error-plataformas", searchId:"search-plataformas"});
