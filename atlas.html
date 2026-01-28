@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapas Interativos - Geografia do Brasil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e5799 0%, #207cca 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 25px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .header h1 {
+      color: #1e5799;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    .header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: #1e5799;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #154277;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .map-selector {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .section-title {
+      color: #2d3748;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #1e5799;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+    }
+
+    .section-title i {
+      color: #1e5799;
+    }
+
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      background: #f7fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      border-color: #1e5799;
+      transform: translateY(-2px);
+    }
+
+    .tab-btn.active {
+      background: #1e5799;
+      color: white;
+      border-color: #1e5799;
+    }
+
+    .maps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .map-card {
+      background: #f7fafc;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-card:hover {
+      border-color: #1e5799;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .map-card.active {
+      border-color: #1e5799;
+      background: #e8f4fd;
+    }
+
+    .map-icon {
+      width: 60px;
+      height: 60px;
+      background: #1e5799;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .map-title {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #2d3748;
+    }
+
+    .map-description {
+      font-size: 0.9rem;
+      color: #718096;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .map-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #a0aec0;
+      margin-top: auto;
+    }
+
+    .map-container {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 70%; /* Proporção 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 10px;
+    }
+
+    .fullscreen-btn {
+      padding: 10px 20px;
+      background: #1e5799;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .fullscreen-btn:hover {
+      background: #154277;
+    }
+
+    .map-info {
+      font-size: 0.9rem;
+      color: #718096;
+    }
+
+    .instructions {
+      background: #e8f4fd;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+      border-left: 4px solid #1e5799;
+    }
+
+    .instructions h3 {
+      color: #1e5799;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .instructions ul {
+      list-style: none;
+      padding-left: 10px;
+    }
+
+    .instructions li {
+      padding: 10px 0;
+      border-bottom: 1px solid #cfe2ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .instructions li i {
+      color: #1e5799;
+    }
+
+    .subject-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-card h4 {
+      color: #1e5799;
+      margin-bottom: 10px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #718096;
+    }
+
+    .loading i {
+      font-size: 2rem;
+      color: #1e5799;
+      margin-bottom: 15px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 10px;
+      font-size: 0.85rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+      }
+      
+      .category-tabs {
+        justify-content: center;
+      }
+      
+      .maps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-map-marked-alt"></i> Atlas Interativo - Geografia do Brasil</h1>
+      <p>Explore mapas temáticos do Brasil com dados demográficos, territoriais, biomas, geopolíticos e socioeconômicos atualizados.</p>
+      <a href="index.html#ciencias-humanas" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Voltar para Geografia
+      </a>
+    </header>
+
+    <section class="map-selector">
+      <h2 class="section-title"><i class="fas fa-layer-group"></i> Escolha um Mapa Temático</h2>
+      
+      <div class="category-tabs">
+        <button class="tab-btn active" data-category="demografico">
+          <i class="fas fa-users"></i> Demográficos
+        </button>
+        <button class="tab-btn" data-category="territorial">
+          <i class="fas fa-mountain"></i> Territoriais
+        </button>
+        <button class="tab-btn" data-category="biomas">
+          <i class="fas fa-tree"></i> Biomas
+        </button>
+        <button class="tab-btn" data-category="geopolitico">
+          <i class="fas fa-globe-americas"></i> Geopolíticos
+        </button>
+        <button class="tab-btn" data-category="socioeconomico">
+          <i class="fas fa-chart-line"></i> Socioeconômicos
+        </button>
+      </div>
+
+      <div class="maps-grid" id="mapsGrid">
+        <!-- Mapas serão carregados aqui -->
+      </div>
+    </section>
+
+    <section class="map-container">
+      <h2 class="section-title"><i class="fas fa-map"></i> Mapa em Visualização</h2>
+      
+      <div class="loading" id="loadingMap">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Carregando mapa interativo...</p>
+      </div>
+
+      <div class="iframe-wrapper" id="iframeContainer" style="display: none;">
+        <iframe id="mapFrame" allowfullscreen></iframe>
+      </div>
+
+      <div class="controls">
+        <div class="map-info" id="mapInfo">
+          <strong>Mapa:</strong> <span id="mapTitle">Nenhum selecionado</span><br>
+          <strong>Categoria:</strong> <span id="mapCategory">-</span><br>
+          <strong>Fonte:</strong> <span id="mapSource">-</span>
+        </div>
+        <button class="fullscreen-btn" id="fullscreenBtn">
+          <i class="fas fa-expand"></i> Tela Cheia
+        </button>
+      </div>
+
+      <div class="legend" id="mapLegend" style="display: none;">
+        <!-- Legenda será carregada aqui -->
+      </div>
+    </section>
+
+    <section class="instructions">
+      <h3><i class="fas fa-graduation-cap"></i> Como usar em sala de aula:</h3>
+      <ul>
+        <li><i class="fas fa-mouse-pointer"></i> Clique em um mapa para carregar a visualização</li>
+        <li><i class="fas fa-search-plus"></i> Use o zoom para explorar regiões específicas</li>
+        <li><i class="fas fa-layer-group"></i> Ative/desative camadas para comparar dados</li>
+        <li><i class="fas fa-info-circle"></i> Passe o mouse sobre regiões para ver detalhes</li>
+        <li><i class="fas fa-download"></i> Exporte o mapa para uso em materiais didáticos</li>
+        <li><i class="fas fa-chart-bar"></i> Analise padrões e tendências geográficas</li>
+      </ul>
+
+      <div class="subject-info">
+        <div class="info-card">
+          <h4><i class="fas fa-users"></i> Demográficos</h4>
+          <p>Demografia, distribuição populacional, migração e estrutura etária</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-mountain"></i> Territoriais</h4>
+          <p>Relevo, hidrografia, divisão política e regionalização</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-tree"></i> Biomas</h4>
+          <p>Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa e Pantanal</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-chart-line"></i> Socioeconômicos</h4>
+          <p>IDH, PIB, educação, saúde e indicadores de desenvolvimento</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Dados dos mapas interativos
+    const maps = {
+      demografico: [
+        {
+          id: 'densidade-populacional',
+          title: 'Densidade Populacional',
+          description: 'Distribuição da população brasileira por km² em todos os municípios',
+          url: 'https://www.ibge.gov.br/apps/populacao/projecao/widget/widget.html',
+          icon: 'fas fa-users',
+          level: 'Básico',
+          source: 'IBGE - Censo 2022',
+          legend: [
+            { color: '#f7fbff', label: 'Até 10 hab/km²' },
+            { color: '#c6dbef', label: '10-50 hab/km²' },
+            { color: '#6baed6', label: '50-100 hab/km²' },
+            { color: '#2171b5', label: '100-500 hab/km²' },
+            { color: '#08306b', label: 'Mais de 500 hab/km²' }
+          ]
+        },
+        {
+          id: 'crescimento-populacional',
+          title: 'Crescimento Populacional',
+          description: 'Taxa de crescimento populacional por estado (2010-2022)',
+          url: 'https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-de-populacao.html',
+          icon: 'fas fa-chart-line',
+          level: 'Intermediário',
+          source: 'IBGE - Estimativas',
+          legend: [
+            { color: '#fee5d9', label: 'Crescimento negativo' },
+            { color: '#fcae91', label: '0-1% ao ano' },
+            { color: '#fb6a4a', label: '1-2% ao ano' },
+            { color: '#cb181d', label: 'Mais de 2% ao ano' }
+          ]
+        },
+        {
+          id: 'distribuicao-etaria',
+          title: 'Distribuição Etária',
+          description: 'Pirâmide etária da população brasileira por estado',
+          url: 'https://www.ibge.gov.br/apps/populacao/projecao/box_popclock.html',
+          icon: 'fas fa-user-friends',
+          level: 'Intermediário',
+          source: 'IBGE - Projeções',
+          legend: [
+            { color: '#1b9e77', label: '0-14 anos' },
+            { color: '#d95f02', label: '15-64 anos' },
+            { color: '#7570b3', label: '65+ anos' }
+          ]
+        },
+        {
+          id: 'migracao-interna',
+          title: 'Migração Interna',
+          description: 'Fluxos migratórios entre regiões e estados brasileiros',
+          url: 'https://www.ibge.gov.br/estatisticas/sociais/populacao/17270-pnad-continua.html',
+          icon: 'fas fa-route',
+          level: 'Avançado',
+          source: 'IBGE - PNAD Contínua',
+          legend: [
+            { color: '#8dd3c7', label: 'Baixo fluxo migratório' },
+            { color: '#ffffb3', label: 'Fluxo moderado' },
+            { color: '#bebada', label: 'Alto fluxo migratório' },
+            { color: '#fb8072', label: 'Principais rotas' }
+          ]
+        }
+      ],
+      territorial: [
+        {
+          id: 'relevo-brasil',
+          title: 'Relevo Brasileiro',
+          description: 'Mapa hipsométrico com planícies, planaltos e depressões',
+          url: 'https://www.ibge.gov.br/geociencias/cartas-e-mapas/informacoes-ambientais/10867-geomorfologia.html',
+          icon: 'fas fa-mountain',
+          level: 'Básico',
+          source: 'IBGE - Geomorfologia',
+          legend: [
+            { color: '#006837', label: 'Planícies (0-200m)' },
+            { color: '#31a354', label: 'Depressões (200-600m)' },
+            { color: '#78c679', label: 'Planaltos (600-1200m)' },
+            { color: '#c2e699', label: 'Montanhas (1200m+)' }
+          ]
+        },
+        {
+          id: 'hidrografia',
+          title: 'Hidrografia',
+          description: 'Bacias hidrográficas e principais rios do território nacional',
+          url: 'https://www.ibge.gov.br/geociencias/cartas-e-mapas/redes-geograficas/15798-bacias-hidrograficas.html',
+          icon: 'fas fa-water',
+          level: 'Básico',
+          source: 'ANA - Agência Nacional de Águas',
+          legend: [
+            { color: '#08519c', label: 'Rios principais' },
+            { color: '#3182bd', label: 'Rios secundários' },
+            { color: '#6baed6', label: 'Bacias hidrográficas' },
+            { color: '#bdd7e7', label: 'Divisores de água' }
+          ]
+        },
+        {
+          id: 'divisao-estados',
+          title: 'Divisão Política',
+          description: 'Estados, capitais e regiões do Brasil com informações administrativas',
+          url: 'https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-areas-dos-municipios.html',
+          icon: 'fas fa-map-marked',
+          level: 'Básico',
+          source: 'IBGE - Divisão Territorial',
+          legend: [
+            { color: '#a6cee3', label: 'Região Norte' },
+            { color: '#1f78b4', label: 'Região Nordeste' },
+            { color: '#b2df8a', label: 'Região Centro-Oeste' },
+            { color: '#33a02c', label: 'Região Sudeste' },
+            { color: '#fb9a99', label: 'Região Sul' }
+          ]
+        }
+      ],
+      biomas: [
+        {
+          id: 'biomas-brasil',
+          title: 'Biomas Brasileiros',
+          description: 'Distribuição dos 6 biomas: Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa e Pantanal',
+          url: 'https://www.ibge.gov.br/geociencias/cartas-e-mapas/informacoes-ambientais/15897-biomas.html',
+          icon: 'fas fa-tree',
+          level: 'Básico',
+          source: 'IBGE - Biomas 2022',
+          legend: [
+            { color: '#1b7837', label: 'Amazônia' },
+            { color: '#a6d854', label: 'Cerrado' },
+            { color: '#4d9221', label: 'Mata Atlântica' },
+            { color: '#f6e8c3', label: 'Caatinga' },
+            { color: '#c51b7d', label: 'Pantanal' },
+            { color: '#de77ae', label: 'Pampa' }
+          ]
+        },
+        {
+          id: 'desmatamento',
+          title: 'Desmatamento e Conservação',
+          description: 'Áreas desmatadas e unidades de conservação por bioma',
+          url: 'https://terrabrasilis.dpi.inpe.br/app/map/deforestation',
+          icon: 'fas fa-tree',
+          level: 'Intermediário',
+          source: 'INPE - TerraBrasilis',
+          legend: [
+            { color: '#006d2c', label: 'Floresta preservada' },
+            { color: '#31a354', label: 'Vegetação secundária' },
+            { color: '#74c476', label: 'Unidades de conservação' },
+            { color: '#fed976', label: 'Desmatamento recente' },
+            { color: '#f03b20', label: 'Desmatamento consolidado' }
+          ]
+        },
+        {
+          id: 'fauna-ameacada',
+          title: 'Fauna Ameaçada',
+          description: 'Distribuição de espécies da fauna brasileira em risco de extinção',
+          url: 'https://www.icmbio.gov.br/portal/faunabrasileira',
+          icon: 'fas fa-paw',
+          level: 'Avançado',
+          source: 'ICMBio - Fauna Brasileira',
+          legend: [
+            { color: '#ffffcc', label: 'Poucas espécies ameaçadas' },
+            { color: '#a1dab4', label: 'Espécies moderadamente ameaçadas' },
+            { color: '#41b6c4', label: 'Muitas espécies ameaçadas' },
+            { color: '#225ea8', label: 'Hotspots de conservação' }
+          ]
+        }
+      ],
+      geopolitico: [
+        {
+          id: 'regioes-geoeconomicas',
+          title: 'Regiões Geoeconômicas',
+          description: 'Complexos regionais: Amazônia, Nordeste e Centro-Sul',
+          url: 'https://www.ibge.gov.br/geociencias/cartas-e-mapas/redes-geograficas/15868-regioes-geograficas.html',
+          icon: 'fas fa-globe-americas',
+          level: 'Intermediário',
+          source: 'IBGE - Regiões Geográficas',
+          legend: [
+            { color: '#1b9e77', label: 'Amazônia (Norte)' },
+            { color: '#d95f02', label: 'Nordeste' },
+            { color: '#7570b3', label: 'Centro-Sul' }
+          ]
+        },
+        {
+          id: 'fronteiras-internacionais',
+          title: 'Fronteiras Internacionais',
+          description: 'Limites territoriais com países vizinhos e pontos de integração',
+          url: 'https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/24071-fronteiras.html',
+          icon: 'fas fa-border-all',
+          level: 'Intermediário',
+          source: 'IBGE - Fronteiras',
+          legend: [
+            { color: '#e41a1c', label: 'Fronteira terrestre' },
+            { color: '#377eb8', label: 'Fronteira fluvial' },
+            { color: '#4daf4a', label: 'Pontos de integração' },
+            { color: '#984ea3', label: 'Países vizinhos' }
+          ]
+        },
+        {
+          id: 'infraestrutura-logistica',
+          title: 'Infraestrutura Logística',
+          description: 'Rede de transportes: rodovias, ferrovias, portos e aeroportos',
+          url: 'https://www.antt.gov.br/indicadores-do-setor',
+          icon: 'fas fa-shipping-fast',
+          level: 'Avançado',
+          source: 'ANTT/ANAC - Infraestrutura',
+          legend: [
+            { color: '#e31a1c', label: 'Rodovias federais' },
+            { color: '#fd8d3c', label: 'Ferrovias' },
+            { color: '#238443', label: 'Portos' },
+            { color: '#225ea8', label: 'Aeroportos' }
+          ]
+        }
+      ],
+      socioeconomico: [
+        {
+          id: 'idh-municipios',
+          title: 'IDH Municipal',
+          description: 'Índice de Desenvolvimento Humano de todos os municípios brasileiros',
+          url: 'https://www.undp.org/pt/brazil/idhm-municipios-2010',
+          icon: 'fas fa-home',
+          level: 'Intermediário',
+          source: 'PNUD/IBGE - Atlas Brasil',
+          legend: [
+            { color: '#d73027', label: 'Muito baixo (0-0.599)' },
+            { color: '#fc8d59', label: 'Baixo (0.600-0.699)' },
+            { color: '#fee08b', label: 'Médio (0.700-0.799)' },
+            { color: '#d9ef8b', label: 'Alto (0.800-0.899)' },
+            { color: '#91cf60', label: 'Muito alto (0.900-1)' }
+          ]
+        },
+        {
+          id: 'pib-per-capita',
+          title: 'PIB per Capita',
+          description: 'Produto Interno Bruto por habitante por estado e região',
+          url: 'https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9052-contas-regionais-do-brasil.html',
+          icon: 'fas fa-money-bill-wave',
+          level: 'Intermediário',
+          source: 'IBGE - Contas Regionais',
+          legend: [
+            { color: '#f7fcf0', label: 'Até R$ 20.000' },
+            { color: '#c7e9b4', label: 'R$ 20.001-30.000' },
+            { color: '#7fcdbb', label: 'R$ 30.001-40.000' },
+            { color: '#41b6c4', label: 'R$ 40.001-60.000' },
+            { color: '#1d91c0', label: 'Mais de R$ 60.000' }
+          ]
+        },
+        {
+          id: 'educacao-saude',
+          title: 'Educação e Saúde',
+          description: 'Indicadores de qualidade da educação e acesso a serviços de saúde',
+          url: 'https://www.ibge.gov.br/estatisticas/sociais/educacao/9134-educacao.html',
+          icon: 'fas fa-hospital-user',
+          level: 'Avançado',
+          source: 'IBGE - Pesquisa Nacional por Amostra de Domicílios',
+          legend: [
+            { color: '#fff7fb', label: 'Baixo acesso' },
+            { color: '#ece7f2', label: 'Acesso moderado' },
+            { color: '#a6bddb', label: 'Bom acesso' },
+            { color: '#2b8cbe', label: 'Alto acesso' },
+            { color: '#045a8d', label: 'Excelente acesso' }
+          ]
+        }
+      ]
+    };
+
+    // Elementos DOM
+    const tabs = document.querySelectorAll('.tab-btn');
+    const mapsGrid = document.getElementById('mapsGrid');
+    const iframeContainer = document.getElementById('iframeContainer');
+    const mapFrame = document.getElementById('mapFrame');
+    const loadingMap = document.getElementById('loadingMap');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const mapTitle = document.getElementById('mapTitle');
+    const mapCategory = document.getElementById('mapCategory');
+    const mapSource = document.getElementById('mapSource');
+    const mapLegend = document.getElementById('mapLegend');
+
+    // Estado atual
+    let currentCategory = 'demografico';
+    let currentMap = null;
+
+    // Inicialização
+    function init() {
+      loadCategory('demografico');
+      setupEventListeners();
+      
+      // Carregar primeiro mapa por padrão
+      setTimeout(() => {
+        const firstMap = maps.demografico[0];
+        loadMap(firstMap, 'demografico');
+      }, 500);
+    }
+
+    function loadCategory(category) {
+      currentCategory = category;
+      
+      // Atualizar tabs
+      tabs.forEach(tab => {
+        if (tab.dataset.category === category) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+      
+      // Carregar mapas
+      const categoryMaps = maps[category];
+      mapsGrid.innerHTML = '';
+      
+      categoryMaps.forEach(map => {
+        const card = document.createElement('div');
+        card.className = 'map-card';
+        if (currentMap && currentMap.id === map.id) {
+          card.classList.add('active');
+        }
+        card.dataset.id = map.id;
+        card.innerHTML = `
+          <div class="map-icon">
+            <i class="${map.icon}"></i>
+          </div>
+          <h3 class="map-title">${map.title}</h3>
+          <p class="map-description">${map.description}</p>
+          <div class="map-meta">
+            <span>Nível: ${map.level}</span>
+            <span><i class="fas fa-map-marked-alt"></i></span>
+          </div>
+        `;
+        mapsGrid.appendChild(card);
+        
+        card.addEventListener('click', () => {
+          loadMap(map, category);
+          
+          // Atualizar seleção visual
+          document.querySelectorAll('.map-card').forEach(c => {
+            c.classList.remove('active');
+          });
+          card.classList.add('active');
+        });
+      });
+    }
+
+    function loadMap(map, category) {
+      currentMap = map;
+      
+      // Mostrar loading
+      iframeContainer.style.display = 'none';
+      loadingMap.style.display = 'block';
+      mapLegend.style.display = 'none';
+      
+      // Atualizar informações
+      mapTitle.textContent = map.title;
+      mapCategory.textContent = getCategoryName(category);
+      mapSource.textContent = map.source;
+      
+      // Carregar iframe
+      mapFrame.src = map.url;
+      
+      // Criar legenda
+      createLegend(map.legend);
+      
+      // Quando o iframe carregar
+      mapFrame.onload = () => {
+        loadingMap.style.display = 'none';
+        iframeContainer.style.display = 'block';
+        mapLegend.style.display = 'flex';
+      };
+    }
+
+    function createLegend(legendItems) {
+      mapLegend.innerHTML = '<strong>Legenda:</strong>';
+      
+      legendItems.forEach(item => {
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item';
+        legendItem.innerHTML = `
+          <div class="legend-color" style="background-color: ${item.color};"></div>
+          <span>${item.label}</span>
+        `;
+        mapLegend.appendChild(legendItem);
+      });
+    }
+
+    function setupEventListeners() {
+      // Tabs de categoria
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          loadCategory(tab.dataset.category);
+        });
+      });
+      
+      // Botão de tela cheia
+      fullscreenBtn.addEventListener('click', () => {
+        if (iframeContainer.requestFullscreen) {
+          iframeContainer.requestFullscreen();
+        } else if (iframeContainer.webkitRequestFullscreen) {
+          iframeContainer.webkitRequestFullscreen();
+        } else if (iframeContainer.msRequestFullscreen) {
+          iframeContainer.msRequestFullscreen();
+        }
+      });
+      
+      // Detectar saída do modo tela cheia
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          // Sair da tela cheia
+        }
+      });
+    }
+
+    function getCategoryName(category) {
+      const names = {
+        demografico: 'Demográfico',
+        territorial: 'Territorial',
+        biomas: 'Biomas',
+        geopolitico: 'Geopolítico',
+        socioeconomico: 'Socioeconômico'
+      };
+      return names[category] || category;
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
