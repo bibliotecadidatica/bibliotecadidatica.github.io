@@ -30,79 +30,89 @@
       </div>
     </div>
     
-    <!-- Menu Principal -->
-    <nav class="main-nav" id="mainNav">
-      <div class="nav-main-items">
-        <!-- Botão Início -->
-        <a href="index.html" class="nav-link active" data-target="inicio">
-        <i class="fas fa-home nav-icon"></i>
-         Início
-        </a>
+<!-- Menu Principal -->
+<nav class="main-nav" id="mainNav">
+  <div class="nav-main-items">
+    <!-- Botão Início -->
+    <button class="nav-link active" data-target="inicio">
+      <i class="fas fa-home nav-icon"></i>
+      Início
+    </button>
 
-        <!-- Áreas do Conhecimento (com submenu) -->
-        <div class="nav-item-with-submenu">
-          <button class="nav-link nav-main-link" data-submenu="areas">
-            <i class="fas fa-book nav-icon"></i>
-            Áreas do Conhecimento
-            <i class="fas fa-chevron-down submenu-arrow"></i>
-          </button>
-          <div class="submenu" id="submenu-areas">
-            <a class="nav-link submenu-link" href="index.html#linguagens">
-              <i class="fas fa-language"></i>
-              Linguagens
-            </a>
-            <a class="nav-link submenu-link" href="index.html#linguagens">
-              <i class="fas fa-calculator"></i>
-              Matemática
-            </a>
-            <a class="nav-link submenu-link" href="index.html#ciencias-natureza">
-              <i class="fas fa-flask"></i>
-              Ciências da Natureza
-            </a>
-            <a class="nav-link submenu-link" href="index.html#ciencias-humanas">
-              <i class="fas fa-globe-americas"></i>
-              Ciências Humanas
-            </a>
-            <a class="nav-link submenu-link" href="index.html#atividades-adaptadas">
-              <i class="fas fa-universal-access"></i>
-              Atividades Adaptadas
-            </a>
-          </div>
-        </div>
-
-        <!-- Outras Páginas (submenu) -->
-        <div class="nav-item-with-submenu">
-          <button class="nav-link nav-main-link" data-submenu="pages">
-            <i class="fas fa-th nav-icon"></i>
-            Mais Opções
-            <i class="fas fa-chevron-down submenu-arrow"></i>
-          </button>
-          <div class="submenu" id="submenu-pages">
-            <a class="nav-link submenu-link" href="documentos.html">
-              <i class="fas fa-file-alt"></i>
-              Documentos Oficiais
-            </a>
-            <a class="nav-link submenu-link" href="favoritos.html">
-              <i class="fas fa-star"></i>
-              Meus Favoritos
-              <span class="favorites-count"></span>
-            </a>
-            <a class="nav-link submenu-link" href="planejador.html">
-              <i class="fas fa-calendar-alt"></i>
-              Planejador
-            </a>
-            <a class="nav-link submenu-link" href="compartilhar.html">
-              <i class="fas fa-share-alt"></i>
-              Enviar Material
-            </a>
-            <a class="nav-link submenu-link" href="sobre.html">
-              <i class="fas fa-info-circle"></i>
-              Sobre Nós
-            </a>
-          </div>
-        </div>
+    <!-- Áreas do Conhecimento (com submenu) -->
+    <div class="nav-item-with-submenu">
+      <button class="nav-link nav-main-link" data-submenu="areas">
+        <i class="fas fa-book nav-icon"></i>
+        Áreas do Conhecimento
+        <i class="fas fa-chevron-down submenu-arrow"></i>
+      </button>
+      <div class="submenu" id="submenu-areas">
+        <button class="nav-link submenu-link" data-target="linguagens">
+          <i class="fas fa-language"></i>
+          Linguagens
+        </button>
+        <button class="nav-link submenu-link" data-target="matematica">
+          <i class="fas fa-calculator"></i>
+          Matemática
+        </button>
+        <button class="nav-link submenu-link" data-target="ciencias-natureza">
+          <i class="fas fa-flask"></i>
+          Ciências da Natureza
+        </button>
+        <button class="nav-link submenu-link" data-target="ciencias-humanas">
+          <i class="fas fa-globe-americas"></i>
+          Ciências Humanas
+        </button>
+        <button class="nav-link submenu-link" data-target="atividades-adaptadas">
+          <i class="fas fa-universal-access"></i>
+          Atividades Adaptadas
+        </button>
       </div>
-    </nav>
+    </div>
+
+    <!-- Documentos Oficiais (item separado) -->
+    <a href="documentos.html" class="nav-link">
+      <i class="fas fa-file-alt nav-icon"></i>
+      Documentos
+    </a>
+
+    <!-- Enviar Material (item separado) -->
+    <a href="compartilhar.html" class="nav-link">
+      <i class="fas fa-share-alt nav-icon"></i>
+      Compartilhar
+    </a>
+
+        <!-- Educação Diversificada (item separado) -->
+    <a href="diversificada.html" class="nav-link">
+      <i class="fa fa-users"></i>
+      Diversidades
+    </a>
+
+    <!-- Outras Páginas (submenu reduzido) -->
+    <div class="nav-item-with-submenu">
+      <button class="nav-link nav-main-link" data-submenu="pages">
+        <i class="fas fa-ellipsis-h nav-icon"></i>
+        Mais Opções
+        <i class="fas fa-chevron-down submenu-arrow"></i>
+      </button>
+      <div class="submenu" id="submenu-pages">
+        <a class="nav-link submenu-link" href="favoritos.html">
+          <i class="fas fa-star"></i>
+          Favoritos
+          <span class="favorites-count"></span>
+        </a>
+        <a class="nav-link submenu-link" href="planejador.html">
+          <i class="fas fa-calendar-alt"></i>
+          Planejador
+        </a>
+        <a class="nav-link submenu-link" href="sobre.html">
+          <i class="fas fa-info-circle"></i>
+          Sobre Nós
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
   </header>
 
   <main class="container">
