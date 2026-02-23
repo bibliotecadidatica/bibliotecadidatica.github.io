@@ -7,271 +7,100 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/favoritos.css">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        /* Estilos específicos para o menu em favoritos.html */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 280px;
-            height: 100vh;
-            background: #1a365d;
-            transition: left 0.3s ease;
-            z-index: 1001;
-            padding-top: 80px;
-            overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-        }
-        
-        .main-nav.expanded {
-            left: 0;
-        }
-        
-        .nav-main-items {
-            flex-direction: column;
-            padding: 0;
-        }
-        
-        .nav-link {
-            width: 100%;
-            justify-content: flex-start;
-            padding: 1rem 1.5rem;
-            border-radius: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .nav-link.active::after {
-            left: 0;
-            transform: none;
-            width: 4px;
-            height: 100%;
-            bottom: 0;
-        }
-        
-        .nav-item-with-submenu .submenu {
-            position: static;
-            opacity: 1;
-            visibility: visible;
-            transform: none;
-            box-shadow: none;
-            background: rgba(255, 255, 255, 0.93);
-            margin-left: 0;
-            margin-right: 0;
-            margin-top: 0;
-            display: none;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .nav-item-with-submenu.active .submenu {
-            display: block;
-        }
-        
-        .submenu-link {
-            color: #1B3860 !important;
-            padding: 0.75rem 1.5rem 0.75rem 3rem;
-        }
-        
-        .submenu-link:hover {
-            background-color: #f0f0f0 !important;
-        }
-        
-        .menu-toggle-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            display: none;
-        }
-        
-        .menu-toggle-overlay.active {
-            display: block;
-        }
-        
-        /* Estilos específicos para favoritos */
-        .favorite-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #27ae60;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: none;
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-        }
-        
-        .favorite-notification.show {
-            display: block;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .subject-badge {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-right: 5px;
-        }
-        
-        /* Estilos para layout desktop */
-        @media (min-width: 769px) {
-            .main-nav {
-                position: static;
-                width: auto;
-                height: auto;
-                padding-top: 0;
-                background-color: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-            }
-            
-            .nav-main-items {
-                flex-direction: row;
-                padding: 0 var(--space-md);
-            }
-            
-            .nav-link {
-                width: auto;
-                padding: var(--space-sm) var(--space-md);
-                border-radius: var(--radius-sm);
-                border-bottom: none;
-            }
-            
-            .nav-link.active::after {
-                left: 50%;
-                transform: translateX(-50%);
-                width: 80%;
-                height: 3px;
-                bottom: 0;
-            }
-            
-            .nav-item-with-submenu .submenu {
-                position: absolute;
-                background: white;
-                display: block !important;
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(10px);
-                transition: all 0.3s ease;
-                border-top: none;
-            }
-            
-            .nav-item-with-submenu:hover .submenu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-            
-            .submenu-link {
-                padding: var(--space-sm) var(--space-lg);
-            }
-            
-            .menu-toggle-overlay {
-                display: none !important;
-            }
-        }
-    </style>
 </head>
 <body>
     <header class="site-header">
-    <div class="header-top">
-      <div class="logo">
-        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
-        <img src="img/LogoSRE.png" alt="Logo SRE" />
-        <div class="brand">
-          <h1>Biblioteca Didática</h1>
-          <p>Currículo, Formação e Avaliação</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Menu Principal -->
-    <nav class="main-nav" id="mainNav">
-      <div class="nav-main-items">
-        <!-- Botão Início -->
-        <a href="index.html" class="nav-link active" data-target="inicio">
-        <i class="fas fa-home nav-icon"></i>
-         Início
-        </a>
-
-        <!-- Áreas do Conhecimento (com submenu) -->
-        <div class="nav-item-with-submenu">
-          <button class="nav-link nav-main-link" data-submenu="areas">
-            <i class="fas fa-book nav-icon"></i>
-            Áreas do Conhecimento
-            <i class="fas fa-chevron-down submenu-arrow"></i>
-          </button>
-          <div class="submenu" id="submenu-areas">
-            <a class="nav-link submenu-link" href="index.html#linguagens">
-              <i class="fas fa-language"></i>
-              Linguagens
-            </a>
-            <a class="nav-link submenu-link" href="index.html#matematica">
-              <i class="fas fa-calculator"></i>
-              Matemática
-            </a>
-            <a class="nav-link submenu-link" href="index.html#ciencias-natureza">
-              <i class="fas fa-flask"></i>
-              Ciências da Natureza
-            </a>
-            <a class="nav-link submenu-link" href="index.html#ciencias-humanas">
-              <i class="fas fa-globe-americas"></i>
-              Ciências Humanas
-            </a>
-            <a class="nav-link submenu-link" href="index.html#atividades-adaptadas">
-              <i class="fas fa-universal-access"></i>
-              Atividades Adaptadas
-            </a>
-          </div>
+        <div class="header-top">
+            <div class="logo">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <img src="img/LogoSRE.png" alt="Logo SRE" />
+                <div class="brand">
+                    <h1>Biblioteca Didática</h1>
+                    <p>Currículo, Formação e Avaliação</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Outras Páginas (submenu) -->
-        <div class="nav-item-with-submenu">
-          <button class="nav-link nav-main-link" data-submenu="pages">
-            <i class="fas fa-th nav-icon"></i>
-            Mais Opções
-            <i class="fas fa-chevron-down submenu-arrow"></i>
-          </button>
-          <div class="submenu" id="submenu-pages">
-            <a class="nav-link submenu-link" href="documentos.html">
-              <i class="fas fa-file-alt"></i>
-              Documentos Oficiais
-            </a>
-            <a class="nav-link submenu-link" href="favoritos.html">
-              <i class="fas fa-star"></i>
-              Meus Favoritos
-              <span class="favorites-count"></span>
-            </a>
-            <a class="nav-link submenu-link" href="planejador.html">
-              <i class="fas fa-calendar-alt"></i>
-              Planejador
-            </a>
-            <a class="nav-link submenu-link" href="compartilhar.html">
-              <i class="fas fa-share-alt"></i>
-              Enviar Material
-            </a>
-            <a class="nav-link submenu-link" href="sobre.html">
-              <i class="fas fa-info-circle"></i>
-              Sobre Nós
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
-    <!-- Overlay para fechar menu no mobile -->
-    <div class="menu-toggle-overlay" id="menuOverlay"></div>
-  </header>
+        <!-- Menu Principal -->
+        <nav class="main-nav" id="mainNav">
+            <div class="nav-main-items">
+                <!-- Botão Início -->
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home nav-icon"></i>
+                    Início
+                </a>
+
+                <!-- Áreas do Conhecimento (com submenu) -->
+                <div class="nav-item-with-submenu">
+                    <button class="nav-link nav-main-link" data-submenu="areas">
+                        <i class="fas fa-book nav-icon"></i>
+                        Áreas do Conhecimento
+                        <i class="fas fa-chevron-down submenu-arrow"></i>
+                    </button>
+                    <div class="submenu" id="submenu-areas">
+                        <a href="index.html#linguagens" class="nav-link submenu-link">
+                            <i class="fas fa-language"></i>
+                            Linguagens
+                        </a>
+                        <a href="index.html#matematica" class="nav-link submenu-link">
+                            <i class="fas fa-calculator"></i>
+                            Matemática
+                        </a>
+                        <a href="index.html#ciencias-natureza" class="nav-link submenu-link">
+                            <i class="fas fa-flask"></i>
+                            Ciências da Natureza
+                        </a>
+                        <a href="index.html#ciencias-humanas" class="nav-link submenu-link">
+                            <i class="fas fa-globe-americas"></i>
+                            Ciências Humanas
+                        </a>
+                        <a href="index.html#atividades-adaptadas" class="nav-link submenu-link">
+                            <i class="fas fa-universal-access"></i>
+                            Atividades Adaptadas
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Documentos Oficiais -->
+                <a href="documentos.html" class="nav-link">
+                    <i class="fas fa-file-alt nav-icon"></i>
+                    Documentos Oficiais
+                </a>
+
+                <!-- Enviar Material -->
+                <a href="compartilhar.html" class="nav-link">
+                    <i class="fas fa-share-alt nav-icon"></i>
+                    Enviar Material
+                </a>
+
+                <!-- Outras Páginas (submenu) -->
+                <div class="nav-item-with-submenu">
+                    <button class="nav-link nav-main-link" data-submenu="pages">
+                        <i class="fas fa-ellipsis-h nav-icon"></i>
+                        Mais Opções
+                        <i class="fas fa-chevron-down submenu-arrow"></i>
+                    </button>
+                    <div class="submenu" id="submenu-pages">
+                        <a class="nav-link submenu-link" href="favoritos.html">
+                            <i class="fas fa-star"></i>
+                            Meus Favoritos
+                            <span class="favorites-count"></span>
+                        </a>
+                        <a class="nav-link submenu-link" href="planejador.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            Planejador
+                        </a>
+                        <a class="nav-link submenu-link" href="sobre.html">
+                            <i class="fas fa-info-circle"></i>
+                            Sobre Nós
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <main class="container">
         <div class="filters">
@@ -294,7 +123,7 @@
         </div>
 
         <div class="stats" id="stats-container">
-            <!-- As estatísticas serão preenchidas via JavaScript -->
+            <!-- Estatísticas via JavaScript -->
         </div>
 
         <div id="favorites-content">
@@ -308,7 +137,7 @@
             </div>
             
             <div class="favorites-grid" id="favorites-grid" style="display: none;">
-                <!-- Os favoritos serão carregados aqui via JavaScript -->
+                <!-- Favoritos via JavaScript -->
             </div>
         </div>
     </main>
@@ -317,112 +146,43 @@
         <a class="nav-link" href="sobre.html"><i class="fas fa-info-circle"></i> Sobre Nós</a>
         <a class="nav-link" href="compartilhar.html"><i class="fas fa-share-alt"></i> Enviar Material</a>
         <a class="nav-link" href="documentos.html"><i class="fas fa-file-alt"></i> Documentos Oficiais</a>
-        <p>SRE Araguaína © 2026 - 
-        <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
-        <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
-        <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
+        <p>
+            SRE Araguaína © 2026 - 
+            <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
+            <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
+            <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a>
+        </p>
     </footer>
 
     <script>
-        // Configuração do menu-toggle para favoritos.html
-        function setupFavoritesMenuToggle() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mainNav = document.getElementById('mainNav');
-            const menuOverlay = document.getElementById('menuOverlay');
+        // === Menu Mobile ===
+        function setupMenuToggle() {
+            const toggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
             
-            if (!menuToggle || !mainNav) return;
+            if (!toggle || !mainNav) return;
             
-            // Função para abrir/fechar menu
-            function toggleMenu() {
-                mainNav.classList.toggle('expanded');
-                menuOverlay.classList.toggle('active');
-                
-                // Alternar ícone
-                const icon = menuToggle.querySelector('i');
-                if (mainNav.classList.contains('expanded')) {
-                    icon.className = 'fas fa-times';
-                    menuToggle.setAttribute('aria-label', 'Fechar menu');
-                    // Bloquear scroll do body
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    icon.className = 'fas fa-bars';
-                    menuToggle.setAttribute('aria-label', 'Abrir menu');
-                    // Liberar scroll do body
-                    document.body.style.overflow = '';
-                }
-            }
-            
-            // Fechar menu
             function closeMenu() {
                 mainNav.classList.remove('expanded');
-                menuOverlay.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-                menuToggle.setAttribute('aria-label', 'Abrir menu');
-                document.body.style.overflow = '';
+                toggle.setAttribute('aria-expanded', 'false');
             }
             
-            // Evento do botão menu
-            menuToggle.addEventListener('click', function(e) {
+            toggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                toggleMenu();
+                mainNav.classList.toggle('expanded');
+                toggle.setAttribute('aria-expanded', mainNav.classList.contains('expanded'));
             });
             
-            // Evento do overlay
-            menuOverlay.addEventListener('click', closeMenu);
-            
-            // Fechar ao clicar em um link
-            mainNav.addEventListener('click', function(e) {
-                if (e.target.closest('a') || e.target.closest('button')) {
-                    closeMenu();
-                }
-            });
-            
-            // Fechar ao pressionar ESC
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeMenu();
-                }
-            });
-            
-            // Submenus no mobile
-            document.querySelectorAll('.nav-main-link[data-submenu]').forEach(trigger => {
-                trigger.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        const parent = this.closest('.nav-item-with-submenu');
-                        const submenu = parent.querySelector('.submenu');
-                        const arrow = this.querySelector('.submenu-arrow');
-                        
-                        // Fechar outros submenus
-                        document.querySelectorAll('.nav-item-with-submenu').forEach(item => {
-                            if (item !== parent) {
-                                item.classList.remove('active');
-                                item.querySelector('.submenu-arrow')?.classList.remove('rotated');
-                            }
-                        });
-                        
-                        // Alternar submenu atual
-                        parent.classList.toggle('active');
-                        
-                        // Rotacionar seta
-                        if (arrow) {
-                            arrow.classList.toggle('rotated');
-                        }
-                    }
-                });
-            });
-            
-            // Ajustar ao redimensionar
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768 && mainNav.classList.contains('expanded')) {
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && 
+                    !e.target.closest('.main-nav') && 
+                    !e.target.closest('.menu-toggle')) {
                     closeMenu();
                 }
             });
         }
 
-        // Gerenciamento de Favoritos para a página específica
+        // === Gerenciamento de Favoritos ===
         const FavoritesPage = {
             favorites: [],
             filtrados: [],
@@ -435,10 +195,7 @@
                 this.renderizarFavoritos();
                 this.atualizarContadorMenu();
                 
-                // Configurar menu-toggle
-                setupFavoritesMenuToggle();
-                
-                // Tornar acessível globalmente
+                setupMenuToggle();
                 window.favoritesPage = this;
             },
             
@@ -447,11 +204,9 @@
                     const favoritosSalvos = localStorage.getItem('bibliotecaFavoritos');
                     this.favorites = favoritosSalvos ? JSON.parse(favoritosSalvos) : [];
                     
-                    // Corrigir favoritos antigos que não têm a propriedade 'subject'
                     let needsUpdate = false;
                     this.favorites.forEach(favorito => {
                         if (!favorito.subject || favorito.subject === 'undefined' || favorito.subject === 'Geral') {
-                            // Tentar inferir a disciplina do nome da seção
                             if (favorito.section) {
                                 const sectionToSubject = {
                                     'portugues': 'Língua Portuguesa',
@@ -490,7 +245,6 @@
                     this.favorites = [];
                     this.filtrados = [];
                 }
-                return this.favorites;
             },
             
             inicializarFiltros: function() {
@@ -503,27 +257,22 @@
                 btnLimparFiltros.addEventListener('click', () => this.limparFiltros());
             },
             
-            inicializarEventos: function() {
-                // Eventos para remoção de favoritos já são tratados em adicionarEventosRemover()
-            },
+            inicializarEventos: function() {},
             
             filtrarFavoritos: function() {
                 const ordem = document.getElementById('filter-ordem').value;
                 const busca = document.getElementById('filter-busca').value.toLowerCase();
 
                 this.filtrados = this.favorites.filter(favorito => {
-                    // Filtrar por busca
                     if (busca) {
                         const nome = favorito.name ? favorito.name.toLowerCase() : '';
                         const subject = favorito.subject ? favorito.subject.toLowerCase() : '';
                         const tags = favorito.tags ? favorito.tags.toLowerCase() : '';
                         return nome.includes(busca) || subject.includes(busca) || tags.includes(busca);
                     }
-                    
                     return true;
                 });
 
-                // Ordenar
                 switch (ordem) {
                     case 'nome':
                         this.filtrados.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
@@ -568,7 +317,6 @@
                     </div>
                 `;
                 
-                // Atualizar contador no menu
                 this.atualizarContadorMenu();
             },
             
@@ -590,7 +338,6 @@
                     emptyFavorites.style.display = 'block';
                     favoritesGrid.style.display = 'none';
                     
-                    // Atualizar mensagem de vazio
                     const busca = document.getElementById('filter-busca').value;
                     
                     if (busca && this.favorites.length > 0) {
@@ -618,7 +365,6 @@
                     emptyFavorites.style.display = 'none';
                     favoritesGrid.style.display = 'grid';
 
-                    // Agrupar por disciplina
                     const agrupados = {};
                     this.filtrados.forEach(favorito => {
                         const disciplina = favorito.subject || 'Geral';
@@ -628,28 +374,22 @@
                         agrupados[disciplina].push(favorito);
                     });
 
-                    // Ordenar disciplinas alfabeticamente
                     const disciplinasOrdenadas = Object.keys(agrupados).sort();
-
                     let html = '';
                     
                     disciplinasOrdenadas.forEach(disciplina => {
-                        // Adicionar cabeçalho da disciplina
                         html += `
                             <div class="disciplina-header">
-                                <h3><i class="fas fa-book"></i>${disciplina}</h3>
+                                <h3><i class="fas fa-book"></i> ${disciplina}</h3>
                             </div>
                         `;
                         
-                        // Adicionar itens da disciplina
                         agrupados[disciplina].forEach(favorito => {
                             html += this.criarCardFavorito(favorito);
                         });
                     });
 
                     favoritesGrid.innerHTML = html;
-                    
-                    // Adicionar eventos aos botões de remover
                     this.adicionarEventosRemover();
                 }
             },
@@ -744,18 +484,13 @@
                     return;
                 }
 
-                // Remover dos favoritos locais
                 this.favorites = this.favorites.filter(f => f.id !== fileId);
                 this.filtrados = this.filtrados.filter(f => f.id !== fileId);
                 
-                // Salvar no localStorage
                 localStorage.setItem('bibliotecaFavoritos', JSON.stringify(this.favorites));
                 
-                // Atualizar a exibição
                 this.renderizarFavoritos();
                 this.atualizarEstatisticas();
-                
-                // Mostrar notificação
                 this.mostrarNotificacao('Material removido dos favoritos', 'info');
             },
             
@@ -779,7 +514,6 @@
             },
             
             mostrarNotificacao: function(mensagem, tipo = 'success') {
-                // Criar elemento de notificação se não existir
                 let notification = document.getElementById('favorite-notification');
                 if (!notification) {
                     notification = document.createElement('div');
@@ -788,18 +522,17 @@
                     document.body.appendChild(notification);
                 }
                 
-                // Definir cor baseada no tipo
-                let bgColor = '#27ae60'; // verde para sucesso
+                let bgColor = '#27ae60';
                 let icon = 'fa-check-circle';
                 
                 if (tipo === 'warning') {
-                    bgColor = '#f39c12'; // laranja
+                    bgColor = '#f39c12';
                     icon = 'fa-exclamation-triangle';
                 } else if (tipo === 'info') {
-                    bgColor = '#3498db'; // azul
+                    bgColor = '#3498db';
                     icon = 'fa-info-circle';
                 } else if (tipo === 'error') {
-                    bgColor = '#e74c3c'; // vermelho
+                    bgColor = '#e74c3c';
                     icon = 'fa-times-circle';
                 }
                 
@@ -819,11 +552,10 @@
             }
         };
 
-        // Inicializar quando o DOM estiver carregado
+        // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             FavoritesPage.init();
             
-            // Atualizar periodicamente (a cada 10 segundos) para capturar mudanças
             setInterval(() => {
                 FavoritesPage.updateStats();
             }, 10000);
