@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y07NPE5TJ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y07NPE5TJ1');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Educação Diversificada - Biblioteca Didática SRE Araguaína</title>
+  <meta name="description" content="Materiais didáticos para Educação Indígena, Quilombola, Especial, Campo e Diversidade Sociocultural" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/documentos.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* pequenos ajustes para identidade visual diversificada */
+    .diversidade-header {
+      background: linear-gradient(135deg, #EFF8FE 0%, #EFF8FE 100%);
+      color: #1A365D;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+    .diversidade-header h2 {
+      margin: 0.5rem 0 0;
+      font-size: 2.4rem;
+      font-weight: 500;
+    }
+    .diversidade-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .doc-card {
+      background: var(--card-bg, #fff);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid var(--border-light, #e2e8f0);
+      display: flex;
+      flex-direction: column;
+    }
+    .doc-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px -8px rgba(0,40,20,0.2);
+    }
+    .doc-icon {
+      font-size: 4rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.1));
+    }
+    .doc-name {
+      font-size: 1.7rem;
+      margin: 0.5rem 0 0.5rem;
+      color: var(--heading-color, #1e293b);
+    }
+    .doc-description {
+      color: var(--text-light, #475569);
+      margin-bottom: 2rem;
+      flex-grow: 1;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .doc-btn {
+      background: var(--primary-color, #1e4a2f);
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 1rem 1.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      margin-top: auto;
+      align-self: stretch;
+    }
+    .doc-btn:hover {
+      background: var(--primary-dark, #0d2e1c);
+      transform: scale(1.02);
+    }
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.5rem 1rem;
+  background-color: var(--light-gray);
+  color: var(--dark);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  transition: all 0.2s;
+  border: none;
+}
+
+.back-btn:hover {
+  background-color: var(--gray);
+  color: white;
+  text-decoration: none;
+}
+  </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="header-top">
+      <div class="logo">
+        <button class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        <img src="img/LogoSRE.png" alt="Logo SRE" />
+        <div class="brand">
+          <h1>Biblioteca Didática</h1>
+          <p>Currículo, Formação e Avaliação</p>
+        </div>
+      </div>
+    </div>
+    
+        <!-- Menu Principal (idêntico ao original, mantém consistência) -->
+        <nav class="main-nav" id="mainNav">
+            <div class="nav-main-items">
+                <a href="index.html" class="nav-link"><i class="fas fa-home nav-icon"></i>Início</a>
+                <div class="nav-item-with-submenu">
+                    <button class="nav-link nav-main-link" data-submenu="areas"><i class="fas fa-book nav-icon"></i>Áreas do Conhecimento<i class="fas fa-chevron-down submenu-arrow"></i></button>
+                    <div class="submenu" id="submenu-areas">
+                        <a href="index.html#linguagens" class="nav-link submenu-link"><i class="fas fa-language"></i>Linguagens</a>
+                        <a href="index.html#matematica" class="nav-link submenu-link"><i class="fas fa-calculator"></i>Matemática</a>
+                        <a href="index.html#ciencias-natureza" class="nav-link submenu-link"><i class="fas fa-flask"></i>Ciências da Natureza</a>
+                        <a href="index.html#ciencias-humanas" class="nav-link submenu-link"><i class="fas fa-globe-americas"></i>Ciências Humanas</a>
+                        <a href="index.html#atividades-adaptadas" class="nav-link submenu-link"><i class="fas fa-universal-access"></i>Atividades Adaptadas</a>
+                    </div>
+                </div>
+                <a href="documentos.html" class="nav-link"><i class="fas fa-file-alt nav-icon"></i>Documentos</a>
+                <a href="compartilhar.html" class="nav-link"><i class="fas fa-share-alt nav-icon"></i>Compartilhar</a>
+                <a href="diversificada.html" class="nav-link"><i class="fa fa-users"></i>Diversidades</a>
+                <div class="nav-item-with-submenu">
+                    <button class="nav-link nav-main-link" data-submenu="pages"><i class="fas fa-ellipsis-h nav-icon"></i>Mais Opções<i class="fas fa-chevron-down submenu-arrow"></i></button>
+                    <div class="submenu" id="submenu-pages">
+                        <a class="nav-link submenu-link" href="favoritos.html"><i class="fas fa-star"></i>Favoritos<span class="favorites-count"></span></a>
+                        <a class="nav-link submenu-link" href="planejador.html"><i class="fas fa-calendar-alt"></i>Planejador</a>
+                        <a class="nav-link submenu-link" href="sobre.html"><i class="fas fa-info-circle"></i>Sobre Nós</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+  </header>
+
+  <main class="container">
+    <!-- Página principal: EDUCAÇÃO DIVERSIFICADA (substitui documentos oficiais) -->
+    <section id="diversidade-principal" class="content-section">
+      <a href="index.html" class="back-btn" style="text-decoration:none;">← Voltar para a Página Inicial</a>
+      
+      <div class="diversidade-header">
+        <span style="font-size:4rem;">🌍✊🏽🧑🏿‍🦽</span>
+        <h2>Educação Diversificada</h2>
+        <p>Materiais didáticos para uma escola plural: indígena, quilombola, especial, do campo, EJA e mais</p>
+      </div>
+
+      <!-- Cards organizados por modalidade -->
+      <div class="doc-grid">
+        <!-- Educação Indígena -->
+        <div class="doc-card">
+          <div class="doc-icon">🪶🌿</div>
+          <h3 class="doc-name">Educação Indígena</h3>
+          <div class="doc-description">Materiais em línguas nativas, histórias indígenas, saberes tradicionais e currículo intercultural.</div>
+          <a href="#educacao-indigena" class="doc-btn" data-show="educacao-indigena">Acessar acervo</a>
+        </div>
+        <!-- Educação Quilombola -->
+        <div class="doc-card">
+          <div class="doc-icon">⛓️‍🔥🌾</div>
+          <h3 class="doc-name">Educação Quilombola</h3>
+          <div class="doc-description">História e cultura afro-brasileira, identidade quilombola, práticas agrícolas e memória comunitária.</div>
+          <a href="#educacao-quilombola" class="doc-btn" data-show="educacao-quilombola">Acessar acervo</a>
+        </div>
+        <!-- Educação Especial / Inclusiva -->
+        <div class="doc-card">
+          <div class="doc-icon">♿📘</div>
+          <h3 class="doc-name">Educação Especial</h3>
+          <div class="doc-description">Materiais acessíveis: braille, libras, comunicação alternativa, adaptações curriculares e recursos multifuncionais.</div>
+          <a href="#educacao-especial" class="doc-btn" data-show="educacao-especial">Acessar acervo</a>
+        </div>
+        <!-- Educação do Campo -->
+        <div class="doc-card">
+          <div class="doc-icon">🚜🌻</div>
+          <h3 class="doc-name">Educação do Campo</h3>
+          <div class="doc-description">Pedagogia da alternância, agroecologia, projetos de assentamento e materiais para escolas rurais.</div>
+          <a href="#educacao-campo" class="doc-btn" data-show="educacao-campo">Acessar acervo</a>
+        </div>
+        <!-- Educação de Jovens e Adultos (EJA) -->
+        <div class="doc-card">
+          <div class="doc-icon">📚🌙</div>
+          <h3 class="doc-name">EJA</h3>
+          <div class="doc-description">Alfabetização de jovens e adultos, livros didáticos específicos, projetos de aceleração e mundo do trabalho.</div>
+          <a href="#educacao-eja" class="doc-btn" data-show="educacao-eja">Acessar acervo</a>
+        </div>
+        <!-- Educação Étnico-Racial / Relações Raciais -->
+        <div class="doc-card">
+          <div class="doc-icon">🤝🏿✊🏽</div>
+          <h3 class="doc-name">Relações Étnico-Raciais</h3>
+          <div class="doc-description">Lei 10.639/03, 11.645/08, antirracismo na prática pedagógica e materiais de enfrentamento ao preconceito.</div>
+          <a href="#educacao-etnico" class="doc-btn" data-show="educacao-etnico">Acessar acervo</a>
+        </div>
+        <!-- Educação Socioambiental -->
+        <div class="doc-card">
+          <div class="doc-icon">🍃🌎</div>
+          <h3 class="doc-name">Socioambiental</h3>
+          <div class="doc-description">Saberes ecológicos, justiça climática, povos tradicionais, biodiversidade e sustentabilidade.</div>
+          <a href="#educacao-socioambiental" class="doc-btn" data-show="educacao-socioambiental">Acessar acervo</a>
+        </div>
+        <!-- Educação Itinerante / Ribeirinha / Extrativista (exemplo adicional) -->
+        <div class="doc-card">
+          <div class="doc-icon">🛶🌊</div>
+          <h3 class="doc-name">Ribeirinhos & Extrativistas</h3>
+          <div class="doc-description">Materiais para comunidades ribeirinhas, pescadores, quebradeiras de coco e populações tradicionais.</div>
+          <a href="#educacao-ribeirinha" class="doc-btn" data-show="educacao-ribeirinha">Acessar acervo</a>
+        </div>
+      </div>
+
+      <div class="tips" style="margin-top: 3rem;">
+        <center><p><strong>Quer contribuir com materiais?</strong><br>diversidade-araguaina@seduc.to.gov.br</p></center>
+      </div>
+    </section>
+
+    <!-- ========= SEÇÕES ESPECÍFICAS PARA CADA MODALIDADE (com cargas do Drive) ========= -->
+    <!-- Cada seção usa a mesma estrutura de listagem com search e loading, adaptada com os ids corretos -->
+
+    <!-- Educação Indígena -->
+    <section id="educacao-indigena" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar para Educação Diversificada</button>
+      <header class="section-header">
+        <h2>🧑🏽‍🦱 Educação Indígena</h2>
+        <input id="search-indigena" class="search" type="search" placeholder="Buscar material..." aria-label="Buscar na pasta indígena" />
+      </header>
+      <ul class="file-list" id="list-indigena"></ul>
+      <div class="loading" id="loading-indigena" hidden>Carregando…</div>
+      <div class="empty" id="empty-indigena" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-indigena" hidden>Ocorreu um erro ao carregar os arquivos.</div>
+    </section>
+
+    <!-- Educação Quilombola -->
+    <section id="educacao-quilombola" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>⛓️‍🔥 Educação Quilombola</h2>
+        <input id="search-quilombola" class="search" type="search" placeholder="Buscar material..." />
+      </header>
+      <ul class="file-list" id="list-quilombola"></ul>
+      <div class="loading" id="loading-quilombola" hidden>Carregando…</div>
+      <div class="empty" id="empty-quilombola" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-quilombola" hidden>Erro ao carregar.</div>
+    </section>
+
+    <!-- Educação Especial -->
+    <section id="educacao-especial" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>♿ Educação Especial / Inclusiva</h2>
+        <input id="search-especial" class="search" type="search" placeholder="Buscar material..." />
+      </header>
+      <ul class="file-list" id="list-especial"></ul>
+      <div class="loading" id="loading-especial" hidden>Carregando…</div>
+      <div class="empty" id="empty-especial" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-especial" hidden>Erro ao carregar.</div>
+    </section>
+
+    <!-- Educação do Campo -->
+    <section id="educacao-campo" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>🚜 Educação do Campo</h2>
+        <input id="search-campo" class="search" type="search" placeholder="Buscar..." />
+      </header>
+      <ul class="file-list" id="list-campo"></ul>
+      <div class="loading" id="loading-campo" hidden>Carregando…</div>
+      <div class="empty" id="empty-campo" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-campo" hidden>Erro.</div>
+    </section>
+
+    <!-- Educação de Jovens e Adultos (EJA) -->
+    <section id="educacao-eja" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>📚 EJA - Educação de Jovens e Adultos</h2>
+        <input id="search-eja" class="search" type="search" placeholder="Buscar..." />
+      </header>
+      <ul class="file-list" id="list-eja"></ul>
+      <div class="loading" id="loading-eja" hidden>Carregando…</div>
+      <div class="empty" id="empty-eja" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-eja" hidden>Erro.</div>
+    </section>
+
+    <!-- Relações Étnico-Raciais -->
+    <section id="educacao-etnico" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>🤝🏿 Relações Étnico-Raciais</h2>
+        <input id="search-etnico" class="search" type="search" placeholder="Buscar..." />
+      </header>
+      <ul class="file-list" id="list-etnico"></ul>
+      <div class="loading" id="loading-etnico" hidden>Carregando…</div>
+      <div class="empty" id="empty-etnico" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-etnico" hidden>Erro.</div>
+    </section>
+
+    <!-- Educação Socioambiental -->
+    <section id="educacao-socioambiental" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>🍃 Educação Socioambiental</h2>
+        <input id="search-socioambiental" class="search" type="search" placeholder="Buscar..." />
+      </header>
+      <ul class="file-list" id="list-socioambiental"></ul>
+      <div class="loading" id="loading-socioambiental" hidden>Carregando…</div>
+      <div class="empty" id="empty-socioambiental" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-socioambiental" hidden>Erro.</div>
+    </section>
+
+    <!-- Ribeirinhos/Extrativistas (adicional) -->
+    <section id="educacao-ribeirinha" class="content-section hidden">
+      <button class="back-btn" data-back="diversidade-principal">← Voltar</button>
+      <header class="section-header">
+        <h2>🛶 Ribeirinhos & Tradicionais</h2>
+        <input id="search-ribeirinha" class="search" type="search" placeholder="Buscar..." />
+      </header>
+      <ul class="file-list" id="list-ribeirinha"></ul>
+      <div class="loading" id="loading-ribeirinha" hidden>Carregando…</div>
+      <div class="empty" id="empty-ribeirinha" hidden>Nenhum arquivo disponível.</div>
+      <div class="error" id="error-ribeirinha" hidden>Erro.</div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>SRE Araguaína © 2026 - 
+    <a href="https://bibliotecadidatica.github.io/creditos.html" target="_blank">Desenvolvido por Guilherme Silva Vanderley</a> -
+    <a href="https://bibliotecadidatica.github.io/politicas-de-privacidade.html" target="_blank">Políticas de Privacidade</a> - 
+    <a href="https://bibliotecadidatica.github.io/termos-de-uso.html" target="_blank">Termos de Uso</a></p>
+  </footer>
+
+  <script>
+    // CONFIGURAÇÃO COM IDs REAIS DAS PASTAS (AGORA VOLTADAS PARA EDUCAÇÃO DIVERSIFICADA)
+    // Nota: os IDs abaixo foram adaptados para representar as pastas temáticas.
+    // Recomenda‐se substituir pelos IDs reais das pastas no Google Drive.
+    window.CONFIG_DOCS = {
+      API_KEY: "AIzaSyAnO6lMGiJ5UyT6zo7qW2NSGPiBGtMPl88",
+      FOLDER_IDS: {
+        "educacao-indigena": "1SvgJg4n1Jg9OByQWI5DXAvA6wAmqet8T",      // substituir pelo ID real
+        "educacao-quilombola": "1x6UxWgPJ1hkOjkZNxylrmAa8vdFEgXC8",   // exemplo
+        "educacao-especial": "1y4Qi2_MJgPLaLfjZUFbRmj126bMBq6UV",      // exemplo
+        "educacao-campo": "17C6Tkq_yO6DR2dwHXnYsBpVkGoIwloMp",
+        "educacao-eja": "18fyKP_uRg99Wi2bbTNZvMur9xMfhvqnT",
+        "educacao-etnico": "19FaskmItMES_OhAEvFqytcFUE_2Ckgc-",
+        "educacao-socioambiental": "1RfWQgcuXj1lhujcGIcJh1mHHfdEQO9eJ", 
+        "educacao-ribeirinha": "15qpNtPHyLr3YIA0N83ue7S8VzzL0LgG3"     
+        // (todos são placeholders – ajustar conforme acervo real)
+      }
+    };
+
+    // Funções de navegação entre seções (mesmo princípio do original)
+    function showSection(id) {
+      const section = document.getElementById(id);
+      if(!section) return;
+      
+      document.querySelectorAll(".content-section").forEach(s => s.classList.add("hidden"));
+      section.classList.remove("hidden");
+      window.scrollTo(0, 0);
+      if (id !== 'diversidade-principal') {
+        window.history.replaceState(null, null, `#${id}`);
+      } else {
+        window.history.replaceState(null, null, ' ');
+      }
+    }
+
+    function setupDocsNavigation() {
+      document.addEventListener("click", (e) => {
+        const docBtn = e.target.closest("a[data-show]");
+        if(docBtn) {
+          e.preventDefault();
+          const targetId = docBtn.getAttribute('data-show');
+          showSection(targetId);
+          return;
+        }
+        const backBtn = e.target.closest(".back-btn[data-back]");
+        if(backBtn) {
+          e.preventDefault();
+          const targetId = backBtn.getAttribute('data-back');
+          showSection(targetId);
+          return;
+        }
+      });
+    }
+
+    // Ícones para MIME types
+    const MIME_ICONS = [
+      {match: "pdf", icon: "📕"},
+      {match: "spreadsheet", icon: "📊"},
+      {match: "presentation", icon: "📑"},
+      {match: "image", icon: "🖼️"},
+      {match: "video", icon: "🎬"},
+      {match: "audio", icon: "🎵"},
+    ];
+    function iconForMime(mime) {
+      for(const m of MIME_ICONS) if(mime.includes(m.match)) return m.icon;
+      return "📄";
+    }
+
+    async function loadFiles(folderId, {listId, loadingId, emptyId, errorId, searchId}) {
+      const listEl = document.getElementById(listId);
+      const loadingEl = document.getElementById(loadingId);
+      const emptyEl = document.getElementById(emptyId);
+      const errorEl = document.getElementById(errorId);
+      const searchEl = document.getElementById(searchId);
+
+      if(!folderId) { 
+        listEl.innerHTML = "<li>Pasta não configurada.</li>"; 
+        loadingEl.hidden = true;
+        emptyEl.hidden = true;
+        return; 
+      }
+
+      listEl.innerHTML = `<li class="skeleton-item"></li><li class="skeleton-item"></li><li class="skeleton-item"></li>`;
+      loadingEl.hidden = false;
+      emptyEl.hidden = true;
+      errorEl.hidden = true;
+
+      const fields = "files(id,name,mimeType,modifiedTime,webViewLink,webContentLink,iconLink)";
+      const url = `https://www.googleapis.com/drive/v3/files?q='${encodeURIComponent(folderId)}'+in+parents+and+trashed=false&orderBy=modifiedTime%20desc&fields=${fields}&key=${encodeURIComponent(window.CONFIG_DOCS.API_KEY)}`;
+
+      try {
+        const res = await fetch(url);
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        const files = data.files || [];
+
+        if(files.length === 0) {
+          emptyEl.hidden = false;
+          listEl.innerHTML = "";
+          return;
+        }
+
+        const render = (items) => {
+          listEl.innerHTML = "";
+          for(const file of items) {
+            const icon = iconForMime(file.mimeType);
+            const when = new Date(file.modifiedTime).toLocaleDateString("pt-BR");
+            const link = file.webViewLink || file.webContentLink || `https://drive.google.com/file/d/${file.id}/view`;
+            const li = document.createElement("li");
+            li.innerHTML = `<div class="title"><a href="${link}" target="_blank" rel="noopener">${icon} ${file.name}</a></div>
+                            <div class="meta">Atualizado em ${when}</div>`;
+            listEl.appendChild(li);
+          }
+        };
+
+        render(files);
+
+        if(searchEl) {
+          searchEl.addEventListener("input", () => {
+            const q = searchEl.value.trim().toLowerCase();
+            const filtered = files.filter(f => f.name.toLowerCase().includes(q));
+            if(filtered.length === 0) listEl.innerHTML = "<li>Nenhum resultado para a busca.</li>";
+            else render(filtered);
+          });
+        }
+      } catch(err) {
+        console.error(err);
+        errorEl.hidden = false;
+      } finally {
+        loadingEl.hidden = true;
+      }
+    }
+
+    // Inicialização
+    document.addEventListener("DOMContentLoaded", () => {
+      setupDocsNavigation();
+
+      const F = window.CONFIG_DOCS.FOLDER_IDS;
+      // Carrega cada pasta (associada aos IDs do objeto)
+      loadFiles(F["educacao-indigena"], {listId:"list-indigena", loadingId:"loading-indigena", emptyId:"empty-indigena", errorId:"error-indigena", searchId:"search-indigena"});
+      loadFiles(F["educacao-quilombola"], {listId:"list-quilombola", loadingId:"loading-quilombola", emptyId:"empty-quilombola", errorId:"error-quilombola", searchId:"search-quilombola"});
+      loadFiles(F["educacao-especial"], {listId:"list-especial", loadingId:"loading-especial", emptyId:"empty-especial", errorId:"error-especial", searchId:"search-especial"});
+      loadFiles(F["educacao-campo"], {listId:"list-campo", loadingId:"loading-campo", emptyId:"empty-campo", errorId:"error-campo", searchId:"search-campo"});
+      loadFiles(F["educacao-eja"], {listId:"list-eja", loadingId:"loading-eja", emptyId:"empty-eja", errorId:"error-eja", searchId:"search-eja"});
+      loadFiles(F["educacao-etnico"], {listId:"list-etnico", loadingId:"loading-etnico", emptyId:"empty-etnico", errorId:"error-etnico", searchId:"search-etnico"});
+      loadFiles(F["educacao-socioambiental"], {listId:"list-socioambiental", loadingId:"loading-socioambiental", emptyId:"empty-socioambiental", errorId:"error-socioambiental", searchId:"search-socioambiental"});
+      loadFiles(F["educacao-ribeirinha"], {listId:"list-ribeirinha", loadingId:"loading-ribeirinha", emptyId:"empty-ribeirinha", errorId:"error-ribeirinha", searchId:"search-ribeirinha"});
+
+      const hash = window.location.hash.substring(1);
+      showSection(hash || 'diversidade-principal');
+
+      // Menu toggle (cópia fiel do original)
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainNav = document.getElementById('mainNav');
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mainNav.classList.toggle('expanded');
+          const icon = this.querySelector('i');
+          if (mainNav.classList.contains('expanded')) { icon.className = 'fas fa-times'; this.setAttribute('aria-label', 'Fechar menu'); } 
+          else { icon.className = 'fas fa-bars'; this.setAttribute('aria-label', 'Abrir menu'); }
+        });
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768 && !e.target.closest('.main-nav') && !e.target.closest('.menu-toggle')) {
+            mainNav.classList.remove('expanded');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+            menuToggle.setAttribute('aria-label', 'Abrir menu');
+          }
+        });
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && mainNav.classList.contains('expanded')) {
+            mainNav.classList.remove('expanded');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+            menuToggle.setAttribute('aria-label', 'Abrir menu');
+          }
+        });
+        mainNav.addEventListener('click', function(e) {
+          if ((e.target.closest('a') || e.target.closest('button')) && window.innerWidth <= 768) {
+            mainNav.classList.remove('expanded');
+            menuToggle.querySelector('i').className = 'fas fa-bars';
+            menuToggle.setAttribute('aria-label', 'Abrir menu');
+          }
+        });
+      }
+    });
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>
