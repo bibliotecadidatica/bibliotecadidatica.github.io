@@ -43,127 +43,135 @@ class PopupIncentivo {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(26, 54, 93, 0.85);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 0;
             transition: opacity 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px);
         `;
 
-        // Criar popup
+        // Criar popup (MENOR)
         this.popup = document.createElement('div');
         this.popup.className = 'popup-incentivo';
         this.popup.style.cssText = `
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
+            background: white;
+            color: var(--dark, #2d3748);
+            padding: 25px 30px;
+            border-radius: 16px;
+            max-width: 400px;
             width: 90%;
             text-align: center;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             transform: scale(0.9);
             transition: transform 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid var(--light-gray, #e2e8f0);
         `;
 
-        // Conteúdo do popup
+        // Conteúdo do popup (mais compacto)
         this.popup.innerHTML = `
             <button class="popup-close" style="
                 position: absolute;
-                top: 15px;
-                right: 20px;
+                top: 12px;
+                right: 15px;
                 background: none;
                 border: none;
-                color: white;
-                font-size: 28px;
+                color: var(--gray, #a0aec0);
+                font-size: 24px;
                 cursor: pointer;
-                opacity: 0.8;
+                opacity: 0.7;
                 transition: opacity 0.2s;
-                padding: 0 10px;
+                padding: 0 8px;
                 line-height: 1;
+                font-weight: 300;
             ">&times;</button>
             
-            <div style="font-size: 60px; margin-bottom: 20px;">📚</div>
-            
-            <h2 style="
+            <div style="
+                background: linear-gradient(135deg, var(--primary-light, #4299e1), var(--primary, #2c5282));
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
                 color: white;
-                margin-bottom: 20px;
-                font-size: 28px;
-                text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            ">Compartilhe seu conhecimento! 👩‍🏫</h2>
+                font-size: 32px;
+                box-shadow: 0 4px 10px rgba(44, 82, 130, 0.3);
+            ">
+                📤
+            </div>
+            
+            <h3 style="
+                color: var(--primary-dark, #1a365d);
+                margin-bottom: 8px;
+                font-size: 22px;
+                font-weight: 600;
+            ">Compartilhe seus materiais!</h3>
             
             <p style="
-                margin-bottom: 25px;
-                font-size: 18px;
-                line-height: 1.6;
-                opacity: 0.95;
+                margin-bottom: 15px;
+                font-size: 15px;
+                line-height: 1.5;
+                color: var(--dark-gray, #4a5568);
             ">
                 Você cria materiais incríveis para suas aulas?<br>
                 <strong>Compartilhe com a rede!</strong>
             </p>
             
             <div style="
-                background: rgba(255,255,255,0.2);
-                padding: 20px;
-                border-radius: 15px;
-                margin-bottom: 25px;
+                background: var(--light, #f7fafc);
+                padding: 12px;
+                border-radius: 12px;
+                margin-bottom: 20px;
                 text-align: left;
+                font-size: 14px;
+                border-left: 3px solid var(--primary, #2c5282);
             ">
-                <p style="margin: 5px 0;">✅ Atividades e exercícios</p>
-                <p style="margin: 5px 0;">✅ Apresentações e slides</p>
-                <p style="margin: 5px 0;">✅ Projetos pedagógicos</p>
-                <p style="margin: 5px 0;">✅ Avaliações e recuperações</p>
-                <p style="margin: 5px 0;">✅ Qualquer material didático</p>
+                <p style="margin: 3px 0;"><span style="color: var(--primary);">✓</span> Atividades e exercícios</p>
+                <p style="margin: 3px 0;"><span style="color: var(--primary);">✓</span> Apresentações e slides</p>
+                <p style="margin: 3px 0;"><span style="color: var(--primary);">✓</span> Projetos e avaliações</p>
             </div>
             
-            <p style="
-                margin-bottom: 30px;
-                font-size: 16px;
-                font-style: italic;
-            ">
-                "O conhecimento se multiplica quando compartilhado." 💙
-            </p>
-            
-            <div style="display: flex; gap: 15px; justify-content: center;">
+            <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 10px;">
                 <a href="compartilhar.html" class="popup-btn popup-btn-primary" style="
-                    background: #4CAF50;
+                    background: var(--primary, #2c5282);
                     color: white;
-                    padding: 15px 30px;
+                    padding: 12px 25px;
                     border-radius: 50px;
                     text-decoration: none;
-                    font-weight: bold;
-                    font-size: 18px;
-                    transition: transform 0.2s, box-shadow 0.2s;
-                    display: inline-block;
-                    border: 2px solid rgba(255,255,255,0.3);
-                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                ">📤 Enviar Material</a>
+                    font-weight: 600;
+                    font-size: 15px;
+                    transition: all 0.2s;
+                    border: none;
+                    box-shadow: 0 2px 8px rgba(44, 82, 130, 0.3);
+                    flex: 2;
+                ">Enviar Material</a>
                 
                 <button class="popup-btn popup-btn-later" style="
-                    background: transparent;
-                    color: white;
-                    padding: 15px 25px;
+                    background: var(--light-gray, #e2e8f0);
+                    color: var(--dark, #2d3748);
+                    padding: 12px 15px;
                     border-radius: 50px;
                     text-decoration: none;
-                    font-weight: bold;
-                    font-size: 16px;
+                    font-weight: 500;
+                    font-size: 14px;
                     transition: all 0.2s;
-                    border: 2px solid rgba(255,255,255,0.3);
+                    border: none;
                     cursor: pointer;
-                ">Lembrar depois</button>
+                    flex: 1;
+                ">Depois</button>
             </div>
             
             <p style="
-                margin-top: 20px;
-                font-size: 14px;
-                opacity: 0.7;
+                font-size: 11px;
+                color: var(--gray, #a0aec0);
+                margin-top: 5px;
             ">
-                Seu material passará por avaliação da equipe pedagógica
+                Seu material passará por avaliação da equipe
             </p>
         `;
 
@@ -204,7 +212,7 @@ class PopupIncentivo {
             this.hide();
         });
 
-        // Fechar com botão "Lembrar depois"
+        // Fechar com botão "Depois"
         const laterBtn = this.popup.querySelector('.popup-btn-later');
         laterBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -219,17 +227,26 @@ class PopupIncentivo {
         });
 
         // Animações dos botões
-        const btns = this.popup.querySelectorAll('.popup-btn');
-        btns.forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-2px)';
-                btn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-            });
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0)';
-                btn.style.boxShadow = btn.classList.contains('popup-btn-primary') ? 
-                    '0 4px 15px rgba(0,0,0,0.2)' : 'none';
-            });
+        const primaryBtn = this.popup.querySelector('.popup-btn-primary');
+        primaryBtn.addEventListener('mouseenter', () => {
+            primaryBtn.style.background = 'var(--primary-dark, #1a365d)';
+            primaryBtn.style.transform = 'translateY(-2px)';
+            primaryBtn.style.boxShadow = '0 4px 12px rgba(26, 54, 93, 0.4)';
+        });
+        primaryBtn.addEventListener('mouseleave', () => {
+            primaryBtn.style.background = 'var(--primary, #2c5282)';
+            primaryBtn.style.transform = 'translateY(0)';
+            primaryBtn.style.boxShadow = '0 2px 8px rgba(44, 82, 130, 0.3)';
+        });
+
+        const laterBtn = this.popup.querySelector('.popup-btn-later');
+        laterBtn.addEventListener('mouseenter', () => {
+            laterBtn.style.background = 'var(--gray, #a0aec0)';
+            laterBtn.style.color = 'white';
+        });
+        laterBtn.addEventListener('mouseleave', () => {
+            laterBtn.style.background = 'var(--light-gray, #e2e8f0)';
+            laterBtn.style.color = 'var(--dark, #2d3748)';
         });
     }
 
