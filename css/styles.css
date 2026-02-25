@@ -196,7 +196,7 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-md);
-  vertical-align: middle;
+  vertical-align: ;
   align-items: center;
 }
 
