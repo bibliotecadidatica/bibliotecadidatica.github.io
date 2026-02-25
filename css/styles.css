@@ -196,7 +196,7 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-md);
-  vertical-align: ;
+  vertical-align: middle;
   align-items: center;
 }
 
@@ -670,6 +670,14 @@ a:hover {
     flex-direction: column;
     padding: 0;
   }
+
+  .nav-main-items {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  vertical-align: middle;
+}
   
   .nav-item-with-submenu .submenu {
     position: static;
