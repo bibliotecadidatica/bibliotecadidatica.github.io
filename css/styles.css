@@ -197,7 +197,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 var(--space-md);
   vertical-align: middle;
-  align-items: ;
+  align-items: center;
 }
 
 .nav-link {
