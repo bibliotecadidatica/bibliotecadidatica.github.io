@@ -103,7 +103,7 @@ const popupMensagem = {
                     <div class="popup-actions">
                         <a href="compartilhar.html" class="popup-btn popup-btn-primary">
                             <i class="fas fa-upload"></i>
-                            Quero Compartilhar Agora
+                            Compartilhar Agora
                         </a>
                         <button class="popup-btn popup-btn-secondary" id="popup-lembrar-depois">
                             <i class="fas fa-clock"></i>
