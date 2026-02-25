@@ -18,7 +18,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
   background-color: var(--popup-overlay);
   z-index: 9999;
   align-items: center;
@@ -42,7 +42,7 @@
   box-shadow: var(--popup-shadow);
   position: relative;
   animation: slideIn 0.4s ease;
-  border: 1px solid var(--popup-border);
+  border: 0px solid var(--popup-border);
 }
 
 /* Cabeçalho do popup */
