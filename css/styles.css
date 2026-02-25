@@ -669,7 +669,7 @@ a:hover {
   .nav-main-items {
     flex-direction: column;
     padding: 0;
-    vertical-align: middle;
+    vertical-align: left;
     align-items: left;
   }
   
