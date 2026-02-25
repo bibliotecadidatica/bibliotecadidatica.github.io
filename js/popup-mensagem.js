@@ -97,10 +97,6 @@ const popupMensagem = {
                                 <i class="fas fa-check-circle"></i>
                                 <span>Contribua para uma educação mais colaborativa</span>
                             </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span>Seus materiais avaliados por especialistas</span>
-                            </li>
                         </ul>
                     </div>
                     
