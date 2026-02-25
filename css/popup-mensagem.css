@@ -8,7 +8,7 @@
   --popup-text: #2d3748;
   --popup-text-light: #4a5568;
   --popup-border: #e2e8f0;
-  --popup-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --popup-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
 }
 
 /* Overlay do popup */
@@ -17,14 +17,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   background-color: var(--popup-overlay);
   z-index: 9999;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(4px);
-  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.2s ease;
 }
 
 .popup-overlay.active {
@@ -34,34 +34,32 @@
 /* Container do popup */
 .popup-container {
   width: 90%;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
+  max-width: 420px;
   background: var(--popup-bg);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: var(--popup-shadow);
   position: relative;
-  animation: slideIn 0.4s ease;
-  border: 0px solid var(--popup-border);
+  animation: slideIn 0.3s ease;
+  border: 1px solid var(--popup-border);
+  overflow: hidden;
 }
 
 /* Cabeçalho do popup */
 .popup-header {
   background: linear-gradient(135deg, var(--popup-primary), var(--popup-primary-light));
   color: white;
-  padding: 1.2rem;
-  border-radius: 20px 20px 0 0;
+  padding: 1rem 1.2rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   position: relative;
 }
 
 .popup-header-icon {
-  font-size: 2.0rem;
+  font-size: 1.8rem;
   background: rgba(255, 255, 255, 0.2);
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -75,60 +73,64 @@
 .popup-header-title h3 {
   color: white;
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
 .popup-header-title p {
   color: rgba(255, 255, 255, 0.9);
-  margin: 0.25rem 0 0;
-  font-size: 0.9rem;
+  margin: 0;
+  font-size: 0.8rem;
 }
 
 /* Botão fechar */
 .popup-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   color: white;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .popup-close:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Corpo do popup */
 .popup-body {
-  padding: 2rem 1.5rem;
+  padding: 1.2rem 1.2rem 1rem;
 }
 
 .popup-message {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .popup-message p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.4;
   color: var(--popup-text);
-  margin-bottom: 1rem;
+  margin: 0;
+}
+
+.popup-message p:first-child {
+  margin-bottom: 0.25rem;
 }
 
 .popup-message strong {
   color: var(--popup-primary);
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .popup-message i {
@@ -140,19 +142,19 @@
 /* Benefícios em lista */
 .popup-benefits {
   background: #f7fafc;
-  border-radius: 16px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--popup-border);
 }
 
 .popup-benefits h4 {
   color: var(--popup-primary);
-  margin: 0 0 1rem;
-  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .popup-benefits ul {
@@ -163,10 +165,11 @@
 
 .popup-benefits li {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
   color: var(--popup-text-light);
+  font-size: 0.85rem;
 }
 
 .popup-benefits li:last-child {
@@ -175,29 +178,29 @@
 
 .popup-benefits li i {
   color: var(--popup-primary);
-  font-size: 1.1rem;
-  margin-top: 0.2rem;
-  min-width: 20px;
+  font-size: 0.9rem;
+  min-width: 18px;
 }
 
 /* Botões de ação */
 .popup-actions {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .popup-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.2s;
   cursor: pointer;
   border: none;
   text-align: center;
@@ -206,29 +209,29 @@
 .popup-btn-primary {
   background: linear-gradient(135deg, var(--popup-primary), var(--popup-primary-light));
   color: white;
-  box-shadow: 0 4px 6px rgba(44, 82, 130, 0.2);
+  box-shadow: 0 2px 4px rgba(44, 82, 130, 0.2);
 }
 
 .popup-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(44, 82, 130, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(44, 82, 130, 0.3);
   color: white;
 }
 
 .popup-btn-secondary {
   background: white;
   color: var(--popup-primary);
-  border: 2px solid var(--popup-primary-light);
+  border: 1px solid var(--popup-primary-light);
 }
 
 .popup-btn-secondary:hover {
   background: #f7fafc;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   color: var(--popup-primary);
 }
 
 .popup-btn i {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* Checkbox "Não mostrar novamente" */
@@ -236,22 +239,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--popup-border);
 }
 
 .popup-dont-show input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   cursor: pointer;
   accent-color: var(--popup-primary);
+  margin: 0;
 }
 
 .popup-dont-show label {
   color: var(--popup-text-light);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
@@ -264,7 +267,7 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
@@ -275,49 +278,12 @@
 /* Responsividade para celular */
 @media (max-width: 768px) {
   .popup-container {
-    width: 95%;
-    max-width: 400px;
+    width: 92%;
+    max-width: 360px;
   }
   
   .popup-header {
-    padding: 1.2rem;
-  }
-  
-  .popup-header-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
-  }
-  
-  .popup-header-title h3 {
-    font-size: 1.2rem;
-  }
-  
-  .popup-body {
-    padding: 1.5rem 1.2rem;
-  }
-  
-  .popup-message p {
-    font-size: 1rem;
-  }
-  
-  .popup-message strong {
-    font-size: 1.1rem;
-  }
-  
-  .popup-benefits {
-    padding: 1.2rem;
-  }
-  
-  .popup-btn {
-    padding: 0.875rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .popup-container {
-    width: 90%;
+    padding: 0.9rem 1rem;
   }
   
   .popup-header-icon {
@@ -330,11 +296,98 @@
     font-size: 1.1rem;
   }
   
-  .popup-body {
-    padding: 1.2rem 1rem;
+  .popup-header-title p {
+    font-size: 0.75rem;
   }
   
-  .popup-actions {
-    gap: 0.75rem;
+  .popup-body {
+    padding: 1rem 1rem 0.9rem;
+  }
+  
+  .popup-message p {
+    font-size: 0.9rem;
+  }
+  
+  .popup-message strong {
+    font-size: 0.95rem;
+  }
+  
+  .popup-benefits {
+    padding: 0.7rem 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .popup-benefits h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .popup-benefits li {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .popup-benefits li i {
+    font-size: 0.85rem;
+    min-width: 16px;
+  }
+  
+  .popup-btn {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .popup-dont-show label {
+    font-size: 0.75rem;
+  }
+  
+  .popup-close {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-container {
+    width: 95%;
+    max-width: 320px;
+  }
+  
+  .popup-header {
+    padding: 0.8rem;
+  }
+  
+  .popup-header-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
+  }
+  
+  .popup-header-title h3 {
+    font-size: 1rem;
+  }
+  
+  .popup-body {
+    padding: 0.9rem 0.9rem 0.8rem;
+  }
+  
+  .popup-message p {
+    font-size: 0.85rem;
+  }
+  
+  .popup-benefits {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .popup-benefits li {
+    font-size: 0.75rem;
+  }
+  
+  .popup-btn {
+    padding: 0.55rem;
+    font-size: 0.85rem;
   }
 }
