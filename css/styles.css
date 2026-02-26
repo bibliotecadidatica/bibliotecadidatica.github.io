@@ -732,3 +732,39 @@ a:hover {
 .content-section {
   animation: fadeIn 0.3s ease;
 }
+
+/* ===== CORREÇÃO PARA ALINHAMENTO DOS SUBMENUS NO CELULAR ===== */
+@media (max-width: 768px) {
+  /* Garante que os botões principais fiquem alinhados à esquerda */
+  .nav-item-with-submenu {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Alinha o botão do submenu à esquerda */
+  .nav-main-link {
+    justify-content: flex-start !important;
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Ajusta o conteúdo do submenu */
+  .nav-item-with-submenu .submenu {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Alinha os links do submenu à esquerda */
+  .submenu .nav-link.submenu-link {
+    justify-content: flex-start !important;
+    text-align: left;
+    padding-left: var(--space-lg);
+  }
+  
+  /* Remove qualquer centralização forçada */
+  .main-nav.expanded .nav-main-items {
+    align-items: flex-start !important;
+  }
+}
