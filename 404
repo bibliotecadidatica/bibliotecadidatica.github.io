@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=https://bibliotecadidatica.vercel.app/">
+  <title>Redirecionando...</title>
+
+  <script>
+    (function () {
+      const novoDominio = "https://bibliotecadidatica.vercel.app";
+      const caminho = window.location.pathname.replace(/\/index\.html$/, "/");
+      const busca = window.location.search || "";
+      const ancora = window.location.hash || "";
+
+      window.location.replace(novoDominio + caminho + busca + ancora);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecionando para a nova Biblioteca Didática...</p>
+  <p>
+    <a href="https://bibliotecadidatica.vercel.app/">
+      Acesse o novo site
+    </a>
+  </p>
+</body>
+</html>
